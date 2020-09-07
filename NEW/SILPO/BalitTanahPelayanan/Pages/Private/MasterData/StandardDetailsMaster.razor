@@ -1,0 +1,349 @@
+﻿@page "/pages/private/masterdata/standardetailsmaster"
+@layout BalitTanahPelayanan.Shared.Master.MainMaster
+@using System.Web;
+@using Microsoft.AspNetCore.WebUtilities
+@inject IToastService toastService
+@using BalitTanahPelayanan.Data
+@using BalitTanahPelayanan.Helpers
+@using BalitTanahPelayanan.Models
+@using BalitTanahPelayanan.Controllers
+@inject NavigationManager NavMgr
+@inject IJSRuntime jsRuntime
+
+@if (objStandarDetail == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    if (ShowTable)
+    {
+        <TableTemplate Items="objStandarDetail">
+            <TableHeader>
+                <th class="sorting">Kode Detail</th>
+                <th class="sorting">Kode Standar</th>
+                <th class="sorting">Kode Layanan</th>
+                <th>Aksi</th>
+            </TableHeader>
+            <RowTemplate Context="standardetails">
+                <td>@standardetails.StdDetailId</td>
+                <td>@standardetails.StdId</td>
+                <td>@standardetails.ElementId</td>
+                <td>
+                    <a @onclick:preventDefault @onclick='() => ActionTable(standardetails.StdDetailId.ToString())' class="linkbtn">Ubah</a>
+                    <a @onclick:preventDefault @onclick='() => Detail(standardetails.StdDetailId.ToString())' class="linkbtn">Lihat</a>
+                    <a @onclick:preventDefault @onclick='() => Delete(standardetails.StdDetailId.ToString())' class="linkbtn">Hapus</a>
+                </td>
+
+            </RowTemplate>
+        </TableTemplate>
+        <div>
+            <input type="submit" @onclick:preventDefault @onclick='() => ActionButton("add")' name="BtnAdd" value="Tambah Data" id="MainContent_BtnAdd" class="btn btn-success" />
+        </div>
+    }
+    if (ShowInput)
+    {
+        <EditForm EditContext="@editContext" OnValidSubmit="@DoSave">
+            <DataAnnotationsValidator />
+            <div class="form-group">
+                <label><h4>Informasi : </h4></label>
+            </div>
+            <div class="form-group">
+                <label>Kode Detail:</label>
+                <label ID="TxtStdDetailId" runat="server" visible="true">@StdDetailId</label>
+            </div>
+            <div class="form-group">
+                <label for="stdid">Nomor Standar:</label>
+                <InputSelect @bind-Value="modelStandardetail.StdId" class="form-control" name="stdid" disabled="@InputIsDisabled">
+                    @if (objStandarDetail != null)
+                            {
+                                foreach (var item in objStandarDetail)
+                                {
+                            <option value="@item.StdId">@item.StdId</option>
+                                }
+                            }
+                </InputSelect>
+            </div>
+            <div>
+                <label for="elementcode">Kode Layanan:</label>
+                <InputSelect @bind-Value="modelStandardetail.ElementId" class="form-control" name="elementcode" disabled="@InputIsDisabled">
+                    @if (objStandarDetail != null)
+                            {
+                                foreach (var item in objStandarDetail)
+                                {
+                            <option value="@item.ElementId">@item.ElementId</option>
+                                }
+                            }
+                </InputSelect>
+            </div>
+            <input type="submit" class="btn btn-success" disabled="@IsDisabled" name="BtnSave" value="@save" />
+            <input type="submit" class="btn btn-danger" name="BtnCancel" value="@cancel" @onclick:preventDefault @onclick='() => ActionButton("cancel")' />
+        </EditForm>
+    }
+    if (ShowDetail)
+    {
+        <div class="form-group">
+            <label><h4>Informasi : </h4></label>
+        </div>
+        <div class="form-group">
+            <label>Kode Detail:</label>
+            <label ID="TxtStdDetailId" runat="server" visible="true">@StdDetailId</label>
+        </div>
+        <div class="form-group">
+            <label>Nomor Standar:</label>
+            <label class="form-control">@modelStandardetail.StdId</label>
+        </div>
+        <div class="form-group">
+            <label>Kode Layanan:</label>
+            <label class="form-control">@modelStandardetail.ElementId</label>
+        </div>
+        <input type="submit" class="btn btn-danger" name="BtnCancel" value="Kembali" @onclick:preventDefault @onclick='() => ActionButton("cancel")' />
+    }
+    if (ShowDelete)
+    {
+        <div>
+            <label><h4>Apakah anda yakin ingin menghapus data ini?</h4></label>
+        </div>
+        <a @onclick:preventDefault @onclick='() => DoDelete(modelStandardetail.StdDetailId.ToString())' class="btn btn-success">Ya</a>
+        <input type="submit" class="btn btn-danger" name="BtnCancel" value="Tidak" @onclick:preventDefault @onclick='() => ActionButton("cancel")' />
+    }
+}
+
+@code {
+    private EditContext editContext;
+    protected bool IsDisabled = true;
+
+    protected bool InputIsDisabled = false;
+
+    string StdDetailId = "Otomatis";
+    string save = "Simpan";
+    string cancel = "Kembali";
+
+    enum ModeForm { ViewData, UpdateData, DetailData, AddData }
+
+    bool ShowTable { get; set; } = true;
+    bool ShowInput { get; set; } = false;
+    bool ShowDetail { get; set; } = false;
+    bool ShowDelete { get; set; } = false;
+
+    StandardDetailControls standardDetailControl = new StandardDetailControls();
+    ElementServicesControls elementServiceControl = new ElementServicesControls();
+    Standarddetailtbl modelStandardetail = new Standarddetailtbl();
+    List<Standarddetailtbl> objStandarDetail = new List<Standarddetailtbl>();
+    List<StandardControls> objStandar = new List<StandardControls>();
+
+    //Action For Table
+    void ActionTable(string ids)
+    {
+        ShowTable = false;
+        ShowInput = true;
+        ShowDetail = false;
+        ShowDelete = false;
+        LoadDetail(ids);
+        StateHasChanged();
+    }
+
+    //Detail
+    void Detail(string ids)
+    {
+        ShowTable = false;
+        ShowInput = false;
+        ShowDetail = true;
+        ShowDelete = false;
+        LoadDetail(ids);
+        StateHasChanged();
+    }
+
+    //delete
+    void Delete(string ids)
+    {
+        ShowTable = false;
+        ShowInput = false;
+        ShowDelete = true;
+        LoadDetail(ids);
+        StateHasChanged();
+    }
+
+    // Action Button
+    void ActionButton(string cname)
+    {
+        try
+        {
+            var command = cname;
+
+            switch (command)
+            {
+
+                case "add":
+                    save = "Simpan";
+                    SetLayout(ModeForm.AddData);
+                    break;
+
+                case "update":
+                    SetLayout(ModeForm.UpdateData);
+                    break;
+
+                case "cancel":
+                    save = "Simpan";
+                    StdDetailId = "Otomatis";
+                    modelStandardetail = new Standarddetailtbl();
+                    editContext = new EditContext(modelStandardetail);
+                    SetLayout(ModeForm.ViewData);
+                    break;
+            }
+        }
+        catch (Exception ex)
+        {
+            toastService.ShowError("Terjadi kesalahan: " + ex.Message);
+        }
+    }
+
+    // Set Layout
+    void SetLayout(ModeForm mode)
+    {
+        switch (mode)
+        {
+            case ModeForm.AddData:
+                ShowTable = false;
+                ShowInput = true;
+                ShowDetail = false;
+                ShowDelete = false;
+                RefreshGrid();
+                LoadStandarId();
+                StateHasChanged();
+                break;
+            case ModeForm.UpdateData:
+                ShowTable = true;
+                ShowInput = false;
+                ShowDetail = false;
+                ShowDelete = false;
+                objStandarDetail = new List<Standarddetailtbl>();
+                RefreshGrid();
+                LoadStandarId();
+                StateHasChanged();
+                break;
+            case ModeForm.ViewData:
+                ShowTable = true;
+                ShowInput = false;
+                ShowDetail = false;
+                ShowDelete = false;
+                objStandarDetail = new List<Standarddetailtbl>();
+                RefreshGrid();
+                LoadStandarId();
+                StateHasChanged();
+                break;
+        }
+    }
+
+    // Validation State Change
+    private void OnValidationStateChanged(object sender, ValidationStateChangedEventArgs e)
+    {
+        IsDisabled = editContext.GetValidationMessages().Any();
+        StateHasChanged();
+    }
+
+
+    // Load Detail Data
+    void LoadDetail(string dd)
+    {
+        save = "Ubah";
+        var ret = standardDetailControl.DetailData(dd);
+        var data = ret.Result;
+        StdDetailId = data.StdDetailId.ToString();
+
+        if (data != null)
+        {
+            LoadStandarId();
+            modelStandardetail = data;
+        }
+    }
+
+    // Load Standar Id
+    private void LoadStandarId()
+    {
+        var ret = standardDetailControl.GetData();
+        var datas = ret.Result;
+
+        if (datas != null && datas.Count() > 0)
+        {
+            objStandarDetail = datas.ToList();
+        }
+    }
+
+    // Reload datagrid
+    protected void RefreshGrid(string param = "")
+    {
+        if (param == null || param == "")
+        {
+            var ret = standardDetailControl.GetData();
+            var datas = ret.Result;
+
+            if (datas != null && datas.Count() > 0)
+            {
+                objStandarDetail = datas.ToList();
+                editContext = new EditContext(objStandarDetail);
+                editContext.OnValidationStateChanged += OnValidationStateChanged;
+                modelStandardetail = new Standarddetailtbl();
+                StateHasChanged();
+            }
+        }
+        else
+        {
+            var ret = standardDetailControl.GetDataByContaint(param);
+            var datas = ret.Result;
+
+            if (datas != null && datas.Count() > 0)
+            {
+                objStandarDetail = datas.ToList();
+                editContext = new EditContext(objStandarDetail);
+                modelStandardetail = new Standarddetailtbl();
+                editContext.OnValidationStateChanged += OnValidationStateChanged;
+                StateHasChanged();
+            }
+        }
+    }
+
+    // Do Save
+    private void DoSave()
+    {
+        string id = StdDetailId;
+        var data = modelStandardetail;
+
+        var ret = standardDetailControl.AddData(data);
+        if (save == "Ubah")
+        {
+            ret = standardDetailControl.UpdateData(id, data);
+        }
+
+        if (ret.Result)
+        {
+            SetLayout(ModeForm.ViewData);
+            save = "Simpan";
+            StdDetailId = "Otomatis";
+            toastService.ShowSuccess("data berhasil disimpan");
+        }
+        else
+        {
+            toastService.ShowError("Gagal menyimpan data");
+        }
+    }
+
+    // Do Delete
+    private void DoDelete(string id)
+    {
+        var ret = standardDetailControl.DeleteData(id);
+
+        if (ret.Result)
+        {
+            SetLayout(ModeForm.ViewData);
+            save = "Simpan";
+            StdDetailId = "Otomatis";
+            toastService.ShowSuccess("data berhasil dihapus");
+        }
+        else
+        {
+            toastService.ShowError("Gagal menghapus data");
+        }
+    }
+
+}

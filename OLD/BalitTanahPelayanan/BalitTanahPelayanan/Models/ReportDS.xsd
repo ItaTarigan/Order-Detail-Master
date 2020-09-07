@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ReportDS" targetNamespace="http://tempuri.org/ReportDS.xsd" xmlns:mstns="http://tempuri.org/ReportDS.xsd" xmlns="http://tempuri.org/ReportDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ReportDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ReportDS" msprop:Generator_UserDSName="ReportDS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DaftarParameterDS" msprop:Generator_TableClassName="DaftarParameterDSDataTable" msprop:Generator_TableVarName="tableDaftarParameterDS" msprop:Generator_TablePropName="DaftarParameterDS" msprop:Generator_RowDeletingName="DaftarParameterDSRowDeleting" msprop:Generator_RowChangingName="DaftarParameterDSRowChanging" msprop:Generator_RowEvHandlerName="DaftarParameterDSRowChangeEventHandler" msprop:Generator_RowDeletedName="DaftarParameterDSRowDeleted" msprop:Generator_UserTableName="DaftarParameterDS" msprop:Generator_RowChangedName="DaftarParameterDSRowChanged" msprop:Generator_RowEvArgName="DaftarParameterDSRowChangeEvent" msprop:Generator_RowClassName="DaftarParameterDSRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="No" msprop:Generator_ColumnVarNameInTable="columnNo" msprop:Generator_ColumnPropNameInRow="No" msprop:Generator_ColumnPropNameInTable="NoColumn" msprop:Generator_UserColumnName="No" type="xs:int" minOccurs="0" />
+              <xs:element name="JenisAnalisis" msprop:Generator_ColumnVarNameInTable="columnJenisAnalisis" msprop:Generator_ColumnPropNameInRow="JenisAnalisis" msprop:Generator_ColumnPropNameInTable="JenisAnalisisColumn" msprop:Generator_UserColumnName="JenisAnalisis" type="xs:string" minOccurs="0" />
+              <xs:element name="Tarif" msprop:Generator_ColumnVarNameInTable="columnTarif" msprop:Generator_ColumnPropNameInRow="Tarif" msprop:Generator_ColumnPropNameInTable="TarifColumn" msprop:Generator_UserColumnName="Tarif" type="xs:long" minOccurs="0" />
+              <xs:element name="JumlahContoh" msprop:Generator_ColumnVarNameInTable="columnJumlahContoh" msprop:Generator_ColumnPropNameInRow="JumlahContoh" msprop:Generator_ColumnPropNameInTable="JumlahContohColumn" msprop:Generator_UserColumnName="JumlahContoh" type="xs:int" minOccurs="0" />
+              <xs:element name="Biaya" msprop:Generator_ColumnVarNameInTable="columnBiaya" msprop:Generator_ColumnPropNameInRow="Biaya" msprop:Generator_ColumnPropNameInTable="BiayaColumn" msprop:Generator_UserColumnName="Biaya" type="xs:long" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

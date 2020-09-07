@@ -1,0 +1,2981 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BalitTanahPelayanan.Models.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="accounttbl">
+          <Key>
+            <PropertyRef Name="accountNo" />
+          </Key>
+          <Property Name="accountNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="255" />
+          <Property Name="password" Type="varchar" MaxLength="255" />
+          <Property Name="roleName" Type="varchar" MaxLength="255" />
+          <Property Name="isEmailVerified" Type="char" MaxLength="1" />
+          <Property Name="creaBy" Type="varchar" MaxLength="255" />
+          <Property Name="creaDate" Type="datetime" Precision="0" />
+          <Property Name="modBy" Type="varchar" MaxLength="255" />
+          <Property Name="modDate" Type="datetime" Precision="0" />
+        </EntityType>
+        <EntityType Name="analysistypetbl">
+          <Key>
+            <PropertyRef Name="analysisTypeName" />
+          </Key>
+          <Property Name="analysisTypeName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="description" Type="text" />
+          <Property Name="creaBy" Type="varchar" MaxLength="255" />
+          <Property Name="creaDate" Type="datetime" Precision="0" />
+          <Property Name="modBy" Type="varchar" MaxLength="255" />
+          <Property Name="modDate" Type="datetime" Precision="0" />
+        </EntityType>
+        <EntityType Name="autonumbertbl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameSet" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="LastCounter" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="batchtbl">
+          <Key>
+            <PropertyRef Name="batchId" />
+          </Key>
+          <Property Name="batchId" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="filename" Type="varchar" MaxLength="255" />
+          <Property Name="status" Type="varchar" MaxLength="255" />
+          <Property Name="fileurl" Type="text" />
+          <Property Name="pic_analis" Type="int" />
+          <Property Name="pic_penyelia" Type="int" />
+          <Property Name="creaBy" Type="varchar" MaxLength="255" />
+          <Property Name="creaDate" Type="datetime" Precision="0" />
+          <Property Name="modBy" Type="varchar" MaxLength="255" />
+          <Property Name="modDate" Type="datetime" Precision="0" />
+        </EntityType>
+        <EntityType Name="comoditytbl">
+          <Key>
+            <PropertyRef Name="comodityNo" />
+          </Key>
+          <Property Name="comodityNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="comodityName" Type="varchar" MaxLength="255" />
+          <Property Name="derivativeTo" Type="int" />
+          <Property Name="description" Type="text" />
+          <Property Name="code" Type="varchar" MaxLength="10" />
+          <Property Name="notes" Type="text" />
+          <Property Name="isPackage" Type="varchar" MaxLength="1" />
+          <Property Name="creaBy" Type="varchar" MaxLength="255" />
+          <Property Name="creaDate" Type="datetime" Precision="0" />
+          <Property Name="modBy" Type="varchar" MaxLength="255" />
+          <Property Name="modDate" Type="datetime" Precision="0" />
+          <Property Name="isGenusAvailable" Type="char" MaxLength="1" />
+          <Property Name="priceGenusPerSample" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="isHeavyMetalAvailable" Type="char" MaxLength="1" />
+          <Property Name="limitDoseForFreeOfHeavyMetal" Type="decimal" Precision="5" Scale="0" />
+          <Property Name="priceHeavyMetalPerSample" Type="decimal" Precision="12" Scale="2" />
+        </EntityType>
+        <EntityType Name="customertbl">
+          <Key>
+            <PropertyRef Name="customerNo" />
+          </Key>
+          <Property Name="customerNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="customerName" Type="varchar" MaxLength="255" />
+          <Property Name="customerEmail" Type="varchar" MaxLength="255" />
+          <Property Name="companyName" Type="varchar" MaxLength="255" />
+          <Property Name="companyAddress" Type="text" />
+          <Property Name="companyPhone" Type="varchar" MaxLength="25" />
+          <Property Name="companyEmail" Type="varchar" MaxLength="255" />
+          <Property Name="accountNo" Type="int" />
+          <Property Name="creaBy" Type="varchar" MaxLength="255" />
+          <Property Name="creaDate" Type="datetime" Precision="0" />
+          <Property Name="modBy" Type="varchar" MaxLength="255" />
+          <Property Name="modDate" Type="datetime" Precision="0" />
+        </EntityType>
+        <EntityType Name="elementservicehistorytbl">
+          <Key>
+            <PropertyRef Name="elementHistoryNo" />
+          </Key>
+          <Property Name="elementHistoryNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="activeDate" Type="datetime" Precision="0" />
+          <Property Name="expiredDate" Type="datetime" Precision="0" />
+          <Property Name="elementId" Type="int" Nullable="false" />
+          <Property Name="serviceRate" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="creaBy" Type="varchar" MaxLength="255" />
+          <Property Name="creaDate" Type="datetime" Precision="0" />
+        </EntityType>
+        <EntityType Name="elementservicestbl">
+          <Key>
+            <PropertyRef Name="elementid" />
+          </Key>
+          <Property Name="elementid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="elementCode" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="comodityNo" Type="int" Nullable="false" />
+          <Property Name="analysisTypeName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="valueUnit" Type="varchar" MaxLength="255" />
+          <Property Name="serviceGroup" Type="varchar" MaxLength="255" />
+          <Property Name="serviceRate" Type="decimal" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="serviceStatus" Type="varchar" MaxLength="255" />
+          <Property Name="category" Type="varchar" MaxLength="255" />
+          <Property Name="sortedNo" Type="int" />
+          <Property Name="isMandatory" Type="char" MaxLength="1" />
+          <Property Name="creaBy" Type="varchar" MaxLength="255" />
+          <Property Name="creaDate" Type="datetime" Precision="0" />
+          <Property Name="modBy" Type="varchar" MaxLength="255" />
+          <Property Name="modDate" Type="datetime" Precision="0" />
+          <Property Name="NotParameterProcess" Type="char" MaxLength="1" />
+          <Property Name="ExtractionId" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="employeetbl">
+          <Key>
+            <PropertyRef Name="employeeNo" />
+          </Key>
+          <Property Name="employeeNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="employeeName" Type="varchar" MaxLength="255" />
+          <Property Name="position" Type="varchar" MaxLength="255" />
+          <Property Name="employeeEmail" Type="varchar" MaxLength="255" />
+          <Property Name="derivativeToEmployee" Type="int" />
+          <Property Name="accountNo" Type="int" />
+          <Property Name="creaBy" Type="varchar" MaxLength="255" />
+          <Property Name="creaDate" Type="datetime" Precision="0" />
+          <Property Name="modBy" Type="varchar" MaxLength="255" />
+          <Property Name="modDate" Type="datetime" Precision="0" />
+          <Property Name="laboratoriumID" Type="int" />
+        </EntityType>
+        <EntityType Name="genustbl">
+          <Key>
+            <PropertyRef Name="genusId" />
+          </Key>
+          <Property Name="genusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="genusName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Cost" Type="decimal" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="comodityNo" Type="int" Nullable="false" />
+          <Property Name="creaBy" Type="varchar" MaxLength="255" />
+          <Property Name="creaDate" Type="datetime" Precision="0" />
+          <Property Name="modBy" Type="varchar" MaxLength="255" />
+          <Property Name="modDate" Type="datetime" Precision="0" />
+        </EntityType>
+        <EntityType Name="laboratoriumtbl">
+          <Key>
+            <PropertyRef Name="laboratoriumID" />
+          </Key>
+          <Property Name="laboratoriumID" Type="int" Nullable="false" />
+          <Property Name="laboratoriumName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="laboratoriumStatus" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="laboratoriumSymbol" Type="char" MaxLength="3" />
+        </EntityType>
+        <EntityType Name="logtbl">
+          <Key>
+            <PropertyRef Name="logId" />
+          </Key>
+          <Property Name="logId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="source" Type="varchar" MaxLength="255" />
+          <Property Name="description" Type="text" />
+          <Property Name="creaBy" Type="varchar" MaxLength="255" />
+          <Property Name="creaDate" Type="datetime" Precision="0" />
+        </EntityType>
+        <EntityType Name="my_aspnet_applications">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="256" />
+          <Property Name="description" Type="varchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="my_aspnet_membership">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="128" />
+          <Property Name="Comment" Type="varchar" MaxLength="255" />
+          <Property Name="Password" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="PasswordKey" Type="char" MaxLength="32" />
+          <Property Name="PasswordFormat" Type="tinyint" />
+          <Property Name="PasswordQuestion" Type="varchar" MaxLength="255" />
+          <Property Name="PasswordAnswer" Type="varchar" MaxLength="255" />
+          <Property Name="IsApproved" Type="bool" />
+          <Property Name="LastActivityDate" Type="datetime" Precision="0" />
+          <Property Name="LastLoginDate" Type="datetime" Precision="0" />
+          <Property Name="LastPasswordChangedDate" Type="datetime" Precision="0" />
+          <Property Name="CreationDate" Type="datetime" Precision="0" />
+          <Property Name="IsLockedOut" Type="bool" />
+          <Property Name="LastLockedOutDate" Type="datetime" Precision="0" />
+          <Property Name="FailedPasswordAttemptCount" Type="uint" />
+          <Property Name="FailedPasswordAttemptWindowStart" Type="datetime" Precision="0" />
+          <Property Name="FailedPasswordAnswerAttemptCount" Type="uint" />
+          <Property Name="FailedPasswordAnswerAttemptWindowStart" Type="datetime" Precision="0" />
+        </EntityType>
+        <EntityType Name="my_aspnet_paths">
+          <Key>
+            <PropertyRef Name="pathId" />
+          </Key>
+          <Property Name="applicationId" Type="int" Nullable="false" />
+          <Property Name="pathId" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="path" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="loweredPath" Type="varchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="my_aspnet_personalizationallusers">
+          <Key>
+            <PropertyRef Name="pathId" />
+          </Key>
+          <Property Name="pathId" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="pageSettings" Type="blob" Nullable="false" />
+          <Property Name="lastUpdatedDate" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="my_aspnet_personalizationperuser">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="applicationId" Type="int" Nullable="false" />
+          <Property Name="pathId" Type="varchar" MaxLength="36" />
+          <Property Name="userId" Type="int" />
+          <Property Name="pageSettings" Type="blob" Nullable="false" />
+          <Property Name="lastUpdatedDate" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="my_aspnet_profiles">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="valueindex" Type="longtext" />
+          <Property Name="stringdata" Type="longtext" />
+          <Property Name="binarydata" Type="longblob" />
+          <Property Name="lastUpdatedDate" Type="timestamp" Precision="0" />
+        </EntityType>
+        <EntityType Name="my_aspnet_roles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="applicationId" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'def.smlpob.my_aspnet_schemaversion' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="my_aspnet_schemaversion">
+          <Property Name="version" Type="int" />
+        </EntityType>-->
+        <EntityType Name="my_aspnet_sessioncleanup">
+          <Key>
+            <PropertyRef Name="ApplicationId" />
+          </Key>
+          <Property Name="LastRun" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="IntervalMinutes" Type="int" Nullable="false" />
+          <Property Name="ApplicationId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="my_aspnet_sessions">
+          <Key>
+            <PropertyRef Name="SessionId" />
+            <PropertyRef Name="ApplicationId" />
+          </Key>
+          <Property Name="SessionId" Type="varchar" MaxLength="191" Nullable="false" />
+          <Property Name="ApplicationId" Type="int" Nullable="false" />
+          <Property Name="Created" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="Expires" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="LockDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="LockId" Type="int" Nullable="false" />
+          <Property Name="Timeout" Type="int" Nullable="false" />
+          <Property Name="Locked" Type="bool" Nullable="false" />
+          <Property Name="SessionItems" Type="longblob" />
+          <Property Name="Flags" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="my_aspnet_sitemap">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="512" />
+          <Property Name="Url" Type="varchar" MaxLength="512" />
+          <Property Name="Roles" Type="varchar" MaxLength="1000" />
+          <Property Name="ParentId" Type="int" />
+        </EntityType>
+        <EntityType Name="my_aspnet_users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="applicationId" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="isAnonymous" Type="bool" Nullable="false" />
+          <Property Name="lastActivityDate" Type="datetime" Precision="0" />
+        </EntityType>
+        <EntityType Name="my_aspnet_usersinroles">
+          <Key>
+            <PropertyRef Name="userId" />
+            <PropertyRef Name="roleId" />
+          </Key>
+          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="roleId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mysql_membership">
+          <Key>
+            <PropertyRef Name="PKID" />
+          </Key>
+          <Property Name="PKID" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ApplicationName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="128" />
+          <Property Name="Comment" Type="varchar" MaxLength="255" />
+          <Property Name="Password" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="PasswordKey" Type="char" MaxLength="32" />
+          <Property Name="PasswordFormat" Type="tinyint" />
+          <Property Name="PasswordQuestion" Type="varchar" MaxLength="255" />
+          <Property Name="PasswordAnswer" Type="varchar" MaxLength="255" />
+          <Property Name="IsApproved" Type="bool" />
+          <Property Name="LastActivityDate" Type="datetime" Precision="0" />
+          <Property Name="LastLoginDate" Type="datetime" Precision="0" />
+          <Property Name="LastPasswordChangedDate" Type="datetime" Precision="0" />
+          <Property Name="CreationDate" Type="datetime" Precision="0" />
+          <Property Name="IsOnline" Type="bool" />
+          <Property Name="IsLockedOut" Type="bool" />
+          <Property Name="LastLockedOutDate" Type="datetime" Precision="0" />
+          <Property Name="FailedPasswordAttemptCount" Type="uint" />
+          <Property Name="FailedPasswordAttemptWindowStart" Type="datetime" Precision="0" />
+          <Property Name="FailedPasswordAnswerAttemptCount" Type="uint" />
+          <Property Name="FailedPasswordAnswerAttemptWindowStart" Type="datetime" Precision="0" />
+        </EntityType>
+        <EntityType Name="orderanalysisdetailtbl">
+          <Key>
+            <PropertyRef Name="orderDetailNo" />
+          </Key>
+          <Property Name="orderDetailNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="orderNo" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="sampleNo" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="elementId" Type="int" Nullable="false" />
+          <Property Name="parametersNo" Type="int" />
+          <Property Name="elementValue" Type="varchar" MaxLength="255" />
+          <Property Name="status" Type="varchar" MaxLength="255" />
+          <Property Name="recalculate" Type="char" MaxLength="1" />
+          <Property Name="pic" Type="int" />
+          <Property Name="fileAttachmentUrl" Type="text" />
+          <Property Name="fileName" Type="varchar" MaxLength="255" />
+          <Property Name="LabToolAttachmentUrl" Type="text" />
+          <Property Name="LabToolFileName" Type="varchar" MaxLength="255" />
+          <Property Name="creaBy" Type="varchar" MaxLength="255" />
+          <Property Name="creaDate" Type="datetime" Precision="0" />
+          <Property Name="modBy" Type="varchar" MaxLength="255" />
+          <Property Name="modDate" Type="datetime" Precision="0" />
+        </EntityType>
+        <EntityType Name="ordermastertbl">
+          <Key>
+            <PropertyRef Name="orderNo" />
+          </Key>
+          <Property Name="orderNo" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="batchId" Type="varchar" MaxLength="15" />
+          <Property Name="customerNo" Type="int" Nullable="false" />
+          <Property Name="comodityNo" Type="int" Nullable="false" />
+          <Property Name="analysisType" Type="varchar" MaxLength="255" />
+          <Property Name="sampleTotal" Type="int" />
+          <Property Name="priceTotal" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="statusType" Type="varchar" MaxLength="255" />
+          <Property Name="status" Type="varchar" MaxLength="100" />
+          <Property Name="paymentStatus" Type="varchar" MaxLength="255" />
+          <Property Name="ppn" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="receiptDate" Type="datetime" Precision="0" />
+          <Property Name="isPaid" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="paymentDate" Type="datetime" Precision="0" />
+          <Property Name="pic" Type="int" />
+          <Property Name="isOnLab" Type="char" MaxLength="1" />
+          <Property Name="ApprPenyelia" Type="char" MaxLength="1" />
+          <Property Name="ApprEvaluator" Type="char" MaxLength="1" />
+          <Property Name="ApprManagerTeknis" Type="char" MaxLength="1" />
+          <Property Name="LHPAttachmentUrl" Type="text" />
+          <Property Name="LHPFileName" Type="varchar" MaxLength="255" />
+          <Property Name="EvaluationFileUrl" Type="text" />
+          <Property Name="EvaluationFileName" Type="varchar" MaxLength="255" />
+          <Property Name="isRecalculate" Type="char" MaxLength="1" />
+          <Property Name="CalculationFileUrl" Type="text" />
+          <Property Name="CalculationFilename" Type="varchar" MaxLength="255" />
+          <Property Name="isReviewing" Type="char" MaxLength="1" />
+          <Property Name="packageName" Type="varchar" MaxLength="255" />
+          <Property Name="additionalPrice1" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="additionalPrice2" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="totalGenus" Type="int" />
+          <Property Name="dosePerHectare" Type="decimal" Precision="5" Scale="0" />
+          <Property Name="additionalPriceRemark" Type="varchar" MaxLength="256" />
+          <Property Name="creaBy" Type="varchar" MaxLength="255" />
+          <Property Name="creaDate" Type="datetime" Precision="0" />
+          <Property Name="modBy" Type="varchar" MaxLength="255" />
+          <Property Name="modDate" Type="datetime" Precision="0" />
+        </EntityType>
+        <EntityType Name="ordernavigationtbl">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="parentId" Type="int" Nullable="false" />
+          <Property Name="isLeaf" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="commodityNo" Type="int" Nullable="false" />
+          <Property Name="orderNo" Type="int" Nullable="false" />
+          <Property Name="isVisible" Type="varchar" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="orderpricedetailtbl">
+          <Key>
+            <PropertyRef Name="orderPriceDetailNo" />
+          </Key>
+          <Property Name="orderPriceDetailNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="orderNo" Type="varchar" MaxLength="30" />
+          <Property Name="elementId" Type="int" />
+          <Property Name="price" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="quantity" Type="int" />
+          <Property Name="TotalPrice" Type="decimal" Precision="22" Scale="2" />
+        </EntityType>
+        <EntityType Name="ordersampletbl">
+          <Key>
+            <PropertyRef Name="noBalittanah" />
+          </Key>
+          <Property Name="noBalittanah" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="orderNo" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="countNumber" Type="int" />
+          <Property Name="sampleCode" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="sampleDescription" Type="text" />
+          <Property Name="samplingDate" Type="datetime" Precision="0" />
+          <Property Name="village" Type="varchar" MaxLength="255" />
+          <Property Name="subDistrict" Type="varchar" MaxLength="255" />
+          <Property Name="district" Type="varchar" MaxLength="255" />
+          <Property Name="province" Type="varchar" MaxLength="255" />
+          <Property Name="longitude" Type="varchar" MaxLength="255" />
+          <Property Name="latitude" Type="varchar" MaxLength="255" />
+          <Property Name="landUse" Type="varchar" MaxLength="255" />
+          <Property Name="isReceived" Type="char" MaxLength="1" />
+          <Property Name="creaBy" Type="varchar" MaxLength="255" />
+          <Property Name="creaDate" Type="datetime" Precision="0" />
+          <Property Name="modBy" Type="varchar" MaxLength="255" />
+          <Property Name="modDate" Type="datetime" Precision="0" />
+        </EntityType>
+        <EntityType Name="packagedetailtbl">
+          <Key>
+            <PropertyRef Name="PackageDetailTbl" />
+          </Key>
+          <Property Name="PackageDetailTbl" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="packageName" Type="varchar" MaxLength="255" />
+          <Property Name="elementId" Type="int" />
+          <Property Name="compulsive" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="packagetbl">
+          <Key>
+            <PropertyRef Name="packageName" />
+          </Key>
+          <Property Name="packageName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="comodityNo" Type="int" />
+          <Property Name="analysisTypeName" Type="varchar" MaxLength="255" />
+          <Property Name="multipleSelectedItem" Type="char" MaxLength="1" />
+          <Property Name="bundlePrice" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="additionalPrice1" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="additionalPrice2" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="additionalPriceDesc1" Type="varchar" MaxLength="255" />
+          <Property Name="additionalPriceDesc2" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="parameterstbl">
+          <Key>
+            <PropertyRef Name="parametersNo" />
+          </Key>
+          <Property Name="parametersNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="string0" Type="varchar" MaxLength="255" />
+          <Property Name="string1" Type="varchar" MaxLength="255" />
+          <Property Name="string2" Type="varchar" MaxLength="255" />
+          <Property Name="string3" Type="varchar" MaxLength="255" />
+          <Property Name="string4" Type="varchar" MaxLength="255" />
+          <Property Name="string5" Type="varchar" MaxLength="255" />
+          <Property Name="string6" Type="varchar" MaxLength="255" />
+          <Property Name="string7" Type="varchar" MaxLength="255" />
+          <Property Name="string8" Type="varchar" MaxLength="255" />
+          <Property Name="string9" Type="varchar" MaxLength="255" />
+          <Property Name="creaBy" Type="varchar" MaxLength="255" />
+          <Property Name="creaDate" Type="datetime" Precision="0" />
+          <Property Name="modBy" Type="varchar" MaxLength="255" />
+          <Property Name="modDate" Type="datetime" Precision="0" />
+        </EntityType>
+        <EntityType Name="paymenttbl">
+          <Key>
+            <PropertyRef Name="paymentId" />
+          </Key>
+          <Property Name="paymentId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="status" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="accountName" Type="varchar" MaxLength="50" />
+          <Property Name="accountNo" Type="varchar" MaxLength="250" />
+          <Property Name="bankName" Type="varchar" MaxLength="50" />
+          <Property Name="paymentReceiptUrl" Type="varchar" MaxLength="250" />
+          <Property Name="amount" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="orderNo" Type="varchar" MaxLength="50" />
+          <Property Name="name" Type="varchar" MaxLength="250" />
+          <Property Name="attachmentUrl" Type="varchar" MaxLength="350" />
+        </EntityType>
+        <EntityType Name="resulttbl">
+          <Key>
+            <PropertyRef Name="resultNo" />
+          </Key>
+          <Property Name="resultNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="orderNo" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="reviewingNo" Type="int" />
+          <Property Name="url" Type="text" />
+          <Property Name="fileName" Type="varchar" MaxLength="255" />
+          <Property Name="creaBy" Type="varchar" MaxLength="255" />
+          <Property Name="creaDate" Type="datetime" Precision="0" />
+          <Property Name="modBy" Type="varchar" MaxLength="255" />
+          <Property Name="modDate" Type="datetime" Precision="0" />
+        </EntityType>
+        <EntityType Name="reviewingtbl">
+          <Key>
+            <PropertyRef Name="reviewingNo" />
+          </Key>
+          <Property Name="reviewingNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="orderNo" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="elementCodeList" Type="text" />
+          <Property Name="reviewingDate" Type="datetime" Precision="0" />
+          <Property Name="isLabUtilitySurfficient" Type="char" MaxLength="1" />
+          <Property Name="isHumanResourceSurfficient" Type="char" MaxLength="1" />
+          <Property Name="isChemicalMaterialSurfficent" Type="char" MaxLength="1" />
+          <Property Name="isVolumeCorrect" Type="char" MaxLength="1" />
+          <Property Name="workdays" Type="int" />
+          <Property Name="isMethode" Type="char" MaxLength="1" />
+          <Property Name="isQualityStandard" Type="char" MaxLength="1" />
+          <Property Name="creaBy" Type="varchar" MaxLength="255" />
+          <Property Name="creaDate" Type="datetime" Precision="0" />
+          <Property Name="modBy" Type="varchar" MaxLength="255" />
+          <Property Name="modDate" Type="datetime" Precision="0" />
+        </EntityType>
+        <EntityType Name="roletbl">
+          <Key>
+            <PropertyRef Name="roleName" />
+          </Key>
+          <Property Name="roleName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="description" Type="text" />
+          <Property Name="creaBy" Type="varchar" MaxLength="255" />
+          <Property Name="creaDate" Type="datetime" Precision="0" />
+          <Property Name="modBy" Type="varchar" MaxLength="255" />
+          <Property Name="modDate" Type="datetime" Precision="0" />
+        </EntityType>
+        <EntityType Name="sampletypetbl">
+          <Key>
+            <PropertyRef Name="typeName" />
+          </Key>
+          <Property Name="typeName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="typeSymbol" Type="char" MaxLength="3" />
+          <Property Name="typeStatus" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="standarddetailtbl">
+          <Key>
+            <PropertyRef Name="stdDetailId" />
+          </Key>
+          <Property Name="stdDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="stdId" Type="int" Nullable="false" />
+          <Property Name="elementId" Type="int" Nullable="false" />
+          <Property Name="creaBy" Type="varchar" MaxLength="255" />
+          <Property Name="creaDate" Type="datetime" Precision="0" />
+          <Property Name="modBy" Type="varchar" MaxLength="255" />
+          <Property Name="modDate" Type="datetime" Precision="0" />
+        </EntityType>
+        <EntityType Name="standardtbl">
+          <Key>
+            <PropertyRef Name="stdId" />
+          </Key>
+          <Property Name="stdId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="stdNo" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="comodityNo" Type="int" />
+          <Property Name="creaBy" Type="varchar" MaxLength="255" />
+          <Property Name="creaDate" Type="datetime" Precision="0" />
+          <Property Name="modBy" Type="varchar" MaxLength="255" />
+          <Property Name="modDate" Type="datetime" Precision="0" />
+        </EntityType>
+        <EntityType Name="workflowlogtbl">
+          <Key>
+            <PropertyRef Name="workflowLogNo" />
+          </Key>
+          <Property Name="workflowLogNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="resourceNo" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="task" Type="varchar" MaxLength="255" />
+          <Property Name="taskDesctiption" Type="text" />
+          <Property Name="lastStatus" Type="varchar" MaxLength="255" />
+          <Property Name="message" Type="varchar" MaxLength="255" />
+          <Property Name="creaBy" Type="varchar" MaxLength="255" />
+          <Property Name="creaDate" Type="datetime" Precision="0" />
+        </EntityType>
+        <Association Name="AccountTbltoRoleTbl">
+          <End Role="roletbl" Type="Self.roletbl" Multiplicity="0..1" />
+          <End Role="accounttbl" Type="Self.accounttbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roletbl">
+              <PropertyRef Name="roleName" />
+            </Principal>
+            <Dependent Role="accounttbl">
+              <PropertyRef Name="roleName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BatchTblToEmployeeTbl">
+          <End Role="employeetbl" Type="Self.employeetbl" Multiplicity="0..1" />
+          <End Role="batchtbl" Type="Self.batchtbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employeetbl">
+              <PropertyRef Name="employeeNo" />
+            </Principal>
+            <Dependent Role="batchtbl">
+              <PropertyRef Name="pic_analis" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CustomerTblAccountTbl">
+          <End Role="accounttbl" Type="Self.accounttbl" Multiplicity="0..1" />
+          <End Role="customertbl" Type="Self.customertbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="accounttbl">
+              <PropertyRef Name="accountNo" />
+            </Principal>
+            <Dependent Role="customertbl">
+              <PropertyRef Name="accountNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ElementServiceHistoryTbltoElementServicesTbl">
+          <End Role="elementservicestbl" Type="Self.elementservicestbl" Multiplicity="1" />
+          <End Role="elementservicehistorytbl" Type="Self.elementservicehistorytbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="elementservicestbl">
+              <PropertyRef Name="elementid" />
+            </Principal>
+            <Dependent Role="elementservicehistorytbl">
+              <PropertyRef Name="elementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ElementServicesTbltoAnalysisTypeTbl">
+          <End Role="analysistypetbl" Type="Self.analysistypetbl" Multiplicity="1" />
+          <End Role="elementservicestbl" Type="Self.elementservicestbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="analysistypetbl">
+              <PropertyRef Name="analysisTypeName" />
+            </Principal>
+            <Dependent Role="elementservicestbl">
+              <PropertyRef Name="analysisTypeName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EmployeeTblAccountTbl">
+          <End Role="accounttbl" Type="Self.accounttbl" Multiplicity="0..1" />
+          <End Role="employeetbl" Type="Self.employeetbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="accounttbl">
+              <PropertyRef Name="accountNo" />
+            </Principal>
+            <Dependent Role="employeetbl">
+              <PropertyRef Name="accountNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EmployeeTblLaboratoriumTbl">
+          <End Role="laboratoriumtbl" Type="Self.laboratoriumtbl" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="employeetbl" Type="Self.employeetbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="laboratoriumtbl">
+              <PropertyRef Name="laboratoriumID" />
+            </Principal>
+            <Dependent Role="employeetbl">
+              <PropertyRef Name="laboratoriumID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_batchtbl_employeetbl">
+          <End Role="employeetbl" Type="Self.employeetbl" Multiplicity="0..1" />
+          <End Role="batchtbl" Type="Self.batchtbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employeetbl">
+              <PropertyRef Name="employeeNo" />
+            </Principal>
+            <Dependent Role="batchtbl">
+              <PropertyRef Name="pic_penyelia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ordermastertbl_batchtbl">
+          <End Role="batchtbl" Type="Self.batchtbl" Multiplicity="0..1" />
+          <End Role="ordermastertbl" Type="Self.ordermastertbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="batchtbl">
+              <PropertyRef Name="batchId" />
+            </Principal>
+            <Dependent Role="ordermastertbl">
+              <PropertyRef Name="batchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GenusPerComodityTbltoComodityTbl">
+          <End Role="comoditytbl" Type="Self.comoditytbl" Multiplicity="1" />
+          <End Role="genustbl" Type="Self.genustbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="comoditytbl">
+              <PropertyRef Name="comodityNo" />
+            </Principal>
+            <Dependent Role="genustbl">
+              <PropertyRef Name="comodityNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderAnalysisDetailTbltoElementServicesTbl">
+          <End Role="elementservicestbl" Type="Self.elementservicestbl" Multiplicity="1" />
+          <End Role="orderanalysisdetailtbl" Type="Self.orderanalysisdetailtbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="elementservicestbl">
+              <PropertyRef Name="elementid" />
+            </Principal>
+            <Dependent Role="orderanalysisdetailtbl">
+              <PropertyRef Name="elementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderAnalysisDetailTbltoEmployeeTbl">
+          <End Role="employeetbl" Type="Self.employeetbl" Multiplicity="0..1" />
+          <End Role="orderanalysisdetailtbl" Type="Self.orderanalysisdetailtbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employeetbl">
+              <PropertyRef Name="employeeNo" />
+            </Principal>
+            <Dependent Role="orderanalysisdetailtbl">
+              <PropertyRef Name="pic" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderAnalysisDetailTbltoOrderMaster">
+          <End Role="ordermastertbl" Type="Self.ordermastertbl" Multiplicity="1" />
+          <End Role="orderanalysisdetailtbl" Type="Self.orderanalysisdetailtbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ordermastertbl">
+              <PropertyRef Name="orderNo" />
+            </Principal>
+            <Dependent Role="orderanalysisdetailtbl">
+              <PropertyRef Name="orderNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderAnalysisDetailTbltoOrderSampleTbl">
+          <End Role="ordersampletbl" Type="Self.ordersampletbl" Multiplicity="1" />
+          <End Role="orderanalysisdetailtbl" Type="Self.orderanalysisdetailtbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ordersampletbl">
+              <PropertyRef Name="noBalittanah" />
+            </Principal>
+            <Dependent Role="orderanalysisdetailtbl">
+              <PropertyRef Name="sampleNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderAnalysisDetailTbltoParametersTbl">
+          <End Role="parameterstbl" Type="Self.parameterstbl" Multiplicity="0..1" />
+          <End Role="orderanalysisdetailtbl" Type="Self.orderanalysisdetailtbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="parameterstbl">
+              <PropertyRef Name="parametersNo" />
+            </Principal>
+            <Dependent Role="orderanalysisdetailtbl">
+              <PropertyRef Name="parametersNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderMasterTbltoAnalysisTypeTbl">
+          <End Role="analysistypetbl" Type="Self.analysistypetbl" Multiplicity="0..1" />
+          <End Role="ordermastertbl" Type="Self.ordermastertbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="analysistypetbl">
+              <PropertyRef Name="analysisTypeName" />
+            </Principal>
+            <Dependent Role="ordermastertbl">
+              <PropertyRef Name="analysisType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderMasterTbltoComodityTbl">
+          <End Role="comoditytbl" Type="Self.comoditytbl" Multiplicity="1" />
+          <End Role="ordermastertbl" Type="Self.ordermastertbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="comoditytbl">
+              <PropertyRef Name="comodityNo" />
+            </Principal>
+            <Dependent Role="ordermastertbl">
+              <PropertyRef Name="comodityNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderMasterTbltoCustomerTbl">
+          <End Role="customertbl" Type="Self.customertbl" Multiplicity="1" />
+          <End Role="ordermastertbl" Type="Self.ordermastertbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customertbl">
+              <PropertyRef Name="customerNo" />
+            </Principal>
+            <Dependent Role="ordermastertbl">
+              <PropertyRef Name="customerNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderMasterTbltoEmployeeTbl">
+          <End Role="employeetbl" Type="Self.employeetbl" Multiplicity="0..1" />
+          <End Role="ordermastertbl" Type="Self.ordermastertbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employeetbl">
+              <PropertyRef Name="employeeNo" />
+            </Principal>
+            <Dependent Role="ordermastertbl">
+              <PropertyRef Name="pic" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderPriceDetailTbltoOrderMasterTbl">
+          <End Role="ordermastertbl" Type="Self.ordermastertbl" Multiplicity="0..1" />
+          <End Role="orderpricedetailtbl" Type="Self.orderpricedetailtbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ordermastertbl">
+              <PropertyRef Name="orderNo" />
+            </Principal>
+            <Dependent Role="orderpricedetailtbl">
+              <PropertyRef Name="orderNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderPriceDetailtoElementServicesTbl">
+          <End Role="elementservicestbl" Type="Self.elementservicestbl" Multiplicity="0..1" />
+          <End Role="orderpricedetailtbl" Type="Self.orderpricedetailtbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="elementservicestbl">
+              <PropertyRef Name="elementid" />
+            </Principal>
+            <Dependent Role="orderpricedetailtbl">
+              <PropertyRef Name="elementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderSampleTbltoOrderMasterTbl">
+          <End Role="ordermastertbl" Type="Self.ordermastertbl" Multiplicity="1" />
+          <End Role="ordersampletbl" Type="Self.ordersampletbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ordermastertbl">
+              <PropertyRef Name="orderNo" />
+            </Principal>
+            <Dependent Role="ordersampletbl">
+              <PropertyRef Name="orderNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PackageDetailTbltoElementServicesTbl">
+          <End Role="elementservicestbl" Type="Self.elementservicestbl" Multiplicity="0..1" />
+          <End Role="packagedetailtbl" Type="Self.packagedetailtbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="elementservicestbl">
+              <PropertyRef Name="elementid" />
+            </Principal>
+            <Dependent Role="packagedetailtbl">
+              <PropertyRef Name="elementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PackageDetailTbltoPackageTbl">
+          <End Role="packagetbl" Type="Self.packagetbl" Multiplicity="0..1" />
+          <End Role="packagedetailtbl" Type="Self.packagedetailtbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="packagetbl">
+              <PropertyRef Name="packageName" />
+            </Principal>
+            <Dependent Role="packagedetailtbl">
+              <PropertyRef Name="packageName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PackageTbltoAnalysisTypeTbl">
+          <End Role="analysistypetbl" Type="Self.analysistypetbl" Multiplicity="0..1" />
+          <End Role="packagetbl" Type="Self.packagetbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="analysistypetbl">
+              <PropertyRef Name="analysisTypeName" />
+            </Principal>
+            <Dependent Role="packagetbl">
+              <PropertyRef Name="analysisTypeName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PackageTbltoComodityTbl">
+          <End Role="comoditytbl" Type="Self.comoditytbl" Multiplicity="0..1" />
+          <End Role="packagetbl" Type="Self.packagetbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="comoditytbl">
+              <PropertyRef Name="comodityNo" />
+            </Principal>
+            <Dependent Role="packagetbl">
+              <PropertyRef Name="comodityNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ResultTbltoOrderMasterTbl">
+          <End Role="ordermastertbl" Type="Self.ordermastertbl" Multiplicity="1" />
+          <End Role="resulttbl" Type="Self.resulttbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ordermastertbl">
+              <PropertyRef Name="orderNo" />
+            </Principal>
+            <Dependent Role="resulttbl">
+              <PropertyRef Name="orderNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ResultTbltoReviewingTbl">
+          <End Role="reviewingtbl" Type="Self.reviewingtbl" Multiplicity="0..1" />
+          <End Role="resulttbl" Type="Self.resulttbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="reviewingtbl">
+              <PropertyRef Name="reviewingNo" />
+            </Principal>
+            <Dependent Role="resulttbl">
+              <PropertyRef Name="reviewingNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StandardDetailTbltoElementServicesTbl">
+          <End Role="elementservicestbl" Type="Self.elementservicestbl" Multiplicity="1" />
+          <End Role="standarddetailtbl" Type="Self.standarddetailtbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="elementservicestbl">
+              <PropertyRef Name="elementid" />
+            </Principal>
+            <Dependent Role="standarddetailtbl">
+              <PropertyRef Name="elementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StandardDetailTbltoStandardTbl">
+          <End Role="standardtbl" Type="Self.standardtbl" Multiplicity="1" />
+          <End Role="standarddetailtbl" Type="Self.standarddetailtbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="standardtbl">
+              <PropertyRef Name="stdId" />
+            </Principal>
+            <Dependent Role="standarddetailtbl">
+              <PropertyRef Name="stdId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StandartdTbltoComodityTbl">
+          <End Role="comoditytbl" Type="Self.comoditytbl" Multiplicity="0..1" />
+          <End Role="standardtbl" Type="Self.standardtbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="comoditytbl">
+              <PropertyRef Name="comodityNo" />
+            </Principal>
+            <Dependent Role="standardtbl">
+              <PropertyRef Name="comodityNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BalitTanahPelayananModelsStoreContainer">
+          <EntitySet Name="accounttbl" EntityType="Self.accounttbl" Schema="smlpob" store:Type="Tables" />
+          <EntitySet Name="analysistypetbl" EntityType="Self.analysistypetbl" Schema="smlpob" store:Type="Tables" />
+          <EntitySet Name="autonumbertbl" EntityType="Self.autonumbertbl" Schema="smlpob" store:Type="Tables" />
+          <EntitySet Name="batchtbl" EntityType="Self.batchtbl" Schema="smlpob" store:Type="Tables" />
+          <EntitySet Name="comoditytbl" EntityType="Self.comoditytbl" Schema="smlpob" store:Type="Tables" />
+          <EntitySet Name="customertbl" EntityType="Self.customertbl" Schema="smlpob" store:Type="Tables" />
+          <EntitySet Name="elementservicehistorytbl" EntityType="Self.elementservicehistorytbl" Schema="smlpob" store:Type="Tables" />
+          <EntitySet Name="elementservicestbl" EntityType="Self.elementservicestbl" Schema="smlpob" store:Type="Tables" />
+          <EntitySet Name="employeetbl" EntityType="Self.employeetbl" Schema="smlpob" store:Type="Tables" />
+          <EntitySet Name="genustbl" EntityType="Self.genustbl" Schema="smlpob" store:Type="Tables" />
+          <EntitySet Name="laboratoriumtbl" EntityType="Self.laboratoriumtbl" Schema="smlpob" store:Type="Tables" />
+          <EntitySet Name="logtbl" EntityType="Self.logtbl" Schema="smlpob" store:Type="Tables" />
+          <EntitySet Name="my_aspnet_applications" EntityType="Self.my_aspnet_applications" Schema="smlpob" store:Type="Tables" />
+          <EntitySet Name="my_aspnet_membership" EntityType="Self.my_aspnet_membership" Schema="smlpob" store:Type="Tables" />
+          <EntitySet Name="my_aspnet_paths" EntityType="Self.my_aspnet_paths" Schema="smlpob" store:Type="Tables" />
+          <EntitySet Name="my_aspnet_personalizationallusers" EntityType="Self.my_aspnet_personalizationallusers" Schema="smlpob" store:Type="Tables" />
+          <EntitySet Name="my_aspnet_personalizationperuser" EntityType="Self.my_aspnet_personalizationperuser" Schema="smlpob" store:Type="Tables" />
+          <EntitySet Name="my_aspnet_profiles" EntityType="Self.my_aspnet_profiles" Schema="smlpob" store:Type="Tables" />
+          <EntitySet Name="my_aspnet_roles" EntityType="Self.my_aspnet_roles" Schema="smlpob" store:Type="Tables" />
+          <EntitySet Name="my_aspnet_sessioncleanup" EntityType="Self.my_aspnet_sessioncleanup" Schema="smlpob" store:Type="Tables" />
+          <EntitySet Name="my_aspnet_sessions" EntityType="Self.my_aspnet_sessions" Schema="smlpob" store:Type="Tables" />
+          <EntitySet Name="my_aspnet_sitemap" EntityType="Self.my_aspnet_sitemap" Schema="smlpob" store:Type="Tables" />
+          <EntitySet Name="my_aspnet_users" EntityType="Self.my_aspnet_users" Schema="smlpob" store:Type="Tables" />
+          <EntitySet Name="my_aspnet_usersinroles" EntityType="Self.my_aspnet_usersinroles" Schema="smlpob" store:Type="Tables" />
+          <EntitySet Name="mysql_membership" EntityType="Self.mysql_membership" Schema="smlpob" store:Type="Tables" />
+          <EntitySet Name="orderanalysisdetailtbl" EntityType="Self.orderanalysisdetailtbl" Schema="smlpob" store:Type="Tables" />
+          <EntitySet Name="ordermastertbl" EntityType="Self.ordermastertbl" Schema="smlpob" store:Type="Tables" />
+          <EntitySet Name="ordernavigationtbl" EntityType="Self.ordernavigationtbl" Schema="smlpob" store:Type="Tables" />
+          <EntitySet Name="orderpricedetailtbl" EntityType="Self.orderpricedetailtbl" Schema="smlpob" store:Type="Tables" />
+          <EntitySet Name="ordersampletbl" EntityType="Self.ordersampletbl" Schema="smlpob" store:Type="Tables" />
+          <EntitySet Name="packagedetailtbl" EntityType="Self.packagedetailtbl" Schema="smlpob" store:Type="Tables" />
+          <EntitySet Name="packagetbl" EntityType="Self.packagetbl" Schema="smlpob" store:Type="Tables" />
+          <EntitySet Name="parameterstbl" EntityType="Self.parameterstbl" Schema="smlpob" store:Type="Tables" />
+          <EntitySet Name="paymenttbl" EntityType="Self.paymenttbl" Schema="smlpob" store:Type="Tables" />
+          <EntitySet Name="resulttbl" EntityType="Self.resulttbl" Schema="smlpob" store:Type="Tables" />
+          <EntitySet Name="reviewingtbl" EntityType="Self.reviewingtbl" Schema="smlpob" store:Type="Tables" />
+          <EntitySet Name="roletbl" EntityType="Self.roletbl" Schema="smlpob" store:Type="Tables" />
+          <EntitySet Name="sampletypetbl" EntityType="Self.sampletypetbl" Schema="smlpob" store:Type="Tables" />
+          <EntitySet Name="standarddetailtbl" EntityType="Self.standarddetailtbl" Schema="smlpob" store:Type="Tables" />
+          <EntitySet Name="standardtbl" EntityType="Self.standardtbl" Schema="smlpob" store:Type="Tables" />
+          <EntitySet Name="workflowlogtbl" EntityType="Self.workflowlogtbl" Schema="smlpob" store:Type="Tables" />
+          <AssociationSet Name="AccountTbltoRoleTbl" Association="Self.AccountTbltoRoleTbl">
+            <End Role="roletbl" EntitySet="roletbl" />
+            <End Role="accounttbl" EntitySet="accounttbl" />
+          </AssociationSet>
+          <AssociationSet Name="BatchTblToEmployeeTbl" Association="Self.BatchTblToEmployeeTbl">
+            <End Role="employeetbl" EntitySet="employeetbl" />
+            <End Role="batchtbl" EntitySet="batchtbl" />
+          </AssociationSet>
+          <AssociationSet Name="CustomerTblAccountTbl" Association="Self.CustomerTblAccountTbl">
+            <End Role="accounttbl" EntitySet="accounttbl" />
+            <End Role="customertbl" EntitySet="customertbl" />
+          </AssociationSet>
+          <AssociationSet Name="ElementServiceHistoryTbltoElementServicesTbl" Association="Self.ElementServiceHistoryTbltoElementServicesTbl">
+            <End Role="elementservicestbl" EntitySet="elementservicestbl" />
+            <End Role="elementservicehistorytbl" EntitySet="elementservicehistorytbl" />
+          </AssociationSet>
+          <AssociationSet Name="ElementServicesTbltoAnalysisTypeTbl" Association="Self.ElementServicesTbltoAnalysisTypeTbl">
+            <End Role="analysistypetbl" EntitySet="analysistypetbl" />
+            <End Role="elementservicestbl" EntitySet="elementservicestbl" />
+          </AssociationSet>
+          <AssociationSet Name="EmployeeTblAccountTbl" Association="Self.EmployeeTblAccountTbl">
+            <End Role="accounttbl" EntitySet="accounttbl" />
+            <End Role="employeetbl" EntitySet="employeetbl" />
+          </AssociationSet>
+          <AssociationSet Name="EmployeeTblLaboratoriumTbl" Association="Self.EmployeeTblLaboratoriumTbl">
+            <End Role="laboratoriumtbl" EntitySet="laboratoriumtbl" />
+            <End Role="employeetbl" EntitySet="employeetbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_batchtbl_employeetbl" Association="Self.FK_batchtbl_employeetbl">
+            <End Role="employeetbl" EntitySet="employeetbl" />
+            <End Role="batchtbl" EntitySet="batchtbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ordermastertbl_batchtbl" Association="Self.FK_ordermastertbl_batchtbl">
+            <End Role="batchtbl" EntitySet="batchtbl" />
+            <End Role="ordermastertbl" EntitySet="ordermastertbl" />
+          </AssociationSet>
+          <AssociationSet Name="GenusPerComodityTbltoComodityTbl" Association="Self.GenusPerComodityTbltoComodityTbl">
+            <End Role="comoditytbl" EntitySet="comoditytbl" />
+            <End Role="genustbl" EntitySet="genustbl" />
+          </AssociationSet>
+          <AssociationSet Name="OrderAnalysisDetailTbltoElementServicesTbl" Association="Self.OrderAnalysisDetailTbltoElementServicesTbl">
+            <End Role="elementservicestbl" EntitySet="elementservicestbl" />
+            <End Role="orderanalysisdetailtbl" EntitySet="orderanalysisdetailtbl" />
+          </AssociationSet>
+          <AssociationSet Name="OrderAnalysisDetailTbltoEmployeeTbl" Association="Self.OrderAnalysisDetailTbltoEmployeeTbl">
+            <End Role="employeetbl" EntitySet="employeetbl" />
+            <End Role="orderanalysisdetailtbl" EntitySet="orderanalysisdetailtbl" />
+          </AssociationSet>
+          <AssociationSet Name="OrderAnalysisDetailTbltoOrderMaster" Association="Self.OrderAnalysisDetailTbltoOrderMaster">
+            <End Role="ordermastertbl" EntitySet="ordermastertbl" />
+            <End Role="orderanalysisdetailtbl" EntitySet="orderanalysisdetailtbl" />
+          </AssociationSet>
+          <AssociationSet Name="OrderAnalysisDetailTbltoOrderSampleTbl" Association="Self.OrderAnalysisDetailTbltoOrderSampleTbl">
+            <End Role="ordersampletbl" EntitySet="ordersampletbl" />
+            <End Role="orderanalysisdetailtbl" EntitySet="orderanalysisdetailtbl" />
+          </AssociationSet>
+          <AssociationSet Name="OrderAnalysisDetailTbltoParametersTbl" Association="Self.OrderAnalysisDetailTbltoParametersTbl">
+            <End Role="parameterstbl" EntitySet="parameterstbl" />
+            <End Role="orderanalysisdetailtbl" EntitySet="orderanalysisdetailtbl" />
+          </AssociationSet>
+          <AssociationSet Name="OrderMasterTbltoAnalysisTypeTbl" Association="Self.OrderMasterTbltoAnalysisTypeTbl">
+            <End Role="analysistypetbl" EntitySet="analysistypetbl" />
+            <End Role="ordermastertbl" EntitySet="ordermastertbl" />
+          </AssociationSet>
+          <AssociationSet Name="OrderMasterTbltoComodityTbl" Association="Self.OrderMasterTbltoComodityTbl">
+            <End Role="comoditytbl" EntitySet="comoditytbl" />
+            <End Role="ordermastertbl" EntitySet="ordermastertbl" />
+          </AssociationSet>
+          <AssociationSet Name="OrderMasterTbltoCustomerTbl" Association="Self.OrderMasterTbltoCustomerTbl">
+            <End Role="customertbl" EntitySet="customertbl" />
+            <End Role="ordermastertbl" EntitySet="ordermastertbl" />
+          </AssociationSet>
+          <AssociationSet Name="OrderMasterTbltoEmployeeTbl" Association="Self.OrderMasterTbltoEmployeeTbl">
+            <End Role="employeetbl" EntitySet="employeetbl" />
+            <End Role="ordermastertbl" EntitySet="ordermastertbl" />
+          </AssociationSet>
+          <AssociationSet Name="OrderPriceDetailTbltoOrderMasterTbl" Association="Self.OrderPriceDetailTbltoOrderMasterTbl">
+            <End Role="ordermastertbl" EntitySet="ordermastertbl" />
+            <End Role="orderpricedetailtbl" EntitySet="orderpricedetailtbl" />
+          </AssociationSet>
+          <AssociationSet Name="OrderPriceDetailtoElementServicesTbl" Association="Self.OrderPriceDetailtoElementServicesTbl">
+            <End Role="elementservicestbl" EntitySet="elementservicestbl" />
+            <End Role="orderpricedetailtbl" EntitySet="orderpricedetailtbl" />
+          </AssociationSet>
+          <AssociationSet Name="OrderSampleTbltoOrderMasterTbl" Association="Self.OrderSampleTbltoOrderMasterTbl">
+            <End Role="ordermastertbl" EntitySet="ordermastertbl" />
+            <End Role="ordersampletbl" EntitySet="ordersampletbl" />
+          </AssociationSet>
+          <AssociationSet Name="PackageDetailTbltoElementServicesTbl" Association="Self.PackageDetailTbltoElementServicesTbl">
+            <End Role="elementservicestbl" EntitySet="elementservicestbl" />
+            <End Role="packagedetailtbl" EntitySet="packagedetailtbl" />
+          </AssociationSet>
+          <AssociationSet Name="PackageDetailTbltoPackageTbl" Association="Self.PackageDetailTbltoPackageTbl">
+            <End Role="packagetbl" EntitySet="packagetbl" />
+            <End Role="packagedetailtbl" EntitySet="packagedetailtbl" />
+          </AssociationSet>
+          <AssociationSet Name="PackageTbltoAnalysisTypeTbl" Association="Self.PackageTbltoAnalysisTypeTbl">
+            <End Role="analysistypetbl" EntitySet="analysistypetbl" />
+            <End Role="packagetbl" EntitySet="packagetbl" />
+          </AssociationSet>
+          <AssociationSet Name="PackageTbltoComodityTbl" Association="Self.PackageTbltoComodityTbl">
+            <End Role="comoditytbl" EntitySet="comoditytbl" />
+            <End Role="packagetbl" EntitySet="packagetbl" />
+          </AssociationSet>
+          <AssociationSet Name="ResultTbltoOrderMasterTbl" Association="Self.ResultTbltoOrderMasterTbl">
+            <End Role="ordermastertbl" EntitySet="ordermastertbl" />
+            <End Role="resulttbl" EntitySet="resulttbl" />
+          </AssociationSet>
+          <AssociationSet Name="ResultTbltoReviewingTbl" Association="Self.ResultTbltoReviewingTbl">
+            <End Role="reviewingtbl" EntitySet="reviewingtbl" />
+            <End Role="resulttbl" EntitySet="resulttbl" />
+          </AssociationSet>
+          <AssociationSet Name="StandardDetailTbltoElementServicesTbl" Association="Self.StandardDetailTbltoElementServicesTbl">
+            <End Role="elementservicestbl" EntitySet="elementservicestbl" />
+            <End Role="standarddetailtbl" EntitySet="standarddetailtbl" />
+          </AssociationSet>
+          <AssociationSet Name="StandardDetailTbltoStandardTbl" Association="Self.StandardDetailTbltoStandardTbl">
+            <End Role="standardtbl" EntitySet="standardtbl" />
+            <End Role="standarddetailtbl" EntitySet="standarddetailtbl" />
+          </AssociationSet>
+          <AssociationSet Name="StandartdTbltoComodityTbl" Association="Self.StandartdTbltoComodityTbl">
+            <End Role="comoditytbl" EntitySet="comoditytbl" />
+            <End Role="standardtbl" EntitySet="standardtbl" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BalitTanahPelayanan.Models" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="smlpobDB" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="accounttbls" EntityType="BalitTanahPelayanan.Models.accounttbl" />
+          <EntitySet Name="analysistypetbls" EntityType="BalitTanahPelayanan.Models.analysistypetbl" />
+          <EntitySet Name="autonumbertbls" EntityType="BalitTanahPelayanan.Models.autonumbertbl" />
+          <EntitySet Name="batchtbls" EntityType="BalitTanahPelayanan.Models.batchtbl" />
+          <EntitySet Name="comoditytbls" EntityType="BalitTanahPelayanan.Models.comoditytbl" />
+          <EntitySet Name="customertbls" EntityType="BalitTanahPelayanan.Models.customertbl" />
+          <EntitySet Name="elementservicehistorytbls" EntityType="BalitTanahPelayanan.Models.elementservicehistorytbl" />
+          <EntitySet Name="elementservicestbls" EntityType="BalitTanahPelayanan.Models.elementservicestbl" />
+          <EntitySet Name="employeetbls" EntityType="BalitTanahPelayanan.Models.employeetbl" />
+          <EntitySet Name="genustbls" EntityType="BalitTanahPelayanan.Models.genustbl" />
+          <EntitySet Name="laboratoriumtbls" EntityType="BalitTanahPelayanan.Models.laboratoriumtbl" />
+          <EntitySet Name="logtbls" EntityType="BalitTanahPelayanan.Models.logtbl" />
+          <EntitySet Name="my_aspnet_applications" EntityType="BalitTanahPelayanan.Models.my_aspnet_applications" />
+          <EntitySet Name="my_aspnet_membership" EntityType="BalitTanahPelayanan.Models.my_aspnet_membership" />
+          <EntitySet Name="my_aspnet_paths" EntityType="BalitTanahPelayanan.Models.my_aspnet_paths" />
+          <EntitySet Name="my_aspnet_personalizationallusers" EntityType="BalitTanahPelayanan.Models.my_aspnet_personalizationallusers" />
+          <EntitySet Name="my_aspnet_personalizationperuser" EntityType="BalitTanahPelayanan.Models.my_aspnet_personalizationperuser" />
+          <EntitySet Name="my_aspnet_profiles" EntityType="BalitTanahPelayanan.Models.my_aspnet_profiles" />
+          <EntitySet Name="my_aspnet_roles" EntityType="BalitTanahPelayanan.Models.my_aspnet_roles" />
+          <EntitySet Name="my_aspnet_sessioncleanup" EntityType="BalitTanahPelayanan.Models.my_aspnet_sessioncleanup" />
+          <EntitySet Name="my_aspnet_sessions" EntityType="BalitTanahPelayanan.Models.my_aspnet_sessions" />
+          <EntitySet Name="my_aspnet_sitemap" EntityType="BalitTanahPelayanan.Models.my_aspnet_sitemap" />
+          <EntitySet Name="my_aspnet_users" EntityType="BalitTanahPelayanan.Models.my_aspnet_users" />
+          <EntitySet Name="my_aspnet_usersinroles" EntityType="BalitTanahPelayanan.Models.my_aspnet_usersinroles" />
+          <EntitySet Name="mysql_membership" EntityType="BalitTanahPelayanan.Models.mysql_membership" />
+          <EntitySet Name="orderanalysisdetailtbls" EntityType="BalitTanahPelayanan.Models.orderanalysisdetailtbl" />
+          <EntitySet Name="ordermastertbls" EntityType="BalitTanahPelayanan.Models.ordermastertbl" />
+          <EntitySet Name="ordernavigationtbls" EntityType="BalitTanahPelayanan.Models.ordernavigationtbl" />
+          <EntitySet Name="orderpricedetailtbls" EntityType="BalitTanahPelayanan.Models.orderpricedetailtbl" />
+          <EntitySet Name="ordersampletbls" EntityType="BalitTanahPelayanan.Models.ordersampletbl" />
+          <EntitySet Name="packagedetailtbls" EntityType="BalitTanahPelayanan.Models.packagedetailtbl" />
+          <EntitySet Name="packagetbls" EntityType="BalitTanahPelayanan.Models.packagetbl" />
+          <EntitySet Name="parameterstbls" EntityType="BalitTanahPelayanan.Models.parameterstbl" />
+          <EntitySet Name="paymenttbls" EntityType="BalitTanahPelayanan.Models.paymenttbl" />
+          <EntitySet Name="resulttbls" EntityType="BalitTanahPelayanan.Models.resulttbl" />
+          <EntitySet Name="reviewingtbls" EntityType="BalitTanahPelayanan.Models.reviewingtbl" />
+          <EntitySet Name="roletbls" EntityType="BalitTanahPelayanan.Models.roletbl" />
+          <EntitySet Name="standarddetailtbls" EntityType="BalitTanahPelayanan.Models.standarddetailtbl" />
+          <EntitySet Name="standardtbls" EntityType="BalitTanahPelayanan.Models.standardtbl" />
+          <EntitySet Name="workflowlogtbls" EntityType="BalitTanahPelayanan.Models.workflowlogtbl" />
+          <AssociationSet Name="AccountTbltoRoleTbl" Association="BalitTanahPelayanan.Models.AccountTbltoRoleTbl">
+            <End Role="roletbl" EntitySet="roletbls" />
+            <End Role="accounttbl" EntitySet="accounttbls" />
+          </AssociationSet>
+          <AssociationSet Name="CustomerTblAccountTbl" Association="BalitTanahPelayanan.Models.CustomerTblAccountTbl">
+            <End Role="accounttbl" EntitySet="accounttbls" />
+            <End Role="customertbl" EntitySet="customertbls" />
+          </AssociationSet>
+          <AssociationSet Name="EmployeeTblAccountTbl" Association="BalitTanahPelayanan.Models.EmployeeTblAccountTbl">
+            <End Role="accounttbl" EntitySet="accounttbls" />
+            <End Role="employeetbl" EntitySet="employeetbls" />
+          </AssociationSet>
+          <AssociationSet Name="ElementServicesTbltoAnalysisTypeTbl" Association="BalitTanahPelayanan.Models.ElementServicesTbltoAnalysisTypeTbl">
+            <End Role="analysistypetbl" EntitySet="analysistypetbls" />
+            <End Role="elementservicestbl" EntitySet="elementservicestbls" />
+          </AssociationSet>
+          <AssociationSet Name="OrderMasterTbltoAnalysisTypeTbl" Association="BalitTanahPelayanan.Models.OrderMasterTbltoAnalysisTypeTbl">
+            <End Role="analysistypetbl" EntitySet="analysistypetbls" />
+            <End Role="ordermastertbl" EntitySet="ordermastertbls" />
+          </AssociationSet>
+          <AssociationSet Name="PackageTbltoAnalysisTypeTbl" Association="BalitTanahPelayanan.Models.PackageTbltoAnalysisTypeTbl">
+            <End Role="analysistypetbl" EntitySet="analysistypetbls" />
+            <End Role="packagetbl" EntitySet="packagetbls" />
+          </AssociationSet>
+          <AssociationSet Name="BatchTblToEmployeeTbl" Association="BalitTanahPelayanan.Models.BatchTblToEmployeeTbl">
+            <End Role="employeetbl" EntitySet="employeetbls" />
+            <End Role="batchtbl" EntitySet="batchtbls" />
+          </AssociationSet>
+          <AssociationSet Name="FK_batchtbl_employeetbl" Association="BalitTanahPelayanan.Models.FK_batchtbl_employeetbl">
+            <End Role="employeetbl" EntitySet="employeetbls" />
+            <End Role="batchtbl" EntitySet="batchtbls" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ordermastertbl_batchtbl" Association="BalitTanahPelayanan.Models.FK_ordermastertbl_batchtbl">
+            <End Role="batchtbl" EntitySet="batchtbls" />
+            <End Role="ordermastertbl" EntitySet="ordermastertbls" />
+          </AssociationSet>
+          <AssociationSet Name="GenusPerComodityTbltoComodityTbl" Association="BalitTanahPelayanan.Models.GenusPerComodityTbltoComodityTbl">
+            <End Role="comoditytbl" EntitySet="comoditytbls" />
+            <End Role="genustbl" EntitySet="genustbls" />
+          </AssociationSet>
+          <AssociationSet Name="OrderMasterTbltoComodityTbl" Association="BalitTanahPelayanan.Models.OrderMasterTbltoComodityTbl">
+            <End Role="comoditytbl" EntitySet="comoditytbls" />
+            <End Role="ordermastertbl" EntitySet="ordermastertbls" />
+          </AssociationSet>
+          <AssociationSet Name="PackageTbltoComodityTbl" Association="BalitTanahPelayanan.Models.PackageTbltoComodityTbl">
+            <End Role="comoditytbl" EntitySet="comoditytbls" />
+            <End Role="packagetbl" EntitySet="packagetbls" />
+          </AssociationSet>
+          <AssociationSet Name="StandartdTbltoComodityTbl" Association="BalitTanahPelayanan.Models.StandartdTbltoComodityTbl">
+            <End Role="comoditytbl" EntitySet="comoditytbls" />
+            <End Role="standardtbl" EntitySet="standardtbls" />
+          </AssociationSet>
+          <AssociationSet Name="OrderMasterTbltoCustomerTbl" Association="BalitTanahPelayanan.Models.OrderMasterTbltoCustomerTbl">
+            <End Role="customertbl" EntitySet="customertbls" />
+            <End Role="ordermastertbl" EntitySet="ordermastertbls" />
+          </AssociationSet>
+          <AssociationSet Name="ElementServiceHistoryTbltoElementServicesTbl" Association="BalitTanahPelayanan.Models.ElementServiceHistoryTbltoElementServicesTbl">
+            <End Role="elementservicestbl" EntitySet="elementservicestbls" />
+            <End Role="elementservicehistorytbl" EntitySet="elementservicehistorytbls" />
+          </AssociationSet>
+          <AssociationSet Name="OrderAnalysisDetailTbltoElementServicesTbl" Association="BalitTanahPelayanan.Models.OrderAnalysisDetailTbltoElementServicesTbl">
+            <End Role="elementservicestbl" EntitySet="elementservicestbls" />
+            <End Role="orderanalysisdetailtbl" EntitySet="orderanalysisdetailtbls" />
+          </AssociationSet>
+          <AssociationSet Name="OrderPriceDetailtoElementServicesTbl" Association="BalitTanahPelayanan.Models.OrderPriceDetailtoElementServicesTbl">
+            <End Role="elementservicestbl" EntitySet="elementservicestbls" />
+            <End Role="orderpricedetailtbl" EntitySet="orderpricedetailtbls" />
+          </AssociationSet>
+          <AssociationSet Name="PackageDetailTbltoElementServicesTbl" Association="BalitTanahPelayanan.Models.PackageDetailTbltoElementServicesTbl">
+            <End Role="elementservicestbl" EntitySet="elementservicestbls" />
+            <End Role="packagedetailtbl" EntitySet="packagedetailtbls" />
+          </AssociationSet>
+          <AssociationSet Name="StandardDetailTbltoElementServicesTbl" Association="BalitTanahPelayanan.Models.StandardDetailTbltoElementServicesTbl">
+            <End Role="elementservicestbl" EntitySet="elementservicestbls" />
+            <End Role="standarddetailtbl" EntitySet="standarddetailtbls" />
+          </AssociationSet>
+          <AssociationSet Name="EmployeeTblLaboratoriumTbl" Association="BalitTanahPelayanan.Models.EmployeeTblLaboratoriumTbl">
+            <End Role="laboratoriumtbl" EntitySet="laboratoriumtbls" />
+            <End Role="employeetbl" EntitySet="employeetbls" />
+          </AssociationSet>
+          <AssociationSet Name="OrderAnalysisDetailTbltoEmployeeTbl" Association="BalitTanahPelayanan.Models.OrderAnalysisDetailTbltoEmployeeTbl">
+            <End Role="employeetbl" EntitySet="employeetbls" />
+            <End Role="orderanalysisdetailtbl" EntitySet="orderanalysisdetailtbls" />
+          </AssociationSet>
+          <AssociationSet Name="OrderMasterTbltoEmployeeTbl" Association="BalitTanahPelayanan.Models.OrderMasterTbltoEmployeeTbl">
+            <End Role="employeetbl" EntitySet="employeetbls" />
+            <End Role="ordermastertbl" EntitySet="ordermastertbls" />
+          </AssociationSet>
+          <AssociationSet Name="OrderAnalysisDetailTbltoOrderMaster" Association="BalitTanahPelayanan.Models.OrderAnalysisDetailTbltoOrderMaster">
+            <End Role="ordermastertbl" EntitySet="ordermastertbls" />
+            <End Role="orderanalysisdetailtbl" EntitySet="orderanalysisdetailtbls" />
+          </AssociationSet>
+          <AssociationSet Name="OrderAnalysisDetailTbltoOrderSampleTbl" Association="BalitTanahPelayanan.Models.OrderAnalysisDetailTbltoOrderSampleTbl">
+            <End Role="ordersampletbl" EntitySet="ordersampletbls" />
+            <End Role="orderanalysisdetailtbl" EntitySet="orderanalysisdetailtbls" />
+          </AssociationSet>
+          <AssociationSet Name="OrderAnalysisDetailTbltoParametersTbl" Association="BalitTanahPelayanan.Models.OrderAnalysisDetailTbltoParametersTbl">
+            <End Role="parameterstbl" EntitySet="parameterstbls" />
+            <End Role="orderanalysisdetailtbl" EntitySet="orderanalysisdetailtbls" />
+          </AssociationSet>
+          <AssociationSet Name="OrderPriceDetailTbltoOrderMasterTbl" Association="BalitTanahPelayanan.Models.OrderPriceDetailTbltoOrderMasterTbl">
+            <End Role="ordermastertbl" EntitySet="ordermastertbls" />
+            <End Role="orderpricedetailtbl" EntitySet="orderpricedetailtbls" />
+          </AssociationSet>
+          <AssociationSet Name="OrderSampleTbltoOrderMasterTbl" Association="BalitTanahPelayanan.Models.OrderSampleTbltoOrderMasterTbl">
+            <End Role="ordermastertbl" EntitySet="ordermastertbls" />
+            <End Role="ordersampletbl" EntitySet="ordersampletbls" />
+          </AssociationSet>
+          <AssociationSet Name="ResultTbltoOrderMasterTbl" Association="BalitTanahPelayanan.Models.ResultTbltoOrderMasterTbl">
+            <End Role="ordermastertbl" EntitySet="ordermastertbls" />
+            <End Role="resulttbl" EntitySet="resulttbls" />
+          </AssociationSet>
+          <AssociationSet Name="PackageDetailTbltoPackageTbl" Association="BalitTanahPelayanan.Models.PackageDetailTbltoPackageTbl">
+            <End Role="packagetbl" EntitySet="packagetbls" />
+            <End Role="packagedetailtbl" EntitySet="packagedetailtbls" />
+          </AssociationSet>
+          <AssociationSet Name="ResultTbltoReviewingTbl" Association="BalitTanahPelayanan.Models.ResultTbltoReviewingTbl">
+            <End Role="reviewingtbl" EntitySet="reviewingtbls" />
+            <End Role="resulttbl" EntitySet="resulttbls" />
+          </AssociationSet>
+          <AssociationSet Name="StandardDetailTbltoStandardTbl" Association="BalitTanahPelayanan.Models.StandardDetailTbltoStandardTbl">
+            <End Role="standardtbl" EntitySet="standardtbls" />
+            <End Role="standarddetailtbl" EntitySet="standarddetailtbls" />
+          </AssociationSet>
+          <EntitySet Name="sampletypetbls" EntityType="BalitTanahPelayanan.Models.sampletypetbl" />
+        </EntityContainer>
+        <EntityType Name="accounttbl">
+          <Key>
+            <PropertyRef Name="accountNo" />
+          </Key>
+          <Property Name="accountNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="roleName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="isEmailVerified" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="creaBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="creaDate" Type="DateTime" />
+          <Property Name="modBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="modDate" Type="DateTime" />
+          <NavigationProperty Name="roletbl" Relationship="BalitTanahPelayanan.Models.AccountTbltoRoleTbl" FromRole="accounttbl" ToRole="roletbl" />
+          <NavigationProperty Name="customertbls" Relationship="BalitTanahPelayanan.Models.CustomerTblAccountTbl" FromRole="accounttbl" ToRole="customertbl" />
+          <NavigationProperty Name="employeetbls" Relationship="BalitTanahPelayanan.Models.EmployeeTblAccountTbl" FromRole="accounttbl" ToRole="employeetbl" />
+        </EntityType>
+        <EntityType Name="analysistypetbl">
+          <Key>
+            <PropertyRef Name="analysisTypeName" />
+          </Key>
+          <Property Name="analysisTypeName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="creaBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="creaDate" Type="DateTime" />
+          <Property Name="modBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="modDate" Type="DateTime" />
+          <NavigationProperty Name="elementservicestbls" Relationship="BalitTanahPelayanan.Models.ElementServicesTbltoAnalysisTypeTbl" FromRole="analysistypetbl" ToRole="elementservicestbl" />
+          <NavigationProperty Name="ordermastertbls" Relationship="BalitTanahPelayanan.Models.OrderMasterTbltoAnalysisTypeTbl" FromRole="analysistypetbl" ToRole="ordermastertbl" />
+          <NavigationProperty Name="packagetbls" Relationship="BalitTanahPelayanan.Models.PackageTbltoAnalysisTypeTbl" FromRole="analysistypetbl" ToRole="packagetbl" />
+        </EntityType>
+        <EntityType Name="autonumbertbl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameSet" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="LastCounter" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="batchtbl">
+          <Key>
+            <PropertyRef Name="batchId" />
+          </Key>
+          <Property Name="batchId" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="filename" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="fileurl" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="pic_analis" Type="Int32" />
+          <Property Name="pic_penyelia" Type="Int32" />
+          <Property Name="creaBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="creaDate" Type="DateTime" />
+          <Property Name="modBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="modDate" Type="DateTime" />
+          <NavigationProperty Name="employeetbl" Relationship="BalitTanahPelayanan.Models.BatchTblToEmployeeTbl" FromRole="batchtbl" ToRole="employeetbl" />
+          <NavigationProperty Name="employeetbl1" Relationship="BalitTanahPelayanan.Models.FK_batchtbl_employeetbl" FromRole="batchtbl" ToRole="employeetbl" />
+          <NavigationProperty Name="ordermastertbls" Relationship="BalitTanahPelayanan.Models.FK_ordermastertbl_batchtbl" FromRole="batchtbl" ToRole="ordermastertbl" />
+        </EntityType>
+        <EntityType Name="comoditytbl">
+          <Key>
+            <PropertyRef Name="comodityNo" />
+          </Key>
+          <Property Name="comodityNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="comodityName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="derivativeTo" Type="Int32" />
+          <Property Name="description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="notes" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="isPackage" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="creaBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="creaDate" Type="DateTime" />
+          <Property Name="modBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="modDate" Type="DateTime" />
+          <Property Name="isGenusAvailable" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="priceGenusPerSample" Type="Decimal" />
+          <Property Name="isHeavyMetalAvailable" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="limitDoseForFreeOfHeavyMetal" Type="Decimal" />
+          <Property Name="priceHeavyMetalPerSample" Type="Decimal" />
+          <NavigationProperty Name="genustbls" Relationship="BalitTanahPelayanan.Models.GenusPerComodityTbltoComodityTbl" FromRole="comoditytbl" ToRole="genustbl" />
+          <NavigationProperty Name="ordermastertbls" Relationship="BalitTanahPelayanan.Models.OrderMasterTbltoComodityTbl" FromRole="comoditytbl" ToRole="ordermastertbl" />
+          <NavigationProperty Name="packagetbls" Relationship="BalitTanahPelayanan.Models.PackageTbltoComodityTbl" FromRole="comoditytbl" ToRole="packagetbl" />
+          <NavigationProperty Name="standardtbls" Relationship="BalitTanahPelayanan.Models.StandartdTbltoComodityTbl" FromRole="comoditytbl" ToRole="standardtbl" />
+        </EntityType>
+        <EntityType Name="customertbl">
+          <Key>
+            <PropertyRef Name="customerNo" />
+          </Key>
+          <Property Name="customerNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="customerName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="customerEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="companyName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="companyAddress" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="companyPhone" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="companyEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="accountNo" Type="Int32" />
+          <Property Name="creaBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="creaDate" Type="DateTime" />
+          <Property Name="modBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="modDate" Type="DateTime" />
+          <NavigationProperty Name="accounttbl" Relationship="BalitTanahPelayanan.Models.CustomerTblAccountTbl" FromRole="customertbl" ToRole="accounttbl" />
+          <NavigationProperty Name="ordermastertbls" Relationship="BalitTanahPelayanan.Models.OrderMasterTbltoCustomerTbl" FromRole="customertbl" ToRole="ordermastertbl" />
+        </EntityType>
+        <EntityType Name="elementservicehistorytbl">
+          <Key>
+            <PropertyRef Name="elementHistoryNo" />
+          </Key>
+          <Property Name="elementHistoryNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="activeDate" Type="DateTime" />
+          <Property Name="expiredDate" Type="DateTime" />
+          <Property Name="elementId" Type="Int32" Nullable="false" />
+          <Property Name="serviceRate" Type="Decimal" />
+          <Property Name="creaBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="creaDate" Type="DateTime" />
+          <NavigationProperty Name="elementservicestbl" Relationship="BalitTanahPelayanan.Models.ElementServiceHistoryTbltoElementServicesTbl" FromRole="elementservicehistorytbl" ToRole="elementservicestbl" />
+        </EntityType>
+        <EntityType Name="elementservicestbl">
+          <Key>
+            <PropertyRef Name="elementid" />
+          </Key>
+          <Property Name="elementid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="elementCode" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="comodityNo" Type="Int32" Nullable="false" />
+          <Property Name="analysisTypeName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="valueUnit" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="serviceGroup" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="serviceRate" Type="Decimal" Nullable="false" />
+          <Property Name="serviceStatus" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="category" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="sortedNo" Type="Int32" />
+          <Property Name="isMandatory" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="creaBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="creaDate" Type="DateTime" />
+          <Property Name="modBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="modDate" Type="DateTime" />
+          <NavigationProperty Name="analysistypetbl" Relationship="BalitTanahPelayanan.Models.ElementServicesTbltoAnalysisTypeTbl" FromRole="elementservicestbl" ToRole="analysistypetbl" />
+          <NavigationProperty Name="elementservicehistorytbls" Relationship="BalitTanahPelayanan.Models.ElementServiceHistoryTbltoElementServicesTbl" FromRole="elementservicestbl" ToRole="elementservicehistorytbl" />
+          <NavigationProperty Name="orderanalysisdetailtbls" Relationship="BalitTanahPelayanan.Models.OrderAnalysisDetailTbltoElementServicesTbl" FromRole="elementservicestbl" ToRole="orderanalysisdetailtbl" />
+          <NavigationProperty Name="orderpricedetailtbls" Relationship="BalitTanahPelayanan.Models.OrderPriceDetailtoElementServicesTbl" FromRole="elementservicestbl" ToRole="orderpricedetailtbl" />
+          <NavigationProperty Name="packagedetailtbls" Relationship="BalitTanahPelayanan.Models.PackageDetailTbltoElementServicesTbl" FromRole="elementservicestbl" ToRole="packagedetailtbl" />
+          <NavigationProperty Name="standarddetailtbls" Relationship="BalitTanahPelayanan.Models.StandardDetailTbltoElementServicesTbl" FromRole="elementservicestbl" ToRole="standarddetailtbl" />
+          <Property Name="NotParameterProcess" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="ExtractionId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="employeetbl">
+          <Key>
+            <PropertyRef Name="employeeNo" />
+          </Key>
+          <Property Name="employeeNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="employeeName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="position" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="employeeEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="derivativeToEmployee" Type="Int32" />
+          <Property Name="accountNo" Type="Int32" />
+          <Property Name="creaBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="creaDate" Type="DateTime" />
+          <Property Name="modBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="modDate" Type="DateTime" />
+          <Property Name="laboratoriumID" Type="Int32" />
+          <NavigationProperty Name="accounttbl" Relationship="BalitTanahPelayanan.Models.EmployeeTblAccountTbl" FromRole="employeetbl" ToRole="accounttbl" />
+          <NavigationProperty Name="batchtbls" Relationship="BalitTanahPelayanan.Models.BatchTblToEmployeeTbl" FromRole="employeetbl" ToRole="batchtbl" />
+          <NavigationProperty Name="batchtbls1" Relationship="BalitTanahPelayanan.Models.FK_batchtbl_employeetbl" FromRole="employeetbl" ToRole="batchtbl" />
+          <NavigationProperty Name="laboratoriumtbl" Relationship="BalitTanahPelayanan.Models.EmployeeTblLaboratoriumTbl" FromRole="employeetbl" ToRole="laboratoriumtbl" />
+          <NavigationProperty Name="orderanalysisdetailtbls" Relationship="BalitTanahPelayanan.Models.OrderAnalysisDetailTbltoEmployeeTbl" FromRole="employeetbl" ToRole="orderanalysisdetailtbl" />
+          <NavigationProperty Name="ordermastertbls" Relationship="BalitTanahPelayanan.Models.OrderMasterTbltoEmployeeTbl" FromRole="employeetbl" ToRole="ordermastertbl" />
+        </EntityType>
+        <EntityType Name="genustbl">
+          <Key>
+            <PropertyRef Name="genusId" />
+          </Key>
+          <Property Name="genusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="genusName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Cost" Type="Decimal" Nullable="false" />
+          <Property Name="comodityNo" Type="Int32" Nullable="false" />
+          <Property Name="creaBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="creaDate" Type="DateTime" />
+          <Property Name="modBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="modDate" Type="DateTime" />
+          <NavigationProperty Name="comoditytbl" Relationship="BalitTanahPelayanan.Models.GenusPerComodityTbltoComodityTbl" FromRole="genustbl" ToRole="comoditytbl" />
+        </EntityType>
+        <EntityType Name="laboratoriumtbl">
+          <Key>
+            <PropertyRef Name="laboratoriumID" />
+          </Key>
+          <Property Name="laboratoriumID" Type="Int32" Nullable="false" />
+          <Property Name="laboratoriumName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="laboratoriumStatus" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="employeetbls" Relationship="BalitTanahPelayanan.Models.EmployeeTblLaboratoriumTbl" FromRole="laboratoriumtbl" ToRole="employeetbl" />
+          <Property Name="laboratoriumSymbol" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="logtbl">
+          <Key>
+            <PropertyRef Name="logId" />
+          </Key>
+          <Property Name="logId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="source" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="creaBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="creaDate" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="my_aspnet_applications">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="my_aspnet_membership">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="Comment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="PasswordKey" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="PasswordFormat" Type="SByte" />
+          <Property Name="PasswordQuestion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PasswordAnswer" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="IsApproved" Type="Boolean" />
+          <Property Name="LastActivityDate" Type="DateTime" />
+          <Property Name="LastLoginDate" Type="DateTime" />
+          <Property Name="LastPasswordChangedDate" Type="DateTime" />
+          <Property Name="CreationDate" Type="DateTime" />
+          <Property Name="IsLockedOut" Type="Boolean" />
+          <Property Name="LastLockedOutDate" Type="DateTime" />
+          <Property Name="FailedPasswordAttemptCount" Type="Int64" />
+          <Property Name="FailedPasswordAttemptWindowStart" Type="DateTime" />
+          <Property Name="FailedPasswordAnswerAttemptCount" Type="Int64" />
+          <Property Name="FailedPasswordAnswerAttemptWindowStart" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="my_aspnet_paths">
+          <Key>
+            <PropertyRef Name="pathId" />
+          </Key>
+          <Property Name="applicationId" Type="Int32" Nullable="false" />
+          <Property Name="pathId" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="path" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="loweredPath" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="my_aspnet_personalizationallusers">
+          <Key>
+            <PropertyRef Name="pathId" />
+          </Key>
+          <Property Name="pathId" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="pageSettings" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="lastUpdatedDate" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="my_aspnet_personalizationperuser">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicationId" Type="Int32" Nullable="false" />
+          <Property Name="pathId" Type="String" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="userId" Type="Int32" />
+          <Property Name="pageSettings" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="lastUpdatedDate" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="my_aspnet_profiles">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="valueindex" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="stringdata" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="binarydata" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="lastUpdatedDate" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="my_aspnet_roles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicationId" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="my_aspnet_sessioncleanup">
+          <Key>
+            <PropertyRef Name="ApplicationId" />
+          </Key>
+          <Property Name="LastRun" Type="DateTime" Nullable="false" />
+          <Property Name="IntervalMinutes" Type="Int32" Nullable="false" />
+          <Property Name="ApplicationId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="my_aspnet_sessions">
+          <Key>
+            <PropertyRef Name="SessionId" />
+            <PropertyRef Name="ApplicationId" />
+          </Key>
+          <Property Name="SessionId" Type="String" Nullable="false" MaxLength="191" FixedLength="false" Unicode="false" />
+          <Property Name="ApplicationId" Type="Int32" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" />
+          <Property Name="Expires" Type="DateTime" Nullable="false" />
+          <Property Name="LockDate" Type="DateTime" Nullable="false" />
+          <Property Name="LockId" Type="Int32" Nullable="false" />
+          <Property Name="Timeout" Type="Int32" Nullable="false" />
+          <Property Name="Locked" Type="Boolean" Nullable="false" />
+          <Property Name="SessionItems" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Flags" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="my_aspnet_sitemap">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+          <Property Name="Url" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+          <Property Name="Roles" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="ParentId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="my_aspnet_users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicationId" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="isAnonymous" Type="Boolean" Nullable="false" />
+          <Property Name="lastActivityDate" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="my_aspnet_usersinroles">
+          <Key>
+            <PropertyRef Name="userId" />
+            <PropertyRef Name="roleId" />
+          </Key>
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="roleId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mysql_membership">
+          <Key>
+            <PropertyRef Name="PKID" />
+          </Key>
+          <Property Name="PKID" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ApplicationName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="Comment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="PasswordKey" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="PasswordFormat" Type="SByte" />
+          <Property Name="PasswordQuestion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PasswordAnswer" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="IsApproved" Type="Boolean" />
+          <Property Name="LastActivityDate" Type="DateTime" />
+          <Property Name="LastLoginDate" Type="DateTime" />
+          <Property Name="LastPasswordChangedDate" Type="DateTime" />
+          <Property Name="CreationDate" Type="DateTime" />
+          <Property Name="IsOnline" Type="Boolean" />
+          <Property Name="IsLockedOut" Type="Boolean" />
+          <Property Name="LastLockedOutDate" Type="DateTime" />
+          <Property Name="FailedPasswordAttemptCount" Type="Int64" />
+          <Property Name="FailedPasswordAttemptWindowStart" Type="DateTime" />
+          <Property Name="FailedPasswordAnswerAttemptCount" Type="Int64" />
+          <Property Name="FailedPasswordAnswerAttemptWindowStart" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="orderanalysisdetailtbl">
+          <Key>
+            <PropertyRef Name="orderDetailNo" />
+          </Key>
+          <Property Name="orderDetailNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="orderNo" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="sampleNo" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="elementId" Type="Int32" Nullable="false" />
+          <Property Name="parametersNo" Type="Int32" />
+          <Property Name="elementValue" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="recalculate" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="pic" Type="Int32" />
+          <Property Name="fileAttachmentUrl" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="fileName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="LabToolAttachmentUrl" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="LabToolFileName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="creaBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="creaDate" Type="DateTime" />
+          <Property Name="modBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="modDate" Type="DateTime" />
+          <NavigationProperty Name="elementservicestbl" Relationship="BalitTanahPelayanan.Models.OrderAnalysisDetailTbltoElementServicesTbl" FromRole="orderanalysisdetailtbl" ToRole="elementservicestbl" />
+          <NavigationProperty Name="employeetbl" Relationship="BalitTanahPelayanan.Models.OrderAnalysisDetailTbltoEmployeeTbl" FromRole="orderanalysisdetailtbl" ToRole="employeetbl" />
+          <NavigationProperty Name="ordermastertbl" Relationship="BalitTanahPelayanan.Models.OrderAnalysisDetailTbltoOrderMaster" FromRole="orderanalysisdetailtbl" ToRole="ordermastertbl" />
+          <NavigationProperty Name="ordersampletbl" Relationship="BalitTanahPelayanan.Models.OrderAnalysisDetailTbltoOrderSampleTbl" FromRole="orderanalysisdetailtbl" ToRole="ordersampletbl" />
+          <NavigationProperty Name="parameterstbl" Relationship="BalitTanahPelayanan.Models.OrderAnalysisDetailTbltoParametersTbl" FromRole="orderanalysisdetailtbl" ToRole="parameterstbl" />
+        </EntityType>
+        <EntityType Name="ordermastertbl">
+          <Key>
+            <PropertyRef Name="orderNo" />
+          </Key>
+          <Property Name="orderNo" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="batchId" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="customerNo" Type="Int32" Nullable="false" />
+          <Property Name="comodityNo" Type="Int32" Nullable="false" />
+          <Property Name="analysisType" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="sampleTotal" Type="Int32" />
+          <Property Name="priceTotal" Type="Decimal" />
+          <Property Name="statusType" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="paymentStatus" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ppn" Type="Decimal" />
+          <Property Name="receiptDate" Type="DateTime" />
+          <Property Name="isPaid" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="paymentDate" Type="DateTime" />
+          <Property Name="pic" Type="Int32" />
+          <Property Name="isOnLab" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="ApprPenyelia" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="ApprEvaluator" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="ApprManagerTeknis" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="LHPAttachmentUrl" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="LHPFileName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="EvaluationFileUrl" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="EvaluationFileName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="isRecalculate" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="CalculationFileUrl" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="CalculationFilename" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="isReviewing" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="packageName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="additionalPrice1" Type="Decimal" />
+          <Property Name="additionalPrice2" Type="Decimal" />
+          <Property Name="totalGenus" Type="Int32" />
+          <Property Name="dosePerHectare" Type="Decimal" />
+          <Property Name="additionalPriceRemark" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="creaBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="creaDate" Type="DateTime" />
+          <Property Name="modBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="modDate" Type="DateTime" />
+          <NavigationProperty Name="analysistypetbl" Relationship="BalitTanahPelayanan.Models.OrderMasterTbltoAnalysisTypeTbl" FromRole="ordermastertbl" ToRole="analysistypetbl" />
+          <NavigationProperty Name="batchtbl" Relationship="BalitTanahPelayanan.Models.FK_ordermastertbl_batchtbl" FromRole="ordermastertbl" ToRole="batchtbl" />
+          <NavigationProperty Name="comoditytbl" Relationship="BalitTanahPelayanan.Models.OrderMasterTbltoComodityTbl" FromRole="ordermastertbl" ToRole="comoditytbl" />
+          <NavigationProperty Name="customertbl" Relationship="BalitTanahPelayanan.Models.OrderMasterTbltoCustomerTbl" FromRole="ordermastertbl" ToRole="customertbl" />
+          <NavigationProperty Name="employeetbl" Relationship="BalitTanahPelayanan.Models.OrderMasterTbltoEmployeeTbl" FromRole="ordermastertbl" ToRole="employeetbl" />
+          <NavigationProperty Name="orderanalysisdetailtbls" Relationship="BalitTanahPelayanan.Models.OrderAnalysisDetailTbltoOrderMaster" FromRole="ordermastertbl" ToRole="orderanalysisdetailtbl" />
+          <NavigationProperty Name="orderpricedetailtbls" Relationship="BalitTanahPelayanan.Models.OrderPriceDetailTbltoOrderMasterTbl" FromRole="ordermastertbl" ToRole="orderpricedetailtbl" />
+          <NavigationProperty Name="ordersampletbls" Relationship="BalitTanahPelayanan.Models.OrderSampleTbltoOrderMasterTbl" FromRole="ordermastertbl" ToRole="ordersampletbl" />
+          <NavigationProperty Name="resulttbls" Relationship="BalitTanahPelayanan.Models.ResultTbltoOrderMasterTbl" FromRole="ordermastertbl" ToRole="resulttbl" />
+        </EntityType>
+        <EntityType Name="ordernavigationtbl">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="parentId" Type="Int32" Nullable="false" />
+          <Property Name="isLeaf" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="commodityNo" Type="Int32" Nullable="false" />
+          <Property Name="orderNo" Type="Int32" Nullable="false" />
+          <Property Name="isVisible" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="orderpricedetailtbl">
+          <Key>
+            <PropertyRef Name="orderPriceDetailNo" />
+          </Key>
+          <Property Name="orderPriceDetailNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="orderNo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="elementId" Type="Int32" />
+          <Property Name="price" Type="Decimal" />
+          <Property Name="quantity" Type="Int32" />
+          <Property Name="TotalPrice" Type="Decimal" />
+          <NavigationProperty Name="elementservicestbl" Relationship="BalitTanahPelayanan.Models.OrderPriceDetailtoElementServicesTbl" FromRole="orderpricedetailtbl" ToRole="elementservicestbl" />
+          <NavigationProperty Name="ordermastertbl" Relationship="BalitTanahPelayanan.Models.OrderPriceDetailTbltoOrderMasterTbl" FromRole="orderpricedetailtbl" ToRole="ordermastertbl" />
+        </EntityType>
+        <EntityType Name="ordersampletbl">
+          <Key>
+            <PropertyRef Name="noBalittanah" />
+          </Key>
+          <Property Name="noBalittanah" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="orderNo" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="countNumber" Type="Int32" />
+          <Property Name="sampleCode" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="sampleDescription" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="samplingDate" Type="DateTime" />
+          <Property Name="village" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="subDistrict" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="district" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="province" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="longitude" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="latitude" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="landUse" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="isReceived" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="creaBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="creaDate" Type="DateTime" />
+          <Property Name="modBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="modDate" Type="DateTime" />
+          <NavigationProperty Name="orderanalysisdetailtbls" Relationship="BalitTanahPelayanan.Models.OrderAnalysisDetailTbltoOrderSampleTbl" FromRole="ordersampletbl" ToRole="orderanalysisdetailtbl" />
+          <NavigationProperty Name="ordermastertbl" Relationship="BalitTanahPelayanan.Models.OrderSampleTbltoOrderMasterTbl" FromRole="ordersampletbl" ToRole="ordermastertbl" />
+        </EntityType>
+        <EntityType Name="packagedetailtbl">
+          <Key>
+            <PropertyRef Name="PackageDetailTbl1" />
+          </Key>
+          <Property Name="PackageDetailTbl1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="packageName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="elementId" Type="Int32" />
+          <Property Name="compulsive" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="elementservicestbl" Relationship="BalitTanahPelayanan.Models.PackageDetailTbltoElementServicesTbl" FromRole="packagedetailtbl" ToRole="elementservicestbl" />
+          <NavigationProperty Name="packagetbl" Relationship="BalitTanahPelayanan.Models.PackageDetailTbltoPackageTbl" FromRole="packagedetailtbl" ToRole="packagetbl" />
+        </EntityType>
+        <EntityType Name="packagetbl">
+          <Key>
+            <PropertyRef Name="packageName" />
+          </Key>
+          <Property Name="packageName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="comodityNo" Type="Int32" />
+          <Property Name="analysisTypeName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="multipleSelectedItem" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="bundlePrice" Type="Decimal" />
+          <Property Name="additionalPrice1" Type="Decimal" />
+          <Property Name="additionalPrice2" Type="Decimal" />
+          <Property Name="additionalPriceDesc1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="additionalPriceDesc2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="analysistypetbl" Relationship="BalitTanahPelayanan.Models.PackageTbltoAnalysisTypeTbl" FromRole="packagetbl" ToRole="analysistypetbl" />
+          <NavigationProperty Name="comoditytbl" Relationship="BalitTanahPelayanan.Models.PackageTbltoComodityTbl" FromRole="packagetbl" ToRole="comoditytbl" />
+          <NavigationProperty Name="packagedetailtbls" Relationship="BalitTanahPelayanan.Models.PackageDetailTbltoPackageTbl" FromRole="packagetbl" ToRole="packagedetailtbl" />
+        </EntityType>
+        <EntityType Name="parameterstbl">
+          <Key>
+            <PropertyRef Name="parametersNo" />
+          </Key>
+          <Property Name="parametersNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="string0" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="string1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="string2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="string3" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="string4" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="string5" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="string6" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="string7" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="string8" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="string9" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="creaBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="creaDate" Type="DateTime" />
+          <Property Name="modBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="modDate" Type="DateTime" />
+          <NavigationProperty Name="orderanalysisdetailtbls" Relationship="BalitTanahPelayanan.Models.OrderAnalysisDetailTbltoParametersTbl" FromRole="parameterstbl" ToRole="orderanalysisdetailtbl" />
+        </EntityType>
+        <EntityType Name="paymenttbl">
+          <Key>
+            <PropertyRef Name="paymentId" />
+          </Key>
+          <Property Name="paymentId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="accountName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="accountNo" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="bankName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="paymentReceiptUrl" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="amount" Type="Decimal" />
+          <Property Name="orderNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="attachmentUrl" Type="String" MaxLength="350" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="resulttbl">
+          <Key>
+            <PropertyRef Name="resultNo" />
+          </Key>
+          <Property Name="resultNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="orderNo" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="reviewingNo" Type="Int32" />
+          <Property Name="url" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="fileName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="creaBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="creaDate" Type="DateTime" />
+          <Property Name="modBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="modDate" Type="DateTime" />
+          <NavigationProperty Name="ordermastertbl" Relationship="BalitTanahPelayanan.Models.ResultTbltoOrderMasterTbl" FromRole="resulttbl" ToRole="ordermastertbl" />
+          <NavigationProperty Name="reviewingtbl" Relationship="BalitTanahPelayanan.Models.ResultTbltoReviewingTbl" FromRole="resulttbl" ToRole="reviewingtbl" />
+        </EntityType>
+        <EntityType Name="reviewingtbl">
+          <Key>
+            <PropertyRef Name="reviewingNo" />
+          </Key>
+          <Property Name="reviewingNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="orderNo" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="elementCodeList" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="reviewingDate" Type="DateTime" />
+          <Property Name="isLabUtilitySurfficient" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="isHumanResourceSurfficient" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="isChemicalMaterialSurfficent" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="isVolumeCorrect" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="workdays" Type="Int32" />
+          <Property Name="isMethode" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="isQualityStandard" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="creaBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="creaDate" Type="DateTime" />
+          <Property Name="modBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="modDate" Type="DateTime" />
+          <NavigationProperty Name="resulttbls" Relationship="BalitTanahPelayanan.Models.ResultTbltoReviewingTbl" FromRole="reviewingtbl" ToRole="resulttbl" />
+        </EntityType>
+        <EntityType Name="roletbl">
+          <Key>
+            <PropertyRef Name="roleName" />
+          </Key>
+          <Property Name="roleName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="creaBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="creaDate" Type="DateTime" />
+          <Property Name="modBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="modDate" Type="DateTime" />
+          <NavigationProperty Name="accounttbls" Relationship="BalitTanahPelayanan.Models.AccountTbltoRoleTbl" FromRole="roletbl" ToRole="accounttbl" />
+        </EntityType>
+        <EntityType Name="standarddetailtbl">
+          <Key>
+            <PropertyRef Name="stdDetailId" />
+          </Key>
+          <Property Name="stdDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="stdId" Type="Int32" Nullable="false" />
+          <Property Name="elementId" Type="Int32" Nullable="false" />
+          <Property Name="creaBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="creaDate" Type="DateTime" />
+          <Property Name="modBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="modDate" Type="DateTime" />
+          <NavigationProperty Name="elementservicestbl" Relationship="BalitTanahPelayanan.Models.StandardDetailTbltoElementServicesTbl" FromRole="standarddetailtbl" ToRole="elementservicestbl" />
+          <NavigationProperty Name="standardtbl" Relationship="BalitTanahPelayanan.Models.StandardDetailTbltoStandardTbl" FromRole="standarddetailtbl" ToRole="standardtbl" />
+        </EntityType>
+        <EntityType Name="standardtbl">
+          <Key>
+            <PropertyRef Name="stdId" />
+          </Key>
+          <Property Name="stdId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="stdNo" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="comodityNo" Type="Int32" />
+          <Property Name="creaBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="creaDate" Type="DateTime" />
+          <Property Name="modBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="modDate" Type="DateTime" />
+          <NavigationProperty Name="comoditytbl" Relationship="BalitTanahPelayanan.Models.StandartdTbltoComodityTbl" FromRole="standardtbl" ToRole="comoditytbl" />
+          <NavigationProperty Name="standarddetailtbls" Relationship="BalitTanahPelayanan.Models.StandardDetailTbltoStandardTbl" FromRole="standardtbl" ToRole="standarddetailtbl" />
+        </EntityType>
+        <EntityType Name="workflowlogtbl">
+          <Key>
+            <PropertyRef Name="workflowLogNo" />
+          </Key>
+          <Property Name="workflowLogNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="resourceNo" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="task" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="taskDesctiption" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="lastStatus" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="message" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="creaBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="creaDate" Type="DateTime" />
+        </EntityType>
+        <Association Name="AccountTbltoRoleTbl">
+          <End Type="BalitTanahPelayanan.Models.roletbl" Role="roletbl" Multiplicity="0..1" />
+          <End Type="BalitTanahPelayanan.Models.accounttbl" Role="accounttbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roletbl">
+              <PropertyRef Name="roleName" />
+            </Principal>
+            <Dependent Role="accounttbl">
+              <PropertyRef Name="roleName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CustomerTblAccountTbl">
+          <End Type="BalitTanahPelayanan.Models.accounttbl" Role="accounttbl" Multiplicity="0..1" />
+          <End Type="BalitTanahPelayanan.Models.customertbl" Role="customertbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="accounttbl">
+              <PropertyRef Name="accountNo" />
+            </Principal>
+            <Dependent Role="customertbl">
+              <PropertyRef Name="accountNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EmployeeTblAccountTbl">
+          <End Type="BalitTanahPelayanan.Models.accounttbl" Role="accounttbl" Multiplicity="0..1" />
+          <End Type="BalitTanahPelayanan.Models.employeetbl" Role="employeetbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="accounttbl">
+              <PropertyRef Name="accountNo" />
+            </Principal>
+            <Dependent Role="employeetbl">
+              <PropertyRef Name="accountNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ElementServicesTbltoAnalysisTypeTbl">
+          <End Type="BalitTanahPelayanan.Models.analysistypetbl" Role="analysistypetbl" Multiplicity="1" />
+          <End Type="BalitTanahPelayanan.Models.elementservicestbl" Role="elementservicestbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="analysistypetbl">
+              <PropertyRef Name="analysisTypeName" />
+            </Principal>
+            <Dependent Role="elementservicestbl">
+              <PropertyRef Name="analysisTypeName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderMasterTbltoAnalysisTypeTbl">
+          <End Type="BalitTanahPelayanan.Models.analysistypetbl" Role="analysistypetbl" Multiplicity="0..1" />
+          <End Type="BalitTanahPelayanan.Models.ordermastertbl" Role="ordermastertbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="analysistypetbl">
+              <PropertyRef Name="analysisTypeName" />
+            </Principal>
+            <Dependent Role="ordermastertbl">
+              <PropertyRef Name="analysisType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PackageTbltoAnalysisTypeTbl">
+          <End Type="BalitTanahPelayanan.Models.analysistypetbl" Role="analysistypetbl" Multiplicity="0..1" />
+          <End Type="BalitTanahPelayanan.Models.packagetbl" Role="packagetbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="analysistypetbl">
+              <PropertyRef Name="analysisTypeName" />
+            </Principal>
+            <Dependent Role="packagetbl">
+              <PropertyRef Name="analysisTypeName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BatchTblToEmployeeTbl">
+          <End Type="BalitTanahPelayanan.Models.employeetbl" Role="employeetbl" Multiplicity="0..1" />
+          <End Type="BalitTanahPelayanan.Models.batchtbl" Role="batchtbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employeetbl">
+              <PropertyRef Name="employeeNo" />
+            </Principal>
+            <Dependent Role="batchtbl">
+              <PropertyRef Name="pic_analis" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_batchtbl_employeetbl">
+          <End Type="BalitTanahPelayanan.Models.employeetbl" Role="employeetbl" Multiplicity="0..1" />
+          <End Type="BalitTanahPelayanan.Models.batchtbl" Role="batchtbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employeetbl">
+              <PropertyRef Name="employeeNo" />
+            </Principal>
+            <Dependent Role="batchtbl">
+              <PropertyRef Name="pic_penyelia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ordermastertbl_batchtbl">
+          <End Type="BalitTanahPelayanan.Models.batchtbl" Role="batchtbl" Multiplicity="0..1" />
+          <End Type="BalitTanahPelayanan.Models.ordermastertbl" Role="ordermastertbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="batchtbl">
+              <PropertyRef Name="batchId" />
+            </Principal>
+            <Dependent Role="ordermastertbl">
+              <PropertyRef Name="batchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GenusPerComodityTbltoComodityTbl">
+          <End Type="BalitTanahPelayanan.Models.comoditytbl" Role="comoditytbl" Multiplicity="1" />
+          <End Type="BalitTanahPelayanan.Models.genustbl" Role="genustbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="comoditytbl">
+              <PropertyRef Name="comodityNo" />
+            </Principal>
+            <Dependent Role="genustbl">
+              <PropertyRef Name="comodityNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderMasterTbltoComodityTbl">
+          <End Type="BalitTanahPelayanan.Models.comoditytbl" Role="comoditytbl" Multiplicity="1" />
+          <End Type="BalitTanahPelayanan.Models.ordermastertbl" Role="ordermastertbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="comoditytbl">
+              <PropertyRef Name="comodityNo" />
+            </Principal>
+            <Dependent Role="ordermastertbl">
+              <PropertyRef Name="comodityNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PackageTbltoComodityTbl">
+          <End Type="BalitTanahPelayanan.Models.comoditytbl" Role="comoditytbl" Multiplicity="0..1" />
+          <End Type="BalitTanahPelayanan.Models.packagetbl" Role="packagetbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="comoditytbl">
+              <PropertyRef Name="comodityNo" />
+            </Principal>
+            <Dependent Role="packagetbl">
+              <PropertyRef Name="comodityNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StandartdTbltoComodityTbl">
+          <End Type="BalitTanahPelayanan.Models.comoditytbl" Role="comoditytbl" Multiplicity="0..1" />
+          <End Type="BalitTanahPelayanan.Models.standardtbl" Role="standardtbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="comoditytbl">
+              <PropertyRef Name="comodityNo" />
+            </Principal>
+            <Dependent Role="standardtbl">
+              <PropertyRef Name="comodityNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderMasterTbltoCustomerTbl">
+          <End Type="BalitTanahPelayanan.Models.customertbl" Role="customertbl" Multiplicity="1" />
+          <End Type="BalitTanahPelayanan.Models.ordermastertbl" Role="ordermastertbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customertbl">
+              <PropertyRef Name="customerNo" />
+            </Principal>
+            <Dependent Role="ordermastertbl">
+              <PropertyRef Name="customerNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ElementServiceHistoryTbltoElementServicesTbl">
+          <End Type="BalitTanahPelayanan.Models.elementservicestbl" Role="elementservicestbl" Multiplicity="1" />
+          <End Type="BalitTanahPelayanan.Models.elementservicehistorytbl" Role="elementservicehistorytbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="elementservicestbl">
+              <PropertyRef Name="elementid" />
+            </Principal>
+            <Dependent Role="elementservicehistorytbl">
+              <PropertyRef Name="elementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderAnalysisDetailTbltoElementServicesTbl">
+          <End Type="BalitTanahPelayanan.Models.elementservicestbl" Role="elementservicestbl" Multiplicity="1" />
+          <End Type="BalitTanahPelayanan.Models.orderanalysisdetailtbl" Role="orderanalysisdetailtbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="elementservicestbl">
+              <PropertyRef Name="elementid" />
+            </Principal>
+            <Dependent Role="orderanalysisdetailtbl">
+              <PropertyRef Name="elementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderPriceDetailtoElementServicesTbl">
+          <End Type="BalitTanahPelayanan.Models.elementservicestbl" Role="elementservicestbl" Multiplicity="0..1" />
+          <End Type="BalitTanahPelayanan.Models.orderpricedetailtbl" Role="orderpricedetailtbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="elementservicestbl">
+              <PropertyRef Name="elementid" />
+            </Principal>
+            <Dependent Role="orderpricedetailtbl">
+              <PropertyRef Name="elementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PackageDetailTbltoElementServicesTbl">
+          <End Type="BalitTanahPelayanan.Models.elementservicestbl" Role="elementservicestbl" Multiplicity="0..1" />
+          <End Type="BalitTanahPelayanan.Models.packagedetailtbl" Role="packagedetailtbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="elementservicestbl">
+              <PropertyRef Name="elementid" />
+            </Principal>
+            <Dependent Role="packagedetailtbl">
+              <PropertyRef Name="elementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StandardDetailTbltoElementServicesTbl">
+          <End Type="BalitTanahPelayanan.Models.elementservicestbl" Role="elementservicestbl" Multiplicity="1" />
+          <End Type="BalitTanahPelayanan.Models.standarddetailtbl" Role="standarddetailtbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="elementservicestbl">
+              <PropertyRef Name="elementid" />
+            </Principal>
+            <Dependent Role="standarddetailtbl">
+              <PropertyRef Name="elementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EmployeeTblLaboratoriumTbl">
+          <End Type="BalitTanahPelayanan.Models.laboratoriumtbl" Role="laboratoriumtbl" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BalitTanahPelayanan.Models.employeetbl" Role="employeetbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="laboratoriumtbl">
+              <PropertyRef Name="laboratoriumID" />
+            </Principal>
+            <Dependent Role="employeetbl">
+              <PropertyRef Name="laboratoriumID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderAnalysisDetailTbltoEmployeeTbl">
+          <End Type="BalitTanahPelayanan.Models.employeetbl" Role="employeetbl" Multiplicity="0..1" />
+          <End Type="BalitTanahPelayanan.Models.orderanalysisdetailtbl" Role="orderanalysisdetailtbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employeetbl">
+              <PropertyRef Name="employeeNo" />
+            </Principal>
+            <Dependent Role="orderanalysisdetailtbl">
+              <PropertyRef Name="pic" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderMasterTbltoEmployeeTbl">
+          <End Type="BalitTanahPelayanan.Models.employeetbl" Role="employeetbl" Multiplicity="0..1" />
+          <End Type="BalitTanahPelayanan.Models.ordermastertbl" Role="ordermastertbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employeetbl">
+              <PropertyRef Name="employeeNo" />
+            </Principal>
+            <Dependent Role="ordermastertbl">
+              <PropertyRef Name="pic" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderAnalysisDetailTbltoOrderMaster">
+          <End Type="BalitTanahPelayanan.Models.ordermastertbl" Role="ordermastertbl" Multiplicity="1" />
+          <End Type="BalitTanahPelayanan.Models.orderanalysisdetailtbl" Role="orderanalysisdetailtbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ordermastertbl">
+              <PropertyRef Name="orderNo" />
+            </Principal>
+            <Dependent Role="orderanalysisdetailtbl">
+              <PropertyRef Name="orderNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderAnalysisDetailTbltoOrderSampleTbl">
+          <End Type="BalitTanahPelayanan.Models.ordersampletbl" Role="ordersampletbl" Multiplicity="1" />
+          <End Type="BalitTanahPelayanan.Models.orderanalysisdetailtbl" Role="orderanalysisdetailtbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ordersampletbl">
+              <PropertyRef Name="noBalittanah" />
+            </Principal>
+            <Dependent Role="orderanalysisdetailtbl">
+              <PropertyRef Name="sampleNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderAnalysisDetailTbltoParametersTbl">
+          <End Type="BalitTanahPelayanan.Models.parameterstbl" Role="parameterstbl" Multiplicity="0..1" />
+          <End Type="BalitTanahPelayanan.Models.orderanalysisdetailtbl" Role="orderanalysisdetailtbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="parameterstbl">
+              <PropertyRef Name="parametersNo" />
+            </Principal>
+            <Dependent Role="orderanalysisdetailtbl">
+              <PropertyRef Name="parametersNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderPriceDetailTbltoOrderMasterTbl">
+          <End Type="BalitTanahPelayanan.Models.ordermastertbl" Role="ordermastertbl" Multiplicity="0..1" />
+          <End Type="BalitTanahPelayanan.Models.orderpricedetailtbl" Role="orderpricedetailtbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ordermastertbl">
+              <PropertyRef Name="orderNo" />
+            </Principal>
+            <Dependent Role="orderpricedetailtbl">
+              <PropertyRef Name="orderNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderSampleTbltoOrderMasterTbl">
+          <End Type="BalitTanahPelayanan.Models.ordermastertbl" Role="ordermastertbl" Multiplicity="1" />
+          <End Type="BalitTanahPelayanan.Models.ordersampletbl" Role="ordersampletbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ordermastertbl">
+              <PropertyRef Name="orderNo" />
+            </Principal>
+            <Dependent Role="ordersampletbl">
+              <PropertyRef Name="orderNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ResultTbltoOrderMasterTbl">
+          <End Type="BalitTanahPelayanan.Models.ordermastertbl" Role="ordermastertbl" Multiplicity="1" />
+          <End Type="BalitTanahPelayanan.Models.resulttbl" Role="resulttbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ordermastertbl">
+              <PropertyRef Name="orderNo" />
+            </Principal>
+            <Dependent Role="resulttbl">
+              <PropertyRef Name="orderNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PackageDetailTbltoPackageTbl">
+          <End Type="BalitTanahPelayanan.Models.packagetbl" Role="packagetbl" Multiplicity="0..1" />
+          <End Type="BalitTanahPelayanan.Models.packagedetailtbl" Role="packagedetailtbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="packagetbl">
+              <PropertyRef Name="packageName" />
+            </Principal>
+            <Dependent Role="packagedetailtbl">
+              <PropertyRef Name="packageName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ResultTbltoReviewingTbl">
+          <End Type="BalitTanahPelayanan.Models.reviewingtbl" Role="reviewingtbl" Multiplicity="0..1" />
+          <End Type="BalitTanahPelayanan.Models.resulttbl" Role="resulttbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="reviewingtbl">
+              <PropertyRef Name="reviewingNo" />
+            </Principal>
+            <Dependent Role="resulttbl">
+              <PropertyRef Name="reviewingNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StandardDetailTbltoStandardTbl">
+          <End Type="BalitTanahPelayanan.Models.standardtbl" Role="standardtbl" Multiplicity="1" />
+          <End Type="BalitTanahPelayanan.Models.standarddetailtbl" Role="standarddetailtbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="standardtbl">
+              <PropertyRef Name="stdId" />
+            </Principal>
+            <Dependent Role="standarddetailtbl">
+              <PropertyRef Name="stdId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="sampletypetbl">
+          <Key>
+            <PropertyRef Name="typeName" />
+          </Key>
+          <Property Name="typeName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="typeSymbol" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="typeStatus" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BalitTanahPelayananModelsStoreContainer" CdmEntityContainer="smlpobDB">
+          <EntitySetMapping Name="accounttbls">
+            <EntityTypeMapping TypeName="BalitTanahPelayanan.Models.accounttbl">
+              <MappingFragment StoreEntitySet="accounttbl">
+                <ScalarProperty Name="modDate" ColumnName="modDate" />
+                <ScalarProperty Name="modBy" ColumnName="modBy" />
+                <ScalarProperty Name="creaDate" ColumnName="creaDate" />
+                <ScalarProperty Name="creaBy" ColumnName="creaBy" />
+                <ScalarProperty Name="isEmailVerified" ColumnName="isEmailVerified" />
+                <ScalarProperty Name="roleName" ColumnName="roleName" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="accountNo" ColumnName="accountNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="analysistypetbls">
+            <EntityTypeMapping TypeName="BalitTanahPelayanan.Models.analysistypetbl">
+              <MappingFragment StoreEntitySet="analysistypetbl">
+                <ScalarProperty Name="modDate" ColumnName="modDate" />
+                <ScalarProperty Name="modBy" ColumnName="modBy" />
+                <ScalarProperty Name="creaDate" ColumnName="creaDate" />
+                <ScalarProperty Name="creaBy" ColumnName="creaBy" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="analysisTypeName" ColumnName="analysisTypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="autonumbertbls">
+            <EntityTypeMapping TypeName="BalitTanahPelayanan.Models.autonumbertbl">
+              <MappingFragment StoreEntitySet="autonumbertbl">
+                <ScalarProperty Name="LastCounter" ColumnName="LastCounter" />
+                <ScalarProperty Name="NameSet" ColumnName="NameSet" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="batchtbls">
+            <EntityTypeMapping TypeName="BalitTanahPelayanan.Models.batchtbl">
+              <MappingFragment StoreEntitySet="batchtbl">
+                <ScalarProperty Name="modDate" ColumnName="modDate" />
+                <ScalarProperty Name="modBy" ColumnName="modBy" />
+                <ScalarProperty Name="creaDate" ColumnName="creaDate" />
+                <ScalarProperty Name="creaBy" ColumnName="creaBy" />
+                <ScalarProperty Name="pic_penyelia" ColumnName="pic_penyelia" />
+                <ScalarProperty Name="pic_analis" ColumnName="pic_analis" />
+                <ScalarProperty Name="fileurl" ColumnName="fileurl" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="filename" ColumnName="filename" />
+                <ScalarProperty Name="batchId" ColumnName="batchId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="comoditytbls">
+            <EntityTypeMapping TypeName="BalitTanahPelayanan.Models.comoditytbl">
+              <MappingFragment StoreEntitySet="comoditytbl">
+                <ScalarProperty Name="priceHeavyMetalPerSample" ColumnName="priceHeavyMetalPerSample" />
+                <ScalarProperty Name="limitDoseForFreeOfHeavyMetal" ColumnName="limitDoseForFreeOfHeavyMetal" />
+                <ScalarProperty Name="isHeavyMetalAvailable" ColumnName="isHeavyMetalAvailable" />
+                <ScalarProperty Name="priceGenusPerSample" ColumnName="priceGenusPerSample" />
+                <ScalarProperty Name="isGenusAvailable" ColumnName="isGenusAvailable" />
+                <ScalarProperty Name="modDate" ColumnName="modDate" />
+                <ScalarProperty Name="modBy" ColumnName="modBy" />
+                <ScalarProperty Name="creaDate" ColumnName="creaDate" />
+                <ScalarProperty Name="creaBy" ColumnName="creaBy" />
+                <ScalarProperty Name="isPackage" ColumnName="isPackage" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="derivativeTo" ColumnName="derivativeTo" />
+                <ScalarProperty Name="comodityName" ColumnName="comodityName" />
+                <ScalarProperty Name="comodityNo" ColumnName="comodityNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="customertbls">
+            <EntityTypeMapping TypeName="BalitTanahPelayanan.Models.customertbl">
+              <MappingFragment StoreEntitySet="customertbl">
+                <ScalarProperty Name="modDate" ColumnName="modDate" />
+                <ScalarProperty Name="modBy" ColumnName="modBy" />
+                <ScalarProperty Name="creaDate" ColumnName="creaDate" />
+                <ScalarProperty Name="creaBy" ColumnName="creaBy" />
+                <ScalarProperty Name="accountNo" ColumnName="accountNo" />
+                <ScalarProperty Name="companyEmail" ColumnName="companyEmail" />
+                <ScalarProperty Name="companyPhone" ColumnName="companyPhone" />
+                <ScalarProperty Name="companyAddress" ColumnName="companyAddress" />
+                <ScalarProperty Name="companyName" ColumnName="companyName" />
+                <ScalarProperty Name="customerEmail" ColumnName="customerEmail" />
+                <ScalarProperty Name="customerName" ColumnName="customerName" />
+                <ScalarProperty Name="customerNo" ColumnName="customerNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="elementservicehistorytbls">
+            <EntityTypeMapping TypeName="BalitTanahPelayanan.Models.elementservicehistorytbl">
+              <MappingFragment StoreEntitySet="elementservicehistorytbl">
+                <ScalarProperty Name="creaDate" ColumnName="creaDate" />
+                <ScalarProperty Name="creaBy" ColumnName="creaBy" />
+                <ScalarProperty Name="serviceRate" ColumnName="serviceRate" />
+                <ScalarProperty Name="elementId" ColumnName="elementId" />
+                <ScalarProperty Name="expiredDate" ColumnName="expiredDate" />
+                <ScalarProperty Name="activeDate" ColumnName="activeDate" />
+                <ScalarProperty Name="elementHistoryNo" ColumnName="elementHistoryNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="elementservicestbls">
+            <EntityTypeMapping TypeName="BalitTanahPelayanan.Models.elementservicestbl">
+              <MappingFragment StoreEntitySet="elementservicestbl">
+                <ScalarProperty Name="ExtractionId" ColumnName="ExtractionId" />
+                <ScalarProperty Name="NotParameterProcess" ColumnName="NotParameterProcess" />
+                <ScalarProperty Name="modDate" ColumnName="modDate" />
+                <ScalarProperty Name="modBy" ColumnName="modBy" />
+                <ScalarProperty Name="creaDate" ColumnName="creaDate" />
+                <ScalarProperty Name="creaBy" ColumnName="creaBy" />
+                <ScalarProperty Name="isMandatory" ColumnName="isMandatory" />
+                <ScalarProperty Name="sortedNo" ColumnName="sortedNo" />
+                <ScalarProperty Name="category" ColumnName="category" />
+                <ScalarProperty Name="serviceStatus" ColumnName="serviceStatus" />
+                <ScalarProperty Name="serviceRate" ColumnName="serviceRate" />
+                <ScalarProperty Name="serviceGroup" ColumnName="serviceGroup" />
+                <ScalarProperty Name="valueUnit" ColumnName="valueUnit" />
+                <ScalarProperty Name="analysisTypeName" ColumnName="analysisTypeName" />
+                <ScalarProperty Name="comodityNo" ColumnName="comodityNo" />
+                <ScalarProperty Name="elementCode" ColumnName="elementCode" />
+                <ScalarProperty Name="elementid" ColumnName="elementid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employeetbls">
+            <EntityTypeMapping TypeName="BalitTanahPelayanan.Models.employeetbl">
+              <MappingFragment StoreEntitySet="employeetbl">
+                <ScalarProperty Name="laboratoriumID" ColumnName="laboratoriumID" />
+                <ScalarProperty Name="modDate" ColumnName="modDate" />
+                <ScalarProperty Name="modBy" ColumnName="modBy" />
+                <ScalarProperty Name="creaDate" ColumnName="creaDate" />
+                <ScalarProperty Name="creaBy" ColumnName="creaBy" />
+                <ScalarProperty Name="accountNo" ColumnName="accountNo" />
+                <ScalarProperty Name="derivativeToEmployee" ColumnName="derivativeToEmployee" />
+                <ScalarProperty Name="employeeEmail" ColumnName="employeeEmail" />
+                <ScalarProperty Name="position" ColumnName="position" />
+                <ScalarProperty Name="employeeName" ColumnName="employeeName" />
+                <ScalarProperty Name="employeeNo" ColumnName="employeeNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="genustbls">
+            <EntityTypeMapping TypeName="BalitTanahPelayanan.Models.genustbl">
+              <MappingFragment StoreEntitySet="genustbl">
+                <ScalarProperty Name="modDate" ColumnName="modDate" />
+                <ScalarProperty Name="modBy" ColumnName="modBy" />
+                <ScalarProperty Name="creaDate" ColumnName="creaDate" />
+                <ScalarProperty Name="creaBy" ColumnName="creaBy" />
+                <ScalarProperty Name="comodityNo" ColumnName="comodityNo" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="genusName" ColumnName="genusName" />
+                <ScalarProperty Name="genusId" ColumnName="genusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="laboratoriumtbls">
+            <EntityTypeMapping TypeName="BalitTanahPelayanan.Models.laboratoriumtbl">
+              <MappingFragment StoreEntitySet="laboratoriumtbl">
+                <ScalarProperty Name="laboratoriumSymbol" ColumnName="laboratoriumSymbol" />
+                <ScalarProperty Name="laboratoriumStatus" ColumnName="laboratoriumStatus" />
+                <ScalarProperty Name="laboratoriumName" ColumnName="laboratoriumName" />
+                <ScalarProperty Name="laboratoriumID" ColumnName="laboratoriumID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="logtbls">
+            <EntityTypeMapping TypeName="BalitTanahPelayanan.Models.logtbl">
+              <MappingFragment StoreEntitySet="logtbl">
+                <ScalarProperty Name="creaDate" ColumnName="creaDate" />
+                <ScalarProperty Name="creaBy" ColumnName="creaBy" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="source" ColumnName="source" />
+                <ScalarProperty Name="logId" ColumnName="logId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="my_aspnet_applications">
+            <EntityTypeMapping TypeName="BalitTanahPelayanan.Models.my_aspnet_applications">
+              <MappingFragment StoreEntitySet="my_aspnet_applications">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="my_aspnet_membership">
+            <EntityTypeMapping TypeName="BalitTanahPelayanan.Models.my_aspnet_membership">
+              <MappingFragment StoreEntitySet="my_aspnet_membership">
+                <ScalarProperty Name="FailedPasswordAnswerAttemptWindowStart" ColumnName="FailedPasswordAnswerAttemptWindowStart" />
+                <ScalarProperty Name="FailedPasswordAnswerAttemptCount" ColumnName="FailedPasswordAnswerAttemptCount" />
+                <ScalarProperty Name="FailedPasswordAttemptWindowStart" ColumnName="FailedPasswordAttemptWindowStart" />
+                <ScalarProperty Name="FailedPasswordAttemptCount" ColumnName="FailedPasswordAttemptCount" />
+                <ScalarProperty Name="LastLockedOutDate" ColumnName="LastLockedOutDate" />
+                <ScalarProperty Name="IsLockedOut" ColumnName="IsLockedOut" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="LastPasswordChangedDate" ColumnName="LastPasswordChangedDate" />
+                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+                <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+                <ScalarProperty Name="PasswordAnswer" ColumnName="PasswordAnswer" />
+                <ScalarProperty Name="PasswordQuestion" ColumnName="PasswordQuestion" />
+                <ScalarProperty Name="PasswordFormat" ColumnName="PasswordFormat" />
+                <ScalarProperty Name="PasswordKey" ColumnName="PasswordKey" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="my_aspnet_paths">
+            <EntityTypeMapping TypeName="BalitTanahPelayanan.Models.my_aspnet_paths">
+              <MappingFragment StoreEntitySet="my_aspnet_paths">
+                <ScalarProperty Name="loweredPath" ColumnName="loweredPath" />
+                <ScalarProperty Name="path" ColumnName="path" />
+                <ScalarProperty Name="pathId" ColumnName="pathId" />
+                <ScalarProperty Name="applicationId" ColumnName="applicationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="my_aspnet_personalizationallusers">
+            <EntityTypeMapping TypeName="BalitTanahPelayanan.Models.my_aspnet_personalizationallusers">
+              <MappingFragment StoreEntitySet="my_aspnet_personalizationallusers">
+                <ScalarProperty Name="lastUpdatedDate" ColumnName="lastUpdatedDate" />
+                <ScalarProperty Name="pageSettings" ColumnName="pageSettings" />
+                <ScalarProperty Name="pathId" ColumnName="pathId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="my_aspnet_personalizationperuser">
+            <EntityTypeMapping TypeName="BalitTanahPelayanan.Models.my_aspnet_personalizationperuser">
+              <MappingFragment StoreEntitySet="my_aspnet_personalizationperuser">
+                <ScalarProperty Name="lastUpdatedDate" ColumnName="lastUpdatedDate" />
+                <ScalarProperty Name="pageSettings" ColumnName="pageSettings" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="pathId" ColumnName="pathId" />
+                <ScalarProperty Name="applicationId" ColumnName="applicationId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="my_aspnet_profiles">
+            <EntityTypeMapping TypeName="BalitTanahPelayanan.Models.my_aspnet_profiles">
+              <MappingFragment StoreEntitySet="my_aspnet_profiles">
+                <ScalarProperty Name="lastUpdatedDate" ColumnName="lastUpdatedDate" />
+                <ScalarProperty Name="binarydata" ColumnName="binarydata" />
+                <ScalarProperty Name="stringdata" ColumnName="stringdata" />
+                <ScalarProperty Name="valueindex" ColumnName="valueindex" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="my_aspnet_roles">
+            <EntityTypeMapping TypeName="BalitTanahPelayanan.Models.my_aspnet_roles">
+              <MappingFragment StoreEntitySet="my_aspnet_roles">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="applicationId" ColumnName="applicationId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="my_aspnet_sessioncleanup">
+            <EntityTypeMapping TypeName="BalitTanahPelayanan.Models.my_aspnet_sessioncleanup">
+              <MappingFragment StoreEntitySet="my_aspnet_sessioncleanup">
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+                <ScalarProperty Name="IntervalMinutes" ColumnName="IntervalMinutes" />
+                <ScalarProperty Name="LastRun" ColumnName="LastRun" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="my_aspnet_sessions">
+            <EntityTypeMapping TypeName="BalitTanahPelayanan.Models.my_aspnet_sessions">
+              <MappingFragment StoreEntitySet="my_aspnet_sessions">
+                <ScalarProperty Name="Flags" ColumnName="Flags" />
+                <ScalarProperty Name="SessionItems" ColumnName="SessionItems" />
+                <ScalarProperty Name="Locked" ColumnName="Locked" />
+                <ScalarProperty Name="Timeout" ColumnName="Timeout" />
+                <ScalarProperty Name="LockId" ColumnName="LockId" />
+                <ScalarProperty Name="LockDate" ColumnName="LockDate" />
+                <ScalarProperty Name="Expires" ColumnName="Expires" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+                <ScalarProperty Name="SessionId" ColumnName="SessionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="my_aspnet_sitemap">
+            <EntityTypeMapping TypeName="BalitTanahPelayanan.Models.my_aspnet_sitemap">
+              <MappingFragment StoreEntitySet="my_aspnet_sitemap">
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="Roles" ColumnName="Roles" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="my_aspnet_users">
+            <EntityTypeMapping TypeName="BalitTanahPelayanan.Models.my_aspnet_users">
+              <MappingFragment StoreEntitySet="my_aspnet_users">
+                <ScalarProperty Name="lastActivityDate" ColumnName="lastActivityDate" />
+                <ScalarProperty Name="isAnonymous" ColumnName="isAnonymous" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="applicationId" ColumnName="applicationId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="my_aspnet_usersinroles">
+            <EntityTypeMapping TypeName="BalitTanahPelayanan.Models.my_aspnet_usersinroles">
+              <MappingFragment StoreEntitySet="my_aspnet_usersinroles">
+                <ScalarProperty Name="roleId" ColumnName="roleId" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mysql_membership">
+            <EntityTypeMapping TypeName="BalitTanahPelayanan.Models.mysql_membership">
+              <MappingFragment StoreEntitySet="mysql_membership">
+                <ScalarProperty Name="FailedPasswordAnswerAttemptWindowStart" ColumnName="FailedPasswordAnswerAttemptWindowStart" />
+                <ScalarProperty Name="FailedPasswordAnswerAttemptCount" ColumnName="FailedPasswordAnswerAttemptCount" />
+                <ScalarProperty Name="FailedPasswordAttemptWindowStart" ColumnName="FailedPasswordAttemptWindowStart" />
+                <ScalarProperty Name="FailedPasswordAttemptCount" ColumnName="FailedPasswordAttemptCount" />
+                <ScalarProperty Name="LastLockedOutDate" ColumnName="LastLockedOutDate" />
+                <ScalarProperty Name="IsLockedOut" ColumnName="IsLockedOut" />
+                <ScalarProperty Name="IsOnline" ColumnName="IsOnline" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="LastPasswordChangedDate" ColumnName="LastPasswordChangedDate" />
+                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+                <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+                <ScalarProperty Name="PasswordAnswer" ColumnName="PasswordAnswer" />
+                <ScalarProperty Name="PasswordQuestion" ColumnName="PasswordQuestion" />
+                <ScalarProperty Name="PasswordFormat" ColumnName="PasswordFormat" />
+                <ScalarProperty Name="PasswordKey" ColumnName="PasswordKey" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ApplicationName" ColumnName="ApplicationName" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="PKID" ColumnName="PKID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orderanalysisdetailtbls">
+            <EntityTypeMapping TypeName="BalitTanahPelayanan.Models.orderanalysisdetailtbl">
+              <MappingFragment StoreEntitySet="orderanalysisdetailtbl">
+                <ScalarProperty Name="modDate" ColumnName="modDate" />
+                <ScalarProperty Name="modBy" ColumnName="modBy" />
+                <ScalarProperty Name="creaDate" ColumnName="creaDate" />
+                <ScalarProperty Name="creaBy" ColumnName="creaBy" />
+                <ScalarProperty Name="LabToolFileName" ColumnName="LabToolFileName" />
+                <ScalarProperty Name="LabToolAttachmentUrl" ColumnName="LabToolAttachmentUrl" />
+                <ScalarProperty Name="fileName" ColumnName="fileName" />
+                <ScalarProperty Name="fileAttachmentUrl" ColumnName="fileAttachmentUrl" />
+                <ScalarProperty Name="pic" ColumnName="pic" />
+                <ScalarProperty Name="recalculate" ColumnName="recalculate" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="elementValue" ColumnName="elementValue" />
+                <ScalarProperty Name="parametersNo" ColumnName="parametersNo" />
+                <ScalarProperty Name="elementId" ColumnName="elementId" />
+                <ScalarProperty Name="sampleNo" ColumnName="sampleNo" />
+                <ScalarProperty Name="orderNo" ColumnName="orderNo" />
+                <ScalarProperty Name="orderDetailNo" ColumnName="orderDetailNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ordermastertbls">
+            <EntityTypeMapping TypeName="BalitTanahPelayanan.Models.ordermastertbl">
+              <MappingFragment StoreEntitySet="ordermastertbl">
+                <ScalarProperty Name="modDate" ColumnName="modDate" />
+                <ScalarProperty Name="modBy" ColumnName="modBy" />
+                <ScalarProperty Name="creaDate" ColumnName="creaDate" />
+                <ScalarProperty Name="creaBy" ColumnName="creaBy" />
+                <ScalarProperty Name="additionalPriceRemark" ColumnName="additionalPriceRemark" />
+                <ScalarProperty Name="dosePerHectare" ColumnName="dosePerHectare" />
+                <ScalarProperty Name="totalGenus" ColumnName="totalGenus" />
+                <ScalarProperty Name="additionalPrice2" ColumnName="additionalPrice2" />
+                <ScalarProperty Name="additionalPrice1" ColumnName="additionalPrice1" />
+                <ScalarProperty Name="packageName" ColumnName="packageName" />
+                <ScalarProperty Name="isReviewing" ColumnName="isReviewing" />
+                <ScalarProperty Name="CalculationFilename" ColumnName="CalculationFilename" />
+                <ScalarProperty Name="CalculationFileUrl" ColumnName="CalculationFileUrl" />
+                <ScalarProperty Name="isRecalculate" ColumnName="isRecalculate" />
+                <ScalarProperty Name="EvaluationFileName" ColumnName="EvaluationFileName" />
+                <ScalarProperty Name="EvaluationFileUrl" ColumnName="EvaluationFileUrl" />
+                <ScalarProperty Name="LHPFileName" ColumnName="LHPFileName" />
+                <ScalarProperty Name="LHPAttachmentUrl" ColumnName="LHPAttachmentUrl" />
+                <ScalarProperty Name="ApprManagerTeknis" ColumnName="ApprManagerTeknis" />
+                <ScalarProperty Name="ApprEvaluator" ColumnName="ApprEvaluator" />
+                <ScalarProperty Name="ApprPenyelia" ColumnName="ApprPenyelia" />
+                <ScalarProperty Name="isOnLab" ColumnName="isOnLab" />
+                <ScalarProperty Name="pic" ColumnName="pic" />
+                <ScalarProperty Name="paymentDate" ColumnName="paymentDate" />
+                <ScalarProperty Name="isPaid" ColumnName="isPaid" />
+                <ScalarProperty Name="receiptDate" ColumnName="receiptDate" />
+                <ScalarProperty Name="ppn" ColumnName="ppn" />
+                <ScalarProperty Name="paymentStatus" ColumnName="paymentStatus" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="statusType" ColumnName="statusType" />
+                <ScalarProperty Name="priceTotal" ColumnName="priceTotal" />
+                <ScalarProperty Name="sampleTotal" ColumnName="sampleTotal" />
+                <ScalarProperty Name="analysisType" ColumnName="analysisType" />
+                <ScalarProperty Name="comodityNo" ColumnName="comodityNo" />
+                <ScalarProperty Name="customerNo" ColumnName="customerNo" />
+                <ScalarProperty Name="batchId" ColumnName="batchId" />
+                <ScalarProperty Name="orderNo" ColumnName="orderNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ordernavigationtbls">
+            <EntityTypeMapping TypeName="BalitTanahPelayanan.Models.ordernavigationtbl">
+              <MappingFragment StoreEntitySet="ordernavigationtbl">
+                <ScalarProperty Name="isVisible" ColumnName="isVisible" />
+                <ScalarProperty Name="orderNo" ColumnName="orderNo" />
+                <ScalarProperty Name="commodityNo" ColumnName="commodityNo" />
+                <ScalarProperty Name="isLeaf" ColumnName="isLeaf" />
+                <ScalarProperty Name="parentId" ColumnName="parentId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orderpricedetailtbls">
+            <EntityTypeMapping TypeName="BalitTanahPelayanan.Models.orderpricedetailtbl">
+              <MappingFragment StoreEntitySet="orderpricedetailtbl">
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="elementId" ColumnName="elementId" />
+                <ScalarProperty Name="orderNo" ColumnName="orderNo" />
+                <ScalarProperty Name="orderPriceDetailNo" ColumnName="orderPriceDetailNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ordersampletbls">
+            <EntityTypeMapping TypeName="BalitTanahPelayanan.Models.ordersampletbl">
+              <MappingFragment StoreEntitySet="ordersampletbl">
+                <ScalarProperty Name="modDate" ColumnName="modDate" />
+                <ScalarProperty Name="modBy" ColumnName="modBy" />
+                <ScalarProperty Name="creaDate" ColumnName="creaDate" />
+                <ScalarProperty Name="creaBy" ColumnName="creaBy" />
+                <ScalarProperty Name="isReceived" ColumnName="isReceived" />
+                <ScalarProperty Name="landUse" ColumnName="landUse" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="province" ColumnName="province" />
+                <ScalarProperty Name="district" ColumnName="district" />
+                <ScalarProperty Name="subDistrict" ColumnName="subDistrict" />
+                <ScalarProperty Name="village" ColumnName="village" />
+                <ScalarProperty Name="samplingDate" ColumnName="samplingDate" />
+                <ScalarProperty Name="sampleDescription" ColumnName="sampleDescription" />
+                <ScalarProperty Name="sampleCode" ColumnName="sampleCode" />
+                <ScalarProperty Name="countNumber" ColumnName="countNumber" />
+                <ScalarProperty Name="orderNo" ColumnName="orderNo" />
+                <ScalarProperty Name="noBalittanah" ColumnName="noBalittanah" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="packagedetailtbls">
+            <EntityTypeMapping TypeName="BalitTanahPelayanan.Models.packagedetailtbl">
+              <MappingFragment StoreEntitySet="packagedetailtbl">
+                <ScalarProperty Name="compulsive" ColumnName="compulsive" />
+                <ScalarProperty Name="elementId" ColumnName="elementId" />
+                <ScalarProperty Name="packageName" ColumnName="packageName" />
+                <ScalarProperty Name="PackageDetailTbl1" ColumnName="PackageDetailTbl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="packagetbls">
+            <EntityTypeMapping TypeName="BalitTanahPelayanan.Models.packagetbl">
+              <MappingFragment StoreEntitySet="packagetbl">
+                <ScalarProperty Name="additionalPriceDesc2" ColumnName="additionalPriceDesc2" />
+                <ScalarProperty Name="additionalPriceDesc1" ColumnName="additionalPriceDesc1" />
+                <ScalarProperty Name="additionalPrice2" ColumnName="additionalPrice2" />
+                <ScalarProperty Name="additionalPrice1" ColumnName="additionalPrice1" />
+                <ScalarProperty Name="bundlePrice" ColumnName="bundlePrice" />
+                <ScalarProperty Name="multipleSelectedItem" ColumnName="multipleSelectedItem" />
+                <ScalarProperty Name="analysisTypeName" ColumnName="analysisTypeName" />
+                <ScalarProperty Name="comodityNo" ColumnName="comodityNo" />
+                <ScalarProperty Name="packageName" ColumnName="packageName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="parameterstbls">
+            <EntityTypeMapping TypeName="BalitTanahPelayanan.Models.parameterstbl">
+              <MappingFragment StoreEntitySet="parameterstbl">
+                <ScalarProperty Name="modDate" ColumnName="modDate" />
+                <ScalarProperty Name="modBy" ColumnName="modBy" />
+                <ScalarProperty Name="creaDate" ColumnName="creaDate" />
+                <ScalarProperty Name="creaBy" ColumnName="creaBy" />
+                <ScalarProperty Name="string9" ColumnName="string9" />
+                <ScalarProperty Name="string8" ColumnName="string8" />
+                <ScalarProperty Name="string7" ColumnName="string7" />
+                <ScalarProperty Name="string6" ColumnName="string6" />
+                <ScalarProperty Name="string5" ColumnName="string5" />
+                <ScalarProperty Name="string4" ColumnName="string4" />
+                <ScalarProperty Name="string3" ColumnName="string3" />
+                <ScalarProperty Name="string2" ColumnName="string2" />
+                <ScalarProperty Name="string1" ColumnName="string1" />
+                <ScalarProperty Name="string0" ColumnName="string0" />
+                <ScalarProperty Name="parametersNo" ColumnName="parametersNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="paymenttbls">
+            <EntityTypeMapping TypeName="BalitTanahPelayanan.Models.paymenttbl">
+              <MappingFragment StoreEntitySet="paymenttbl">
+                <ScalarProperty Name="attachmentUrl" ColumnName="attachmentUrl" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="orderNo" ColumnName="orderNo" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="paymentReceiptUrl" ColumnName="paymentReceiptUrl" />
+                <ScalarProperty Name="bankName" ColumnName="bankName" />
+                <ScalarProperty Name="accountNo" ColumnName="accountNo" />
+                <ScalarProperty Name="accountName" ColumnName="accountName" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="paymentId" ColumnName="paymentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="resulttbls">
+            <EntityTypeMapping TypeName="BalitTanahPelayanan.Models.resulttbl">
+              <MappingFragment StoreEntitySet="resulttbl">
+                <ScalarProperty Name="modDate" ColumnName="modDate" />
+                <ScalarProperty Name="modBy" ColumnName="modBy" />
+                <ScalarProperty Name="creaDate" ColumnName="creaDate" />
+                <ScalarProperty Name="creaBy" ColumnName="creaBy" />
+                <ScalarProperty Name="fileName" ColumnName="fileName" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="reviewingNo" ColumnName="reviewingNo" />
+                <ScalarProperty Name="orderNo" ColumnName="orderNo" />
+                <ScalarProperty Name="resultNo" ColumnName="resultNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="reviewingtbls">
+            <EntityTypeMapping TypeName="BalitTanahPelayanan.Models.reviewingtbl">
+              <MappingFragment StoreEntitySet="reviewingtbl">
+                <ScalarProperty Name="modDate" ColumnName="modDate" />
+                <ScalarProperty Name="modBy" ColumnName="modBy" />
+                <ScalarProperty Name="creaDate" ColumnName="creaDate" />
+                <ScalarProperty Name="creaBy" ColumnName="creaBy" />
+                <ScalarProperty Name="isQualityStandard" ColumnName="isQualityStandard" />
+                <ScalarProperty Name="isMethode" ColumnName="isMethode" />
+                <ScalarProperty Name="workdays" ColumnName="workdays" />
+                <ScalarProperty Name="isVolumeCorrect" ColumnName="isVolumeCorrect" />
+                <ScalarProperty Name="isChemicalMaterialSurfficent" ColumnName="isChemicalMaterialSurfficent" />
+                <ScalarProperty Name="isHumanResourceSurfficient" ColumnName="isHumanResourceSurfficient" />
+                <ScalarProperty Name="isLabUtilitySurfficient" ColumnName="isLabUtilitySurfficient" />
+                <ScalarProperty Name="reviewingDate" ColumnName="reviewingDate" />
+                <ScalarProperty Name="elementCodeList" ColumnName="elementCodeList" />
+                <ScalarProperty Name="orderNo" ColumnName="orderNo" />
+                <ScalarProperty Name="reviewingNo" ColumnName="reviewingNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="roletbls">
+            <EntityTypeMapping TypeName="BalitTanahPelayanan.Models.roletbl">
+              <MappingFragment StoreEntitySet="roletbl">
+                <ScalarProperty Name="modDate" ColumnName="modDate" />
+                <ScalarProperty Name="modBy" ColumnName="modBy" />
+                <ScalarProperty Name="creaDate" ColumnName="creaDate" />
+                <ScalarProperty Name="creaBy" ColumnName="creaBy" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="roleName" ColumnName="roleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="standarddetailtbls">
+            <EntityTypeMapping TypeName="BalitTanahPelayanan.Models.standarddetailtbl">
+              <MappingFragment StoreEntitySet="standarddetailtbl">
+                <ScalarProperty Name="modDate" ColumnName="modDate" />
+                <ScalarProperty Name="modBy" ColumnName="modBy" />
+                <ScalarProperty Name="creaDate" ColumnName="creaDate" />
+                <ScalarProperty Name="creaBy" ColumnName="creaBy" />
+                <ScalarProperty Name="elementId" ColumnName="elementId" />
+                <ScalarProperty Name="stdId" ColumnName="stdId" />
+                <ScalarProperty Name="stdDetailId" ColumnName="stdDetailId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="standardtbls">
+            <EntityTypeMapping TypeName="BalitTanahPelayanan.Models.standardtbl">
+              <MappingFragment StoreEntitySet="standardtbl">
+                <ScalarProperty Name="modDate" ColumnName="modDate" />
+                <ScalarProperty Name="modBy" ColumnName="modBy" />
+                <ScalarProperty Name="creaDate" ColumnName="creaDate" />
+                <ScalarProperty Name="creaBy" ColumnName="creaBy" />
+                <ScalarProperty Name="comodityNo" ColumnName="comodityNo" />
+                <ScalarProperty Name="stdNo" ColumnName="stdNo" />
+                <ScalarProperty Name="stdId" ColumnName="stdId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="workflowlogtbls">
+            <EntityTypeMapping TypeName="BalitTanahPelayanan.Models.workflowlogtbl">
+              <MappingFragment StoreEntitySet="workflowlogtbl">
+                <ScalarProperty Name="creaDate" ColumnName="creaDate" />
+                <ScalarProperty Name="creaBy" ColumnName="creaBy" />
+                <ScalarProperty Name="message" ColumnName="message" />
+                <ScalarProperty Name="lastStatus" ColumnName="lastStatus" />
+                <ScalarProperty Name="taskDesctiption" ColumnName="taskDesctiption" />
+                <ScalarProperty Name="task" ColumnName="task" />
+                <ScalarProperty Name="resourceNo" ColumnName="resourceNo" />
+                <ScalarProperty Name="workflowLogNo" ColumnName="workflowLogNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sampletypetbls">
+            <EntityTypeMapping TypeName="BalitTanahPelayanan.Models.sampletypetbl">
+              <MappingFragment StoreEntitySet="sampletypetbl">
+                <ScalarProperty Name="typeStatus" ColumnName="typeStatus" />
+                <ScalarProperty Name="typeSymbol" ColumnName="typeSymbol" />
+                <ScalarProperty Name="typeName" ColumnName="typeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

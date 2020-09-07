@@ -1,0 +1,372 @@
+﻿@page "/pages/private/masterdata/accountsmaster"
+@layout BalitTanahPelayanan.Shared.Master.MainMaster
+@using System.Web
+@using Microsoft.AspNetCore.WebUtilities
+@inject IToastService toastService
+@using BalitTanahPelayanan.Data
+@using BalitTanahPelayanan.Helpers
+@using BalitTanahPelayanan.Models
+@using BalitTanahPelayanan.Controllers
+@using BalitTanahPelayanan.Services
+@inject NavigationManager NavMgr
+@inject IJSRuntime jsRuntime
+
+@if (objAccount == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    if (ShowTable)
+    {
+        <TableTemplate Items="objAccount">
+            <TableHeader>
+                <th class="sorting">Kode Pengguna</th>
+                <th class="sorting">Nama Pengguna</th>
+                <th class="sorting">Kata Sandi</th>
+                <th class="sorting">Hak Akses</th>
+                <th class="sorting">Verifikasi Email</th>
+                <th>Aksi</th>
+            </TableHeader>
+            <RowTemplate Context="account">
+                <td>@account.AccountNo</td>
+                <td>@account.Username</td>
+                <td>@account.Password</td>
+                <td>@account.RoleName</td>
+                <td>@account.IsEmailVerified</td>
+                <td>
+                    <a @onclick:preventDefault @onclick='() => ActionTable(account.AccountNo.ToString())' class="linkbtn">Ubah</a>
+                    <a @onclick:preventDefault @onclick='() => Detail(account.AccountNo.ToString())' class="linkbtn">Lihat</a>
+                    <a @onclick:preventDefault @onclick='() => Delete(account.AccountNo.ToString())' class="linkbtn">Hapus</a>
+                </td>
+            </RowTemplate>
+        </TableTemplate>
+        <div>
+            <input type="submit" @onclick:preventDefault @onclick='() => ActionButton("add")' name="BtnAdd" value="Tambah Data" id="MainContent_BtnAdd" class="btn btn-success" />
+        </div>
+    }
+    if (ShowInput)
+    {
+        <EditForm EditContext="@editContext" OnValidSubmit="@DoSave">
+            <DataAnnotationsValidator />
+            <div class="form-group">
+                <lable><h4>Informasi Account:</h4></lable>
+            </div>
+            <div class="form-group">
+                <label>Kode Akun:</label>
+                <label ID="TxtAccountNo" runat="server" visible="true">@AccountNo</label>
+            </div>
+            <div class="form-group">
+                <label for="username">Nama Pengguna:</label>
+                <InputText @bind-Value="modelAccount.Username" class="form-control" name="username" />
+                <ValidationMessage For="@(() => modelAccount.Username)"></ValidationMessage>
+            </div>
+            <div class="form-group">
+                <label for="password">Kata Sandi:</label>
+                <InputText @bind-Value="modelAccount.Password" class="form-control" name="password" textmode="Password" />
+                <ValidationMessage For="@(() => modelAccount.Password)"></ValidationMessage>
+            </div>
+            <div class="form-group">
+                <label for="rolename">Hak Akses:</label>
+                <InputSelect @bind-Value="modelAccount.RoleName" class="form-control" name="rolename" disabled="@InputIsDisabled">
+                    @if (objRole != null)
+                            {
+                                foreach (var item in objRole)
+                                {
+                            <option value="@item.RoleName">@item.RoleName</option>
+                                }
+                            }
+                </InputSelect>
+            </div>
+            <div class="form-group">
+                <label for="emailverified">Verifikasi Email:</label>
+                <InputText @bind-Value="modelAccount.IsEmailVerified" class="form-control" name="emailverified" />
+                <ValidationMessage For="@(() => modelAccount.IsEmailVerified)"></ValidationMessage>
+            </div>
+            <input type="submit" class="btn btn-success" disabled="@IsDisabled" name="BtnSave" value="@save" />
+            @*<input type="submit" class="btn btn-success" name="BtnUpdate" value="@update" hidden="hidden"/>*@
+            <input type="submit" class="btn btn-danger" name="BtnCancel" value="@cancel" @onclick:preventDefault @onclick='() => ActionButton("cancel")' />
+        </EditForm>
+    }
+    if (ShowDetail)
+    {
+        <div class="form-group">
+            <lable><h4>Informasi Account:</h4></lable>
+        </div>
+        <div class="form-group">
+            <label>Kode Akun:</label>
+            <label ID="TxtAccountNo" runat="server" visible="true">@AccountNo</label>
+        </div>
+        <div class="form-group">
+            <label>Nama Pengguna:</label>
+            <label class="form-control">@modelAccount.Username</label>
+        </div>
+        <div class="form-group">
+            <label>Kata Sandi:</label>
+            <label class="form-control">@modelAccount.Password</label>
+        </div>
+        <div class="form-group">
+            <label>Hak Akses:</label>
+            <label class="form-control">@modelAccount.RoleName</label>
+        </div>
+        <div class="form-group">
+            <label>Verifikasi Email:</label>
+            <label class="form-control">@modelAccount.IsEmailVerified</label>
+        </div>
+        <input type="submit" class="btn btn-danger" name="BtnCancel" value="Kembali" @onclick:preventDefault @onclick='() => ActionButton("cancel")' />
+    }
+    if (ShowDelete)
+    {
+        <div class="form-group">
+            <lable><h4>Apakah anda yakin ingin menghapus data ini?</h4></lable>
+        </div>
+        <a @onclick:preventDefault @onclick='() => DoDelete(modelAccount.AccountNo.ToString())' class="btn btn-success">Ya</a>
+        <input type="submit" class="btn btn-danger" name="BtnCancel" value="Tidak" @onclick:preventDefault @onclick='() => ActionButton("cancel")' />
+    }
+}
+
+
+@code {
+    private EditContext editContext;
+    protected bool IsDisabled = true;
+
+    protected bool InputIsDisabled = false;
+
+    string AccountNo = "Otomatis";
+    string save = "Simpan";
+    string cancel = "Kembali";
+
+    enum ModeForm { ViewData, UpdateData, DetailData, AddData }
+
+    bool ShowTable { get; set; } = true;
+    bool ShowInput { get; set; } = false;
+    bool ShowDetail { get; set; } = false;
+    bool ShowDelete { get; set; } = false;
+
+    AccountsServices accountControls = new AccountsServices();
+    RoleControls roleControls = new RoleControls();
+    Accounttbl modelAccount = new Accounttbl();
+    Roletbl modelTbl = new Roletbl();
+    List<Accounttbl> objAccount = new List<Accounttbl>();
+    List<Roletbl> objRole = new List<Roletbl>();
+
+    //Action For Table
+    void ActionTable(string ids)
+    {
+        ShowTable = false;
+        ShowInput = true;
+        ShowDetail = false;
+        ShowDelete = false;
+        LoadDetail(ids);
+        StateHasChanged();
+    }
+
+    //Detail
+    void Detail(string ids)
+    {
+        ShowTable = false;
+        ShowInput = false;
+        ShowDetail = true;
+        ShowDelete = false;
+        LoadDetail(ids);
+        StateHasChanged();
+    }
+
+    //Delete
+    void Delete(string ids)
+    {
+        ShowTable = false;
+        ShowInput = false;
+        ShowDelete = true;
+        LoadDetail(ids);
+        StateHasChanged();
+    }
+
+    // Action Button
+    void ActionButton(string cname)
+    {
+        try
+        {
+            var command = cname;
+
+            switch (command)
+            {
+
+                case "add":
+                    save = "Simpan";
+                    SetLayout(ModeForm.AddData);
+                    break;
+
+                case "update":
+                    SetLayout(ModeForm.UpdateData);
+                    break;
+
+                case "cancel":
+                    save = "Simpan";
+                    AccountNo = "Otomatis";
+                    modelAccount = new Accounttbl();
+                    editContext = new EditContext(modelAccount);
+                    SetLayout(ModeForm.ViewData);
+                    break;
+            }
+        }
+        catch (Exception ex)
+        {
+            toastService.ShowError("Terjadi kesalahan: " + ex.Message);
+        }
+    }
+
+    // Set Layout
+    void SetLayout(ModeForm mode)
+    {
+        switch (mode)
+        {
+            case ModeForm.AddData:
+                ShowTable = false;
+                ShowInput = true;
+                ShowDetail = false;
+                ShowDelete = false;
+                RefreshGrid();
+                LoadRoleName();
+                StateHasChanged();
+                break;
+            case ModeForm.UpdateData:
+                ShowTable = true;
+                ShowInput = false;
+                ShowDetail = false;
+                ShowDelete = false;
+                objAccount = new List<Accounttbl>();
+                RefreshGrid();
+                LoadRoleName();
+                StateHasChanged();
+                break;
+            case ModeForm.ViewData:
+                ShowTable = true;
+                ShowInput = false;
+                ShowDetail = false;
+                ShowDelete = false;
+                objAccount = new List<Accounttbl>();
+                RefreshGrid();
+                LoadRoleName();
+                StateHasChanged();
+                break;
+        }
+    }
+
+    // Validation State Change
+    private void OnValidationStateChanged(object sender, ValidationStateChangedEventArgs e)
+    {
+        IsDisabled = editContext.GetValidationMessages().Any();
+        StateHasChanged();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        RefreshGrid();
+        editContext = new EditContext(modelAccount);
+    }
+
+    // Load Detail Data
+    void LoadDetail(string dd)
+    {
+        save = "Ubah";
+        var ret = accountControls.DetailData(dd);
+        var data = ret.Result;
+        AccountNo = data.AccountNo.ToString();
+
+        if (data != null)
+        {
+            LoadRoleName();
+            modelAccount = data;
+        }
+    }
+
+    // Load Role Name
+    private void LoadRoleName()
+    {
+        var ret = roleControls.GetData();
+        var datas = ret.Result;
+
+        if (datas != null && datas.Count() > 0)
+        {
+            objRole = datas.ToList();
+        }
+    }
+
+    // Reload datagrid
+    protected void RefreshGrid(string param = "")
+    {
+        if (param == null || param == "")
+        {
+            var ret = accountControls.GetData();
+            var datas = ret.Result;
+
+            if (datas != null && datas.Count() > 0)
+            {
+                objAccount = datas.ToList();
+                editContext = new EditContext(objAccount);
+                editContext.OnValidationStateChanged += OnValidationStateChanged;
+                modelAccount = new Accounttbl();
+                StateHasChanged();
+            }
+        }
+        else
+        {
+            var ret = accountControls.GetDataByContaint(param);
+            var datas = ret.Result;
+
+            if (datas != null && datas.Count() > 0)
+            {
+                objAccount = datas.ToList();
+                editContext = new EditContext(objAccount);
+                modelAccount = new Accounttbl();
+                editContext.OnValidationStateChanged += OnValidationStateChanged;
+                StateHasChanged();
+            }
+        }
+    }
+
+    // Do Save
+    private void DoSave()
+    {
+        string id = AccountNo;
+        var data = modelAccount;
+
+        var ret = accountControls.AddData(data);
+        if (save == "Ubah")
+        {
+            ret = accountControls.UpdateData(id, data);
+        }
+
+        if (ret.Result)
+        {
+            SetLayout(ModeForm.ViewData);
+            save = "Simpan";
+            AccountNo = "Otomatis";
+            toastService.ShowSuccess("data berhasil disimpan");
+        }
+        else
+        {
+            toastService.ShowError("Gagal menyimpan data");
+        }
+    }
+
+    // Do Delete
+    private void DoDelete(string id)
+    {
+        var ret = accountControls.DeleteData(id);
+
+        if (ret.Result)
+        {
+            SetLayout(ModeForm.ViewData);
+            save = "Simpan";
+            AccountNo = "Otomatis";
+            toastService.ShowSuccess("data berhasil dihapus");
+        }
+        else
+        {
+            toastService.ShowError("Gagal menghapus data");
+        }
+    }
+
+}

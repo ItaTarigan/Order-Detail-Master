@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4e70fb64d6c84068bd17cfd2ac24fdcf" Name="Diagram1" ZoomLevel="55">
+        <EntityTypeShape EntityType="BalitTanahPelayanan.Models.accounttbl" Width="1.5" PointX="1.5" PointY="0.75" />
+        <EntityTypeShape EntityType="BalitTanahPelayanan.Models.analysistypetbl" Width="1.5" PointX="3.75" PointY="11.75" />
+        <EntityTypeShape EntityType="BalitTanahPelayanan.Models.autonumbertbl" Width="1.5" PointX="3.75" PointY="2.625" />
+        <EntityTypeShape EntityType="BalitTanahPelayanan.Models.batchtbl" Width="1.5" PointX="3.75" PointY="5.875" />
+        <EntityTypeShape EntityType="BalitTanahPelayanan.Models.comoditytbl" Width="1.5" PointX="0.75" PointY="16.25" />
+        <EntityTypeShape EntityType="BalitTanahPelayanan.Models.customertbl" Width="1.5" PointX="3.75" PointY="21.25" />
+        <EntityTypeShape EntityType="BalitTanahPelayanan.Models.elementservicehistorytbl" Width="1.5" PointX="11.25" PointY="8.375" />
+        <EntityTypeShape EntityType="BalitTanahPelayanan.Models.elementservicestbl" Width="1.5" PointX="9" PointY="7.125" />
+        <EntityTypeShape EntityType="BalitTanahPelayanan.Models.employeetbl" Width="1.5" PointX="1.5" PointY="5.5" />
+        <EntityTypeShape EntityType="BalitTanahPelayanan.Models.genustbl" Width="1.5" PointX="3" PointY="33.75" />
+        <EntityTypeShape EntityType="BalitTanahPelayanan.Models.laboratoriumtbl" Width="1.5" PointX="1.5" PointY="22.875" />
+        <EntityTypeShape EntityType="BalitTanahPelayanan.Models.logtbl" Width="1.5" PointX="5.75" PointY="2.625" />
+        <EntityTypeShape EntityType="BalitTanahPelayanan.Models.my_aspnet_applications" Width="1.5" PointX="5.75" PointY="5.625" />
+        <EntityTypeShape EntityType="BalitTanahPelayanan.Models.my_aspnet_membership" Width="1.5" PointX="11.75" PointY="2.625" />
+        <EntityTypeShape EntityType="BalitTanahPelayanan.Models.my_aspnet_paths" Width="1.5" PointX="7.75" PointY="2.625" />
+        <EntityTypeShape EntityType="BalitTanahPelayanan.Models.my_aspnet_personalizationallusers" Width="1.5" PointX="11.75" PointY="12.625" />
+        <EntityTypeShape EntityType="BalitTanahPelayanan.Models.my_aspnet_personalizationperuser" Width="1.5" PointX="13.75" PointY="2.625" />
+        <EntityTypeShape EntityType="BalitTanahPelayanan.Models.my_aspnet_profiles" Width="1.5" PointX="13.75" PointY="5.625" />
+        <EntityTypeShape EntityType="BalitTanahPelayanan.Models.my_aspnet_roles" Width="1.5" PointX="13.75" PointY="8.625" />
+        <EntityTypeShape EntityType="BalitTanahPelayanan.Models.my_aspnet_sessioncleanup" Width="1.5" PointX="13.75" PointY="11.625" />
+        <EntityTypeShape EntityType="BalitTanahPelayanan.Models.my_aspnet_sessions" Width="1.5" PointX="13.75" PointY="14.625" />
+        <EntityTypeShape EntityType="BalitTanahPelayanan.Models.my_aspnet_sitemap" Width="1.5" PointX="15.75" PointY="2.625" />
+        <EntityTypeShape EntityType="BalitTanahPelayanan.Models.my_aspnet_users" Width="1.5" PointX="15.75" PointY="5.625" />
+        <EntityTypeShape EntityType="BalitTanahPelayanan.Models.my_aspnet_usersinroles" Width="1.5" PointX="15.75" PointY="8.625" />
+        <EntityTypeShape EntityType="BalitTanahPelayanan.Models.mysql_membership" Width="1.5" PointX="15.75" PointY="11.625" />
+        <EntityTypeShape EntityType="BalitTanahPelayanan.Models.orderanalysisdetailtbl" Width="1.5" PointX="10.5" PointY="21.375" />
+        <EntityTypeShape EntityType="BalitTanahPelayanan.Models.ordermastertbl" Width="1.5" PointX="6" PointY="13.75" />
+        <EntityTypeShape EntityType="BalitTanahPelayanan.Models.ordernavigationtbl" Width="1.5" PointX="15.75" PointY="17.625" />
+        <EntityTypeShape EntityType="BalitTanahPelayanan.Models.orderpricedetailtbl" Width="1.5" PointX="11.25" PointY="17.375" />
+        <EntityTypeShape EntityType="BalitTanahPelayanan.Models.ordersampletbl" Width="1.5" PointX="8.25" PointY="29.5" />
+        <EntityTypeShape EntityType="BalitTanahPelayanan.Models.packagedetailtbl" Width="1.5" PointX="8.25" PointY="13.625" />
+        <EntityTypeShape EntityType="BalitTanahPelayanan.Models.packagetbl" Width="1.5" PointX="3" PointY="17" />
+        <EntityTypeShape EntityType="BalitTanahPelayanan.Models.parameterstbl" Width="1.5" PointX="8.25" PointY="22" />
+        <EntityTypeShape EntityType="BalitTanahPelayanan.Models.paymenttbl" Width="1.5" PointX="17.75" PointY="2.625" />
+        <EntityTypeShape EntityType="BalitTanahPelayanan.Models.resulttbl" Width="1.5" PointX="8.25" PointY="17.125" />
+        <EntityTypeShape EntityType="BalitTanahPelayanan.Models.reviewingtbl" Width="1.5" PointX="6" PointY="8.625" />
+        <EntityTypeShape EntityType="BalitTanahPelayanan.Models.roletbl" Width="1.5" PointX="1.5" PointY="10.75" />
+        <EntityTypeShape EntityType="BalitTanahPelayanan.Models.standarddetailtbl" Width="1.5" PointX="5.25" PointY="30.25" />
+        <EntityTypeShape EntityType="BalitTanahPelayanan.Models.standardtbl" Width="1.5" PointX="3" PointY="30.25" />
+        <EntityTypeShape EntityType="BalitTanahPelayanan.Models.workflowlogtbl" Width="1.5" PointX="17.75" PointY="6.625" />
+        <AssociationConnector Association="BalitTanahPelayanan.Models.AccountTbltoRoleTbl" />
+        <AssociationConnector Association="BalitTanahPelayanan.Models.CustomerTblAccountTbl" />
+        <AssociationConnector Association="BalitTanahPelayanan.Models.EmployeeTblAccountTbl" />
+        <AssociationConnector Association="BalitTanahPelayanan.Models.ElementServicesTbltoAnalysisTypeTbl" />
+        <AssociationConnector Association="BalitTanahPelayanan.Models.OrderMasterTbltoAnalysisTypeTbl" />
+        <AssociationConnector Association="BalitTanahPelayanan.Models.PackageTbltoAnalysisTypeTbl" />
+        <AssociationConnector Association="BalitTanahPelayanan.Models.BatchTblToEmployeeTbl" />
+        <AssociationConnector Association="BalitTanahPelayanan.Models.FK_batchtbl_employeetbl" />
+        <AssociationConnector Association="BalitTanahPelayanan.Models.FK_ordermastertbl_batchtbl" />
+        <AssociationConnector Association="BalitTanahPelayanan.Models.GenusPerComodityTbltoComodityTbl" />
+        <AssociationConnector Association="BalitTanahPelayanan.Models.OrderMasterTbltoComodityTbl" />
+        <AssociationConnector Association="BalitTanahPelayanan.Models.PackageTbltoComodityTbl" />
+        <AssociationConnector Association="BalitTanahPelayanan.Models.StandartdTbltoComodityTbl" />
+        <AssociationConnector Association="BalitTanahPelayanan.Models.OrderMasterTbltoCustomerTbl" />
+        <AssociationConnector Association="BalitTanahPelayanan.Models.ElementServiceHistoryTbltoElementServicesTbl" />
+        <AssociationConnector Association="BalitTanahPelayanan.Models.OrderAnalysisDetailTbltoElementServicesTbl" />
+        <AssociationConnector Association="BalitTanahPelayanan.Models.OrderPriceDetailtoElementServicesTbl" />
+        <AssociationConnector Association="BalitTanahPelayanan.Models.PackageDetailTbltoElementServicesTbl" />
+        <AssociationConnector Association="BalitTanahPelayanan.Models.StandardDetailTbltoElementServicesTbl" />
+        <AssociationConnector Association="BalitTanahPelayanan.Models.EmployeeTblLaboratoriumTbl" />
+        <AssociationConnector Association="BalitTanahPelayanan.Models.OrderAnalysisDetailTbltoEmployeeTbl" />
+        <AssociationConnector Association="BalitTanahPelayanan.Models.OrderMasterTbltoEmployeeTbl" />
+        <AssociationConnector Association="BalitTanahPelayanan.Models.OrderAnalysisDetailTbltoOrderMaster" />
+        <AssociationConnector Association="BalitTanahPelayanan.Models.OrderAnalysisDetailTbltoOrderSampleTbl" />
+        <AssociationConnector Association="BalitTanahPelayanan.Models.OrderAnalysisDetailTbltoParametersTbl" />
+        <AssociationConnector Association="BalitTanahPelayanan.Models.OrderPriceDetailTbltoOrderMasterTbl" />
+        <AssociationConnector Association="BalitTanahPelayanan.Models.OrderSampleTbltoOrderMasterTbl" />
+        <AssociationConnector Association="BalitTanahPelayanan.Models.ResultTbltoOrderMasterTbl" />
+        <AssociationConnector Association="BalitTanahPelayanan.Models.PackageDetailTbltoPackageTbl" />
+        <AssociationConnector Association="BalitTanahPelayanan.Models.ResultTbltoReviewingTbl" />
+        <AssociationConnector Association="BalitTanahPelayanan.Models.StandardDetailTbltoStandardTbl" />
+        <EntityTypeShape EntityType="BalitTanahPelayanan.Models.sampletypetbl" Width="1.5" PointX="18.375" PointY="10.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

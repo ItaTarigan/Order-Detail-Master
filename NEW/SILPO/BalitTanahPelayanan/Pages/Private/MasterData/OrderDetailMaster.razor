@@ -1,0 +1,412 @@
+﻿@page "/pages/private/masterdata/orderdetailmaster"
+@layout BalitTanahPelayanan.Shared.Master.MainMaster
+@using System.Web;
+@using Microsoft.AspNetCore.WebUtilities
+@inject IToastService toastService
+@using BalitTanahPelayanan.Data
+@using BalitTanahPelayanan.Helpers
+@using BalitTanahPelayanan.Models
+@using BalitTanahPelayanan.Controllers
+@using BalitTanahPelayanan.Services
+@inject NavigationManager NavMgr
+@inject IJSRuntime jsRuntime
+
+@if (objOrderDetail == null)
+{
+<p><em>Loading...</em></p> }
+            else
+            {
+                if (ShowTable)
+                {
+<TableTemplate Items="objOrderDetail">
+    <TableHeader>
+        <th class="sorting">Kode Detail Pesanan</th>
+        <th class="sorting">Kode Pesanan</th>
+        <th class="sorting">Kode Contoh</th>
+        <th class="sorting">Kode Elemen</th>
+        <th class="sorting">Kode Parameter</th>
+        <th class="sorting">Isi Elemen</th>
+        <th class="sorting">Status Pembayaran</th>
+        <th class="sorting">Disetujui</th>
+        <th>Aksi</th>
+    </TableHeader>
+    <RowTemplate Context="orderdetail">
+        <td>@orderdetail.OrderDetailNo.ToString()</td>
+        <td>@orderdetail.OrderNo</td>
+        <td>@orderdetail.SampleNo</td>
+        <td>@orderdetail.ElementId</td>
+        <td>@orderdetail.ParametersNo</td>
+        <td>@orderdetail.ElementValue</td>
+        <td>@orderdetail.Status</td>
+        <td>@orderdetail.Pic</td>
+        <td>
+            <a @onclick:preventDefault @onclick='() => ActionTable(orderdetail.OrderDetailNo.ToString())' class="linkbtn">Ubah</a>
+            <a @onclick:preventDefault @onclick='() => Detail(orderdetail.OrderDetailNo.ToString())' class="linkbtn">Lihat</a>
+            <a @onclick:preventDefault @onclick='() => Delete(orderdetail.OrderDetailNo.ToString())' class="linkbtn">Hapus</a>
+        </td>
+    </RowTemplate>
+</TableTemplate>
+                    <div>
+                        <input type="submit" @onclick:preventDefault @onclick='() => ActionButton("add")' name="BtnAdd" value="Tambah Data" id="MainContent_BtnAdd" class="btn btn-success" />
+                    </div> }
+                                    if (ShowInput)
+                                    {
+<EditForm EditContext="@editContext" OnValidSubmit="@DoSave">
+    <DataAnnotationsValidator />
+    <div class="form-group">
+        <lable><h4>Informasi Order Detail:</h4></lable>
+    </div>
+    <div class="form-group">
+        <label>Kode Detail Pesanan:</label>
+        <label ID="TxtNoOrder" runat="server" visible="true">@noOrder</label>
+    </div>
+     <div class="form-group">
+                <label for="orderno">Kode Pesanan:</label>
+                <select @bind="modelorder.OrderNo" class="form-control" name="orderno">
+                    <option value="0">-- Pilih Kode Pesanan --</option>
+                    @if (objOrderDetail != null)
+                    {
+                        foreach (var item in objOrderDetail)
+                        {
+                            <option value="@item.OrderNo">@item.OrderNo</option>
+                        }
+                    }
+                </select>
+                <ValidationMessage For="@(() => modelorder.OrderNo)"></ValidationMessage>
+            </div>
+
+    <div class="form-group">
+                <label for="sampleno">Kode Contoh:</label>
+                <select @bind="modelorder.SampleNo" class="form-control" name="sampleno">
+                    <option value="0">-- Pilih Kode Contoh --</option>
+                    @if (objOrderDetail != null)
+                    {
+                        foreach (var item in objOrderDetail)
+                        {
+                            <option value="@item.SampleNo">@item.SampleNo</option>
+                        }
+                    }
+                </select>
+                <ValidationMessage For="@(() => modelorder.SampleNo)"></ValidationMessage>
+            </div>
+
+     <div class="form-group">
+                <label for="elementId">Kode Element:</label>
+                <select @bind="modelorder.ElementId" class="form-control" name="elementid">
+                    <option value="0">-- Pilih Kode Element --</option>
+                    @if (objOrderDetail != null)
+                    {
+                        foreach (var item in objOrderDetail)
+                        {
+                            <option value="@item.ElementId">@item.ElementId</option>
+                        }
+                    }
+                </select>
+                <ValidationMessage For="@(() => modelorder.ElementId)"></ValidationMessage>
+            </div>
+
+    <div class="form-group">
+        <label for="parameterno">Kode Parameter:</label>
+        <InputNumber @bind-Value="modelorder.ParametersNo" class="form-control" name="parameterno" />
+        <ValidationMessage For="@(() => modelorder.ParametersNo)"></ValidationMessage>
+    </div>
+    <div class="form-group">
+        <label for="ElementValue">Isi Elemen:</label>
+        <InputText @bind-Value="modelorder.ElementValue" class="form-control" name="companyemail" />
+        <ValidationMessage For="@(() => modelorder.ElementValue)"></ValidationMessage>
+    </div>
+    <div class="form-group">
+        <label for="status">Status Pembayaran:</label>
+        <InputSelect @bind-Value="modelorder.Status" class="form-control" name="status">
+            <option value="Menunggu">Menunggu</option>
+            <option value="Diproses">Diproses</option>
+        </InputSelect>
+    </div>
+
+    <div class="form-group">
+                <label for="pic">Disetujui:</label>
+                <select @bind="modelorder.Pic" class="form-control" name="pic">
+                    <option value="0">-- --</option>
+                    @if (objOrderDetail != null)
+                    {
+                        foreach (var item in objOrderDetail)
+                        {
+                            <option value="@item.Pic">@item.Pic</option>
+                        }
+                    }
+                </select>
+                <ValidationMessage For="@(() => modelorder.Pic)"></ValidationMessage>
+            </div>
+
+    <input type="submit" class="btn btn-success" disabled="@IsDisabled" name="BtnSave" value="@save" />
+    <input type="submit" class="btn btn-danger" name="BtnCancel" value="@cancel" @onclick:preventDefault @onclick='() => ActionButton("cancel")' />
+</EditForm>
+
+ }
+                                    if (ShowDetail)
+                                    {
+                    <div class="form-group">
+                        <lable><h4>Informasi Order Detail:</h4></lable>
+                    </div>
+                    <div class="form-group">
+                        <label>Kode Detail Pesanan:</label>
+                        <label ID="TxtNoOrder" runat="server" visible="true">@noOrder</label>
+                    </div>
+                    <div class="form-group">
+                        <label>Kode Pesanan:</label>
+                        <label class="form-control">@modelorder.OrderNo</label>
+                    </div>
+                    <div class="form-group">
+                        <label>Kode Contoh:</label>
+                        <label class="form-control">@modelorder.SampleNo</label>
+                    </div>
+                    <div class="form-group">
+                        <label>Kode Elemen:</label>
+                        <label class="form-control">@modelorder.ElementId</label>
+                    </div>
+                    <div class="form-group">
+                        <label>Kode Parameter:</label>
+                        <label class="form-control">@modelorder.ParametersNo</label>
+                    </div>
+                    <div class="form-group">
+                        <label>Isi Elemen:</label>
+                        <label class="form-control">@modelorder.ElementValue</label>
+                    </div>
+                    <div class="form-group">
+                        <label>Status Pembayaran:</label>
+                        <label class="form-control">@modelorder.Status</label>
+                    </div>
+                    <div class="form-group">
+                        <label>Disetujui:</label>
+                        <label class="form-control">@modelorder.Pic</label>
+                    </div>
+                        <input type="submit" class="btn btn-danger" name="BtnCancel" value="@cancel" @onclick:preventDefault @onclick='() => ActionButton("cancel")' /> }
+                        if (ShowDelete) {
+                    <div class="form-group">
+                    <lable><h4>Apakah anda yakin ingin menghapus data ini?</h4></lable>
+                    </div>
+                    <a @onclick:preventDefault @onclick='() => DoDelete(modelorder.OrderNo.ToString())' class="btn btn-success">Ya</a> @*<input type="submit" class="btn btn-success" name="BtnUpdate" value="@update" hidden="hidden"/>*@
+                    <input type="submit" class="btn btn-danger" name="BtnCancel" value="Tidak" @onclick:preventDefault @onclick='() => ActionButton("cancel")' />} 
+            }
+
+@code { private EditContext editContext;
+    protected bool IsDisabled = true;
+
+    string noOrder = "Otomatis";
+    string save = "Simpan";
+    string cancel = "Kembali";
+
+    enum ModeForm { ViewData, UpdateData, DetailData, AddData }
+
+    bool ShowTable { get; set; } = true;
+    bool ShowInput { get; set; } = false;
+    bool ShowDetail { get; set; } = false;
+    bool ShowDelete { get; set; } = false;
+
+    OrderDetailService OrderService = new OrderDetailService();
+    Orderanalysisdetailtbl modelorder = new Orderanalysisdetailtbl();
+    List<Orderanalysisdetailtbl> objOrderDetail = new List<Orderanalysisdetailtbl>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        RefreshGrid();
+        editContext = new EditContext(modelorder);
+    }
+
+    //validation state change
+    private void OnValidationStateChanged(object sender, ValidationStateChangedEventArgs e)
+    {
+        IsDisabled = editContext.GetValidationMessages().Any();
+        StateHasChanged();
+    }
+
+    //Action For Table
+    void ActionTable(string ids)
+    {
+        ShowTable = false;
+        ShowInput = true;
+        ShowDetail = false;
+        ShowDelete = false;
+        LoadDetail(ids);
+        StateHasChanged();
+    }
+
+    //Detail
+    void Detail(string ids)
+    {
+        ShowTable = false;
+        ShowInput = false;
+        ShowDetail = true;
+        ShowDelete = false;
+        LoadDetail(ids);
+        StateHasChanged();
+    }
+
+    //Delete
+    void Delete(string ids)
+    {
+        ShowTable = false;
+        ShowInput = false;
+        ShowDelete = true;
+        LoadDetail(ids);
+        StateHasChanged();
+    }
+
+    //Load detail data
+    void LoadDetail(string fid)
+    {
+        save = "Ubah";
+        var ret = OrderService.DetailData(fid);
+        var data = ret.Result;
+        noOrder = data.OrderNo.ToString();
+
+        if (data != null)
+        {
+            modelorder = data;
+        }
+    }
+
+    //Action Button
+    void ActionButton(string commandname)
+    {
+        try
+        {
+            var command = commandname;
+
+            switch (command)
+            {
+                //case "save":
+                //    SetLayout(ModeForm.ViewData);
+                //    break;
+
+                case "add":
+                    IsDisabled = true;
+                    save = "Simpan";
+                    SetLayout(ModeForm.AddData);
+                    break;
+
+                case "update":
+                    SetLayout(ModeForm.UpdateData);
+                    break;
+
+                case "cancel":
+                    save = "Simpan";
+                    noOrder = "Otomatis";
+                    modelorder = new Orderanalysisdetailtbl();
+                    editContext = new EditContext(modelorder);
+                    SetLayout(ModeForm.ViewData);
+                    break;
+            }
+        }
+        catch (Exception ex)
+        {
+            toastService.ShowError("Terjadi kesalahan: " + ex.Message);
+        }
+    }
+
+    //Set Layout
+    void SetLayout(ModeForm mode)
+    {
+        switch (mode)
+        {
+            case ModeForm.AddData:
+                ShowTable = false;
+                ShowInput = true;
+                ShowDetail = false;
+                ShowDelete = false;
+                RefreshGrid();
+                StateHasChanged();
+                break;
+            case ModeForm.UpdateData:
+
+                break;
+            case ModeForm.ViewData:
+                ShowTable = true;
+                ShowInput = false;
+                ShowDetail = false;
+                ShowDelete = false;
+                objOrderDetail = new List<Orderanalysisdetailtbl>();
+                RefreshGrid();
+                StateHasChanged();
+                break;
+        }
+    }
+
+    // Reload datagrid
+    protected void RefreshGrid(string param = "")
+    {
+
+        if (param == null || param == "")
+        {
+
+            var ret = OrderService.GetData();
+            var datas = ret.Result;
+
+            if (datas != null && datas.Count() > 0)
+            {
+                objOrderDetail = datas.ToList();
+                editContext = new EditContext(objOrderDetail);
+                editContext.OnValidationStateChanged += OnValidationStateChanged;
+                modelorder = new Orderanalysisdetailtbl();
+                StateHasChanged();
+                //GvData.DataBind();
+            }
+        }
+        else
+        {
+            var ret = OrderService.GetDataByContaint(param);
+            var datas = ret.Result;
+
+            if (datas != null && datas.Count() > 0)
+            {
+                objOrderDetail = datas.ToList();
+                editContext = new EditContext(objOrderDetail);
+                modelorder = new Orderanalysisdetailtbl();
+                editContext.OnValidationStateChanged += OnValidationStateChanged;
+                StateHasChanged();
+            }
+        }
+    }
+
+    //Do Save
+    private void DoSave()
+    {
+        string id = noOrder;
+        var data = modelorder;
+
+        var ret = OrderService.AddData(data);
+        if (save == "Ubah")
+        {
+            ret = OrderService.UpdateData(id, data);
+        }
+
+        if (ret.Result)
+        {
+            SetLayout(ModeForm.ViewData);
+            save = "Simpan";
+            noOrder = "Otomatis";
+            toastService.ShowSuccess("data berhasil disimpan");
+        }
+        else
+        {
+            toastService.ShowError("Gagal menyimpan data");
+        }
+    }
+
+    //Do Delete
+    private void DoDelete(string id)
+    {
+        var ret = OrderService.DeleteData(id);
+
+        if (ret.Result)
+        {
+            SetLayout(ModeForm.ViewData);
+            save = "Simpan";
+            noOrder = "Otomatis";
+            toastService.ShowSuccess("data berhasil dihapus");
+        }
+        else
+        {
+            toastService.ShowError("Gagal menghapus data");
+        }
+    } }

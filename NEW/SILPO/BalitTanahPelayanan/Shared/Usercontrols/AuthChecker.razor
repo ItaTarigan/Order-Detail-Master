@@ -1,0 +1,75 @@
+﻿@inject Blazored.SessionStorage.ISessionStorageService localStorage
+@using BalitTanahPelayanan.Data
+@using BalitTanahPelayanan.Helpers
+@using BalitTanahPelayanan.Models
+
+@inject NavigationManager NavMgr
+@inject IJSRuntime JSRuntime
+
+@code {
+    public string Roles { get; set; }
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationStateTask { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var user = (await authenticationStateTask).User;
+
+        if (!user.Identity.IsAuthenticated)
+        {
+
+
+            NavMgr.NavigateTo("/pages/public/NotAuthorized");
+        }
+        else
+        {
+            var UserName = user.Identity.Name;
+            if (!string.IsNullOrEmpty(UserName))
+            {
+                if (!IsAuthorized(UserName))
+                {
+                    //CommonWeb.Alert(this.Parent.Page, "Anda tidak memiliki akses ke halaman ini.");
+                    NavMgr.NavigateTo("/pages/public/NotAuthorized");
+                }
+            }
+        }
+    }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+
+        }
+    }
+
+    bool IsAuthorized(string uname)
+    {
+        if (!string.IsNullOrEmpty(Roles))
+        {
+
+            using (var db = new smlpobDB())
+            {
+                
+                var MyRole = (from x in db.Accounttbl
+                              where x.Username == uname
+                              select x).ToList();
+                if (MyRole != null)
+                {
+                    foreach (var item in Roles.Split(';'))
+                    {
+                        foreach (var my in MyRole)
+                        {
+                            if (item == my.RoleName)
+                                return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+}

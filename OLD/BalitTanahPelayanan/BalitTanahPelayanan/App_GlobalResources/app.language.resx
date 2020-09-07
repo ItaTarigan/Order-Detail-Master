@@ -1,0 +1,747 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="actions" xml:space="preserve">
+    <value>actions</value>
+  </data>
+  <data name="add_new_order" xml:space="preserve">
+    <value>Add a New Order</value>
+  </data>
+  <data name="analysis_type" xml:space="preserve">
+    <value>analysis type</value>
+  </data>
+  <data name="back" xml:space="preserve">
+    <value>back</value>
+  </data>
+  <data name="balittanah_number" xml:space="preserve">
+    <value>balittanah number</value>
+  </data>
+  <data name="close" xml:space="preserve">
+    <value>close</value>
+  </data>
+  <data name="commodity" xml:space="preserve">
+    <value>comodity</value>
+  </data>
+  <data name="count_number" xml:space="preserve">
+    <value>count number</value>
+  </data>
+  <data name="customer_name" xml:space="preserve">
+    <value>customer name</value>
+  </data>
+  <data name="date_received" xml:space="preserve">
+    <value>Date Received</value>
+  </data>
+  <data name="detail" xml:space="preserve">
+    <value>detail</value>
+  </data>
+  <data name="district" xml:space="preserve">
+    <value>district</value>
+  </data>
+  <data name="element_code" xml:space="preserve">
+    <value>parameter test list</value>
+  </data>
+  <data name="gps" xml:space="preserve">
+    <value>gps</value>
+  </data>
+  <data name="landuse" xml:space="preserve">
+    <value>landuse</value>
+  </data>
+  <data name="order" xml:space="preserve">
+    <value>order</value>
+  </data>
+  <data name="order_complete" xml:space="preserve">
+    <value>order complete</value>
+  </data>
+  <data name="order_entry" xml:space="preserve">
+    <value>order entry</value>
+  </data>
+  <data name="order_list" xml:space="preserve">
+    <value>order list</value>
+  </data>
+  <data name="order_new" xml:space="preserve">
+    <value>new order</value>
+  </data>
+  <data name="order_no" xml:space="preserve">
+    <value>order no</value>
+  </data>
+  <data name="order_processed" xml:space="preserve">
+    <value>order processed</value>
+  </data>
+  <data name="order_statistik" xml:space="preserve">
+    <value>order statistics</value>
+  </data>
+  <data name="order_status" xml:space="preserve">
+    <value>order status</value>
+  </data>
+  <data name="payment_status" xml:space="preserve">
+    <value>payment status</value>
+  </data>
+  <data name="price_total" xml:space="preserve">
+    <value>price total</value>
+  </data>
+  <data name="print" xml:space="preserve">
+    <value>print receipt</value>
+  </data>
+  <data name="printQR" xml:space="preserve">
+    <value>print qr</value>
+  </data>
+  <data name="province" xml:space="preserve">
+    <value>province</value>
+  </data>
+  <data name="sample_number" xml:space="preserve">
+    <value>sample number</value>
+  </data>
+  <data name="save" xml:space="preserve">
+    <value>save</value>
+  </data>
+  <data name="sop" xml:space="preserve">
+    <value>standard procedure</value>
+  </data>
+  <data name="status_type" xml:space="preserve">
+    <value>payment type</value>
+  </data>
+  <data name="sub_district" xml:space="preserve">
+    <value>sub district</value>
+  </data>
+  <data name="title_pesanan_diproses" xml:space="preserve">
+    <value>order processed</value>
+  </data>
+  <data name="title_pesanan_masuk" xml:space="preserve">
+    <value>order entry</value>
+  </data>
+  <data name="title_pesanan_selesai" xml:space="preserve">
+    <value>order complete</value>
+  </data>
+  <data name="total_sample" xml:space="preserve">
+    <value>total sample</value>
+  </data>
+  <data name="village" xml:space="preserve">
+    <value>village</value>
+  </data>
+  <data name="welcome" xml:space="preserve">
+    <value>welcome</value>
+  </data>
+  <data name="btn_kembali" xml:space="preserve">
+    <value>back</value>
+  </data>
+  <data name="btn_simpan" xml:space="preserve">
+    <value>save</value>
+  </data>
+  <data name="btn_ubah" xml:space="preserve">
+    <value>change</value>
+  </data>
+  <data name="dwnloadexcelpengukuran" xml:space="preserve">
+    <value>download excel measurement results</value>
+  </data>
+  <data name="dwnloadfilecsv" xml:space="preserve">
+    <value>download CSV files from tools</value>
+  </data>
+  <data name="gps_coordinates" xml:space="preserve">
+    <value>gps coordinates</value>
+  </data>
+  <data name="is_received" xml:space="preserve">
+    <value>sample is accepted</value>
+  </data>
+  <data name="land_use" xml:space="preserve">
+    <value>soil type</value>
+  </data>
+  <data name="no_balittanah" xml:space="preserve">
+    <value>balittanah no</value>
+  </data>
+  <data name="uploadexcel" xml:space="preserve">
+    <value>upload excel measurement results</value>
+  </data>
+  <data name="uploadfiledarialat" xml:space="preserve">
+    <value>upload CSV files from tools</value>
+  </data>
+  <data name="change" xml:space="preserve">
+    <value>change</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>delete</value>
+  </data>
+  <data name="duplicate" xml:space="preserve">
+    <value>duplicate</value>
+  </data>
+  <data name="total_order" xml:space="preserve">
+    <value>total order</value>
+  </data>
+  <data name="total_order_complete" xml:space="preserve">
+    <value>total order complete</value>
+  </data>
+  <data name="total_order_entry" xml:space="preserve">
+    <value>total order entry</value>
+  </data>
+  <data name="total_order_processed" xml:space="preserve">
+    <value>total order processed</value>
+  </data>
+  <data name="logout" xml:space="preserve">
+    <value>logout</value>
+  </data>
+  <data name="approve" xml:space="preserve">
+    <value>approve</value>
+  </data>
+  <data name="payment_type" xml:space="preserve">
+    <value>payment type</value>
+  </data>
+  <data name="pilihparameteruji" xml:space="preserve">
+    <value>select parameter</value>
+  </data>
+  <data name="print_barcode" xml:space="preserve">
+    <value>print barcode</value>
+  </data>
+  <data name="process_lab" xml:space="preserve">
+    <value>process lab</value>
+  </data>
+  <data name="reviewing" xml:space="preserve">
+    <value>reviewing</value>
+  </data>
+  <data name="sample_is_accepted" xml:space="preserve">
+    <value>sample is accepted</value>
+  </data>
+  <data name="sample_list" xml:space="preserve">
+    <value>sample list</value>
+  </data>
+  <data name="sample_name" xml:space="preserve">
+    <value>sample name</value>
+  </data>
+  <data name="sample_new" xml:space="preserve">
+    <value>new sample</value>
+  </data>
+  <data name="sample_no" xml:space="preserve">
+    <value>sample no</value>
+  </data>
+  <data name="sampling_date" xml:space="preserve">
+    <value>sampling date</value>
+  </data>
+  <data name="cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="total_biaya" xml:space="preserve">
+    <value>Total Cost : Rp.</value>
+  </data>
+  <data name="total_parameter_uji" xml:space="preserve">
+    <value>Total Test Parameters : </value>
+  </data>
+  <data name="choose_a_comodity" xml:space="preserve">
+    <value>Please choose commodity.</value>
+  </data>
+  <data name="choose_type_analysis" xml:space="preserve">
+    <value>Please choose type of analysis.</value>
+  </data>
+  <data name="empty_data" xml:space="preserve">
+    <value>Empty Data</value>
+  </data>
+  <data name="order_date" xml:space="preserve">
+    <value>Order date.</value>
+  </data>
+  <data name="select_sub_comodity" xml:space="preserve">
+    <value>Please select sub commodity.</value>
+  </data>
+  <data name="appr_order" xml:space="preserve">
+    <value>approval order</value>
+  </data>
+  <data name="Board" xml:space="preserve">
+    <value>task board</value>
+  </data>
+  <data name="accepted_sample" xml:space="preserve">
+    <value>received sample</value>
+  </data>
+  <data name="balittanah_no" xml:space="preserve">
+    <value>no balittanah</value>
+  </data>
+  <data name="print_request" xml:space="preserve">
+    <value>print request form</value>
+  </data>
+  <data name="serial_no" xml:space="preserve">
+    <value>serial no</value>
+  </data>
+  <data name="sample_type" xml:space="preserve">
+    <value>sample type</value>
+  </data>
+  <data name="testing_status" xml:space="preserve">
+    <value>status</value>
+  </data>
+  <data name="test_parameter" xml:space="preserve">
+    <value>test parameter</value>
+  </data>
+  <data name="total_price" xml:space="preserve">
+    <value>total price</value>
+  </data>
+  <data name="type_analyst" xml:space="preserve">
+    <value>analysis type</value>
+  </data>
+  <data name="finish_order" xml:space="preserve">
+    <value>close order</value>
+  </data>
+  <data name="print_view" xml:space="preserve">
+    <value>preview</value>
+  </data>
+  <data name="choose_province" xml:space="preserve">
+    <value>Please select province.</value>
+  </data>
+  <data name="choose_type_soil" xml:space="preserve">
+    <value>Please choose type of soil.</value>
+  </data>
+  <data name="desc_sample" xml:space="preserve">
+    <value>Sample description</value>
+  </data>
+  <data name="fill_detail_sample" xml:space="preserve">
+    <value>Please fill details about the sample.</value>
+  </data>
+  <data name="fill_latitude_longitude" xml:space="preserve">
+    <value>Please fill latitude and longitude.</value>
+  </data>
+  <data name="fill_sampling_date" xml:space="preserve">
+    <value>Please fill sampling date.</value>
+  </data>
+  <data name="no_sampel_balit_tanah" xml:space="preserve">
+    <value>No. Sample Balit Tanah</value>
+  </data>
+  <data name="no_sample_customer" xml:space="preserve">
+    <value>No. sample customer</value>
+  </data>
+  <data name="type_name_district" xml:space="preserve">
+    <value>Please select district.</value>
+  </data>
+  <data name="type_name_subdistrict" xml:space="preserve">
+    <value>Please select sub-district.</value>
+  </data>
+  <data name="type_name_vilage" xml:space="preserve">
+    <value>Please select village.</value>
+  </data>
+  <data name="search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="analisystype" xml:space="preserve">
+    <value>analisys type : </value>
+  </data>
+  <data name="commodity1" xml:space="preserve">
+    <value>commodity : </value>
+  </data>
+  <data name="lhpresult" xml:space="preserve">
+    <value>LHP Result</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>customer name : </value>
+  </data>
+  <data name="pricetot" xml:space="preserve">
+    <value>price total : </value>
+  </data>
+  <data name="progress" xml:space="preserve">
+    <value>progress</value>
+  </data>
+  <data name="samplelist" xml:space="preserve">
+    <value>sample list</value>
+  </data>
+  <data name="sampletot" xml:space="preserve">
+    <value>sample total : </value>
+  </data>
+  <data name="view" xml:space="preserve">
+    <value>view</value>
+  </data>
+  <data name="supervisor" xml:space="preserve">
+    <value>Supervisor</value>
+  </data>
+  <data name="lab" xml:space="preserve">
+    <value>lab</value>
+  </data>
+  <data name="choose_pic" xml:space="preserve">
+    <value>choose penyelia</value>
+  </data>
+  <data name="downl" xml:space="preserve">
+    <value>download</value>
+  </data>
+  <data name="namee" xml:space="preserve">
+    <value>name</value>
+  </data>
+  <data name="remark" xml:space="preserve">
+    <value>remark</value>
+  </data>
+  <data name="sub_commodity" xml:space="preserve">
+    <value>sub commodity</value>
+  </data>
+  <data name="print_total" xml:space="preserve">
+    <value>print total</value>
+  </data>
+  <data name="sample_code" xml:space="preserve">
+    <value>sample code</value>
+  </data>
+  <data name="detail_order_no" xml:space="preserve">
+    <value>detail order no</value>
+  </data>
+  <data name="result" xml:space="preserve">
+    <value>result</value>
+  </data>
+  <data name="send_notif" xml:space="preserve">
+    <value>send notification</value>
+  </data>
+  <data name="daftar_sampel" xml:space="preserve">
+    <value>sample list</value>
+  </data>
+  <data name="Lit_Analisis" xml:space="preserve">
+    <value>analysis type:</value>
+  </data>
+  <data name="Lit_Customer" xml:space="preserve">
+    <value>customer name:</value>
+  </data>
+  <data name="Lit_Desa" xml:space="preserve">
+    <value>village:</value>
+  </data>
+  <data name="Lit_GPS" xml:space="preserve">
+    <value>GPS:</value>
+  </data>
+  <data name="Lit_Kabupaten" xml:space="preserve">
+    <value>district : </value>
+  </data>
+  <data name="Lit_Kecamatan" xml:space="preserve">
+    <value>sub district : </value>
+  </data>
+  <data name="Lit_Komoditas" xml:space="preserve">
+    <value>comodity : </value>
+  </data>
+  <data name="Lit_NoBalittanah" xml:space="preserve">
+    <value>balittanah number : </value>
+  </data>
+  <data name="Lit_NoOrder" xml:space="preserve">
+    <value>detail order number : </value>
+  </data>
+  <data name="Lit_NoSampel" xml:space="preserve">
+    <value>sample number : </value>
+  </data>
+  <data name="Lit_Price" xml:space="preserve">
+    <value>price total : </value>
+  </data>
+  <data name="Lit_Propinsi" xml:space="preserve">
+    <value>province : </value>
+  </data>
+  <data name="Lit_Sampel" xml:space="preserve">
+    <value>sample total : </value>
+  </data>
+  <data name="Lit_Tanah" xml:space="preserve">
+    <value>landuse : </value>
+  </data>
+  <data name="parameter_test" xml:space="preserve">
+    <value>parameter test</value>
+  </data>
+  <data name="continue" xml:space="preserve">
+    <value>continue</value>
+  </data>
+  <data name="picname" xml:space="preserve">
+    <value>penyelia name</value>
+  </data>
+  <data name="reject" xml:space="preserve">
+    <value>reject</value>
+  </data>
+  <data name="result_lhp" xml:space="preserve">
+    <value>result (LHP)</value>
+  </data>
+  <data name="process" xml:space="preserve">
+    <value>process</value>
+  </data>
+  <data name="pic" xml:space="preserve">
+    <value>PIC</value>
+  </data>
+  <data name="status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="download_lhp" xml:space="preserve">
+    <value>download result (LHP)</value>
+  </data>
+  <data name="recalculate" xml:space="preserve">
+    <value>Recalculate</value>
+  </data>
+  <data name="upload" xml:space="preserve">
+    <value>upload</value>
+  </data>
+  <data name="upload_lhp" xml:space="preserve">
+    <value>upload result (LHP)</value>
+  </data>
+  <data name="btn_analisa_ulang" xml:space="preserve">
+    <value>re-analysis</value>
+  </data>
+  <data name="Btn_setuju" xml:space="preserve">
+    <value>Approve</value>
+  </data>
+  <data name="evaluation_of_results" xml:space="preserve">
+    <value>evaluation of results</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="agency" xml:space="preserve">
+    <value>agency : </value>
+  </data>
+  <data name="ConfirmNewOrder" xml:space="preserve">
+    <value>Confirm New Order</value>
+  </data>
+  <data name="customer_info" xml:space="preserve">
+    <value>Customer Info</value>
+  </data>
+  <data name="agree" xml:space="preserve">
+    <value>agree</value>
+  </data>
+  <data name="cust_name" xml:space="preserve">
+    <value>Customer name : </value>
+  </data>
+  <data name="date" xml:space="preserve">
+    <value>date :</value>
+  </data>
+  <data name="iagree" xml:space="preserve">
+    <value>I agree to continue this order in accordance with standard procedures applicable at Balitanah</value>
+  </data>
+  <data name="order_info" xml:space="preserve">
+    <value>order information</value>
+  </data>
+  <data name="ord_no" xml:space="preserve">
+    <value>order no : </value>
+  </data>
+  <data name="sample_info" xml:space="preserve">
+    <value>sample info</value>
+  </data>
+  <data name="subcommodity" xml:space="preserve">
+    <value>sub commodity : </value>
+  </data>
+  <data name="sub_commodity1" xml:space="preserve">
+    <value>sub commodity :</value>
+  </data>
+  <data name="Lit_status" xml:space="preserve">
+    <value>Status :</value>
+  </data>
+  <data name="customer" xml:space="preserve">
+    <value>Customer</value>
+  </data>
+  <data name="choose" xml:space="preserve">
+    <value>choose</value>
+  </data>
+  <data name="List_of_Test_Parameters" xml:space="preserve">
+    <value>List of Test Parameters</value>
+  </data>
+  <data name="cost" xml:space="preserve">
+    <value>cost</value>
+  </data>
+  <data name="rates_per_example" xml:space="preserve">
+    <value>rates per example</value>
+  </data>
+  <data name="total_example" xml:space="preserve">
+    <value>total example</value>
+  </data>
+  <data name="choice_comodity" xml:space="preserve">
+    <value>choose commodity</value>
+  </data>
+  <data name="harga_logam" xml:space="preserve">
+    <value>Cost of Heavy Metal Test per Sample (Rp.)</value>
+  </data>
+  <data name="metal_test" xml:space="preserve">
+    <value>Heavy Metal Test</value>
+  </data>
+  <data name="title_tambahan" xml:space="preserve">
+    <value>Additional Cost</value>
+  </data>
+  <data name="total_tambahan" xml:space="preserve">
+    <value>Total Additional Cost (Number of Samples x Cost of Heavy Metal Test per Sample)</value>
+  </data>
+  <data name="extra_cost" xml:space="preserve">
+    <value>additional cost</value>
+  </data>
+  <data name="genus_total" xml:space="preserve">
+    <value>genus total</value>
+  </data>
+  <data name="price_per_genus" xml:space="preserve">
+    <value>price per genus</value>
+  </data>
+  <data name="total_add_genus" xml:space="preserve">
+    <value>Total Additional Cost (Total Samples x Genus x Price per Genus)</value>
+  </data>
+  <data name="batch" xml:space="preserve">
+    <value>batch</value>
+  </data>
+  <data name="batch_list" xml:space="preserve">
+    <value>batch list</value>
+  </data>
+  <data name="download_batch" xml:space="preserve">
+    <value>download batch</value>
+  </data>
+  <data name="download_template" xml:space="preserve">
+    <value>download template</value>
+  </data>
+  <data name="batchauto" xml:space="preserve">
+    <value>Batch No (Auto Generate)</value>
+  </data>
+  <data name="batchdetail" xml:space="preserve">
+    <value>Batch Detail</value>
+  </data>
+  <data name="batchorder" xml:space="preserve">
+    <value>Batch Order</value>
+  </data>
+  <data name="batch_ID" xml:space="preserve">
+    <value>Batch ID</value>
+  </data>
+  <data name="batch_no" xml:space="preserve">
+    <value>Batch No</value>
+  </data>
+  <data name="createbatch" xml:space="preserve">
+    <value>Create Batch</value>
+  </data>
+  <data name="new_batch" xml:space="preserve">
+    <value>New Batch</value>
+  </data>
+  <data name="PIC_Analis" xml:space="preserve">
+    <value>PIC Analyst</value>
+  </data>
+  <data name="selectPIC" xml:space="preserve">
+    <value>Select PIC</value>
+  </data>
+  <data name="zoom" xml:space="preserve">
+    <value>zoom the text</value>
+  </data>
+  <data name="pay_transfer" xml:space="preserve">
+    <value>Pay via Transfer</value>
+  </data>
+  <data name="account_name" xml:space="preserve">
+    <value>Account Name</value>
+  </data>
+  <data name="account_no" xml:space="preserve">
+    <value>Account No</value>
+  </data>
+  <data name="bank_name" xml:space="preserve">
+    <value>Bank Name</value>
+  </data>
+  <data name="payment_receipt" xml:space="preserve">
+    <value>Payment Receipt</value>
+  </data>
+  <data name="title_payment_verification" xml:space="preserve">
+    <value>Payment Verification</value>
+  </data>
+  <data name="total_transfer" xml:space="preserve">
+    <value>Total Transfer</value>
+  </data>
+  <data name="account_name_desc" xml:space="preserve">
+    <value>the account owner name </value>
+  </data>
+  <data name="account_no_desc" xml:space="preserve">
+    <value>the account bank no</value>
+  </data>
+  <data name="attachment" xml:space="preserve">
+    <value>attachment</value>
+  </data>
+  <data name="total_transfer_desc" xml:space="preserve">
+    <value>total transferred amount </value>
+  </data>
+</root>

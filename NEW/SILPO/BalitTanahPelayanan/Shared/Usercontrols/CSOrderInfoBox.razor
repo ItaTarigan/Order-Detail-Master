@@ -1,0 +1,148 @@
+﻿@using BalitTanahPelayanan.Controllers
+@using BalitTanahPelayanan.Helpers
+@inject IStringLocalizer L
+<style>
+    .box-info {
+        max-width: 1200px;
+        display: block;
+    }
+
+        .box-info > .box1 > .w3-container {
+            background: #F1F5F8 !important;
+            color: black !important;
+        }
+
+        .box-info > .box2 > .w3-container {
+            background: #CC005F !important;
+            color: white;
+        }
+
+        .box-info > .box3 > .w3-container {
+            background: #00CCB3 !important;
+            color: white;
+        }
+
+        .box-info > .box4 > .w3-container {
+            background: #3E8AFB !important;
+            color: white;
+        }
+
+        .box-info > .w3-quarter > .w3-container {
+            color: #fff;
+            text-align: center;
+            font-family: 'montserratbold' !important;
+            padding-bottom: 15px !important;
+        }
+
+            .box-info > .w3-quarter > .w3-container h4 {
+                font-family: 'montserratbold';
+                text-transform: uppercase;
+                font-size: 16px;
+            }
+
+                .box-info > .w3-quarter > .w3-container h4 > span {
+                    font-family: 'montserratregular';
+                    text-transform: uppercase;
+                    font-size: 50px;
+                }
+
+            .box-info > .w3-quarter > .w3-container h3 > span {
+                font-family: 'montserratbold';
+                text-transform: uppercase;
+                font-size: 16px;
+            }
+</style>
+<div class="w3-margin-bottom box-info">
+    <div class="w3-quarter box1">
+        <div class="w3-container w3-padding-32">
+            <div class="w3-center">
+                <h3>@litTotalPesanan</h3>
+            </div>
+            <div class="w3-clear"></div>
+
+            <h4>
+                @lblTotal
+            </h4>
+        </div>
+    </div>
+    <div class="w3-quarter box2">
+        <div class="w3-container w3-padding-32">
+            <div class="w3-center">
+                <h3> @litPesananMasuk</h3>
+            </div>
+            <div class="w3-clear"></div>
+            <h4>
+                @lblNewOrder
+            </h4>
+        </div>
+    </div>
+    <div class="w3-quarter box3">
+        <div class="w3-container w3-padding-32">
+            <div class="w3-center">
+                <h3> @litPesananDiProses</h3>
+            </div>
+            <div class="w3-clear"></div>
+            <h4>
+                @lblOrderProses
+            </h4>
+        </div>
+    </div>
+    <div class="w3-quarter box4">
+        <div class="w3-container w3-padding-32">
+            <div class="w3-center">
+                <h3>@litPesananSelesai</h3>
+            </div>
+            <div class="w3-clear"></div>
+            <h4>
+                @lblOrderDone
+            </h4>
+        </div>
+    </div>
+</div>
+
+@code {
+    public string litTotalPesanan { get; set; }
+    public string lblTotal { get; set; }
+    public string litPesananMasuk { get; set; }
+    public string lblNewOrder { get; set; }
+    public string litPesananDiProses { get; set; }
+    public string lblOrderProses { get; set; }
+    public string litPesananSelesai { get; set; }
+    public string lblOrderDone { get; set; }
+    ListGridMaster listGridMaster = new ListGridMaster();
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            LoadData();
+           
+            GetTranslate();
+        }
+    }
+    
+    void GetTranslate()
+    {
+        litTotalPesanan = L["total_order"];
+        litPesananMasuk = L["total_order_entry"];
+        litPesananDiProses = L["total_order_processed"];
+        litPesananSelesai = L["total_order_complete"];
+    }
+    void LoadData()
+    {
+        var ret = listGridMaster.GetData();
+        var datas = ret.Result.Where(x => x.Status != "Pesanan Baru").Count();
+        lblTotal = datas.ToString();
+
+        var ret2 = listGridMaster.GetData();
+        var datas2 = ret2.Result.Where(x => x.Status == "Barcode Sampel").Count();
+        lblNewOrder = datas2.ToString();
+        var ret3 = listGridMaster.GetData();
+        var datas3 = ret3.Result.Where(x => x.Status == "Pilih Penyelia" || x.Status == "Proses Lab"
+            || x.Status == "Verifikasi Penyelia" || x.Status == "Evaluasi Hasil" || x.Status == "Hitung ulang" || x.Status == "Menunggu Approval").Count();
+        lblOrderProses = datas3.ToString();
+
+        var ret4 = listGridMaster.GetData();
+        var datas4 = ret4.Result.Where(x => x.Status == "LHP Keluar" || x.Status == "LHP Sudah Diambil").Count();
+        lblOrderDone = datas4.ToString();
+    }
+}

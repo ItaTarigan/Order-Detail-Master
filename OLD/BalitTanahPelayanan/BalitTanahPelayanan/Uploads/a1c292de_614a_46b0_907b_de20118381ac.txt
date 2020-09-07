@@ -1,0 +1,39 @@
+Account Master: No bugs
+AnalysisTypeMaster: No bugs
+ComoditiesMaster: No bugs
+Customer Master: No bugs
+Element service master: No bugs
+EmployeeMaster: No bugs
+FileAttachmentMaster: No bugs
+LogMaster: No bugs
+OrderDetailMaster: No bugs
+OrderMasterData: No bugs
+ParameterMaster: No bugs
+RolesMaster: No bugs
+StandartMaster: No bugs
+BoardTugas: No bugs
+OrderList: No bugs
+StandartDetailMaster: No bugs
+AnalysisType: No bugs
+
+SampleMaster: 
+bugs: field no bali tanah terisi "otomatis" pas di add new
+
+ResultMaster: 
+bugs: form kosong
+
+Workflows
+bugs: form kosong
+
+Rincian No Pesanan
+"bugs: 
+-rincian no pesanan kosong
+-daftar service blm fungsi"
+
+DashManager(?)
+
+order list manager(?)
+"bugs: button order masuk, order diproses dan detail blm fungsi"
+
+order selesai manager teknis (?)
+"bugs: button download dan detail blm fungsi"

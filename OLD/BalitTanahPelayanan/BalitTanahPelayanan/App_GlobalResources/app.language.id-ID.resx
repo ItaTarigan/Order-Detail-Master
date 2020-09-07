@@ -1,0 +1,741 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="actions" xml:space="preserve">
+    <value>tindakan</value>
+  </data>
+  <data name="add_new_order" xml:space="preserve">
+    <value>Tambah Pesanan Baru</value>
+  </data>
+  <data name="analysis_type" xml:space="preserve">
+    <value>Jenis Analis</value>
+  </data>
+  <data name="back" xml:space="preserve">
+    <value>kembali</value>
+  </data>
+  <data name="balittanah_no" xml:space="preserve">
+    <value>no balittanah</value>
+  </data>
+  <data name="cancel" xml:space="preserve">
+    <value>Batal</value>
+  </data>
+  <data name="balittanah_number" xml:space="preserve">
+    <value>nomor balittanah</value>
+  </data>
+  <data name="close" xml:space="preserve">
+    <value>tutup</value>
+  </data>
+  <data name="cost" xml:space="preserve">
+    <value>Biaya</value>
+  </data>
+  <data name="count_number" xml:space="preserve">
+    <value>nomor urut</value>
+  </data>
+  <data name="customer_name" xml:space="preserve">
+    <value>nama pelanggan</value>
+  </data>
+  <data name="date_received" xml:space="preserve">
+    <value>Tanggal Diterima</value>
+  </data>
+  <data name="detail" xml:space="preserve">
+    <value>rincian</value>
+  </data>
+  <data name="district" xml:space="preserve">
+    <value>kabupaten</value>
+  </data>
+  <data name="element_code" xml:space="preserve">
+    <value>parameter uji</value>
+  </data>
+  <data name="gps" xml:space="preserve">
+    <value>gps</value>
+  </data>
+  <data name="landuse" xml:space="preserve">
+    <value>tipe tanah</value>
+  </data>
+  <data name="order" xml:space="preserve">
+    <value>pesan</value>
+  </data>
+  <data name="order_complete" xml:space="preserve">
+    <value>pesanan selesai</value>
+  </data>
+  <data name="order_entry" xml:space="preserve">
+    <value>pesanan masuk</value>
+  </data>
+  <data name="order_list" xml:space="preserve">
+    <value>daftar pesanan</value>
+  </data>
+  <data name="order_new" xml:space="preserve">
+    <value>pesanan baru</value>
+  </data>
+  <data name="order_no" xml:space="preserve">
+    <value>no pesanan</value>
+  </data>
+  <data name="order_processed" xml:space="preserve">
+    <value>pesanan diproses</value>
+  </data>
+  <data name="order_statistik" xml:space="preserve">
+    <value>statistik pesanan</value>
+  </data>
+  <data name="order_status" xml:space="preserve">
+    <value>status pesanan</value>
+  </data>
+  <data name="payment_status" xml:space="preserve">
+    <value>status pembayaran</value>
+  </data>
+  <data name="price_total" xml:space="preserve">
+    <value>total harga</value>
+  </data>
+  <data name="print" xml:space="preserve">
+    <value>cetak tanda terima</value>
+  </data>
+  <data name="printQR" xml:space="preserve">
+    <value>cetak qr</value>
+  </data>
+  <data name="province" xml:space="preserve">
+    <value>propinsi</value>
+  </data>
+  <data name="sample_number" xml:space="preserve">
+    <value>nomor sampel</value>
+  </data>
+  <data name="save" xml:space="preserve">
+    <value>simpan</value>
+  </data>
+  <data name="sop" xml:space="preserve">
+    <value>standar prosedur</value>
+  </data>
+  <data name="status_type" xml:space="preserve">
+    <value>tipe pembayaran</value>
+  </data>
+  <data name="sub_district" xml:space="preserve">
+    <value>kecamatan</value>
+  </data>
+  <data name="title_pesanan_diproses" xml:space="preserve">
+    <value>pesanan diproses</value>
+  </data>
+  <data name="title_pesanan_masuk" xml:space="preserve">
+    <value>pesanan masuk</value>
+  </data>
+  <data name="title_pesanan_selesai" xml:space="preserve">
+    <value>pesanan selesai</value>
+  </data>
+  <data name="total_sample" xml:space="preserve">
+    <value>jumlah sampel</value>
+  </data>
+  <data name="village" xml:space="preserve">
+    <value>desa</value>
+  </data>
+  <data name="welcome" xml:space="preserve">
+    <value>selamat datang</value>
+  </data>
+  <data name="btn_kembali" xml:space="preserve">
+    <value>kembali</value>
+  </data>
+  <data name="btn_simpan" xml:space="preserve">
+    <value>simpan</value>
+  </data>
+  <data name="btn_ubah" xml:space="preserve">
+    <value>ubah</value>
+  </data>
+  <data name="dwnloadexcelpengukuran" xml:space="preserve">
+    <value>unduh excel hasil pengukuran</value>
+  </data>
+  <data name="dwnloadfilecsv" xml:space="preserve">
+    <value>unduh file CSV dari alat</value>
+  </data>
+  <data name="gps_coordinates" xml:space="preserve">
+    <value>koordinat gps</value>
+  </data>
+  <data name="is_received" xml:space="preserve">
+    <value>sampel diterima</value>
+  </data>
+  <data name="land_use" xml:space="preserve">
+    <value>tipe tanah</value>
+  </data>
+  <data name="no_balittanah" xml:space="preserve">
+    <value>no balittanah</value>
+  </data>
+  <data name="pilihparameteruji" xml:space="preserve">
+    <value>pilih parameter uji</value>
+  </data>
+  <data name="sample_name" xml:space="preserve">
+    <value>nama sample</value>
+  </data>
+  <data name="uploadexcel" xml:space="preserve">
+    <value>unggah excel hasil pengukuran</value>
+  </data>
+  <data name="uploadfiledarialat" xml:space="preserve">
+    <value>unggah file CSV dari alat</value>
+  </data>
+  <data name="change" xml:space="preserve">
+    <value>ubah</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>hapus</value>
+  </data>
+  <data name="duplicate" xml:space="preserve">
+    <value>duplikat</value>
+  </data>
+  <data name="sampling_date" xml:space="preserve">
+    <value>Tanggal Pengambilan Sampel</value>
+  </data>
+  <data name="total_example" xml:space="preserve">
+    <value>Jumlah Contoh</value>
+  </data>
+  <data name="total_order" xml:space="preserve">
+    <value>total pesanan</value>
+  </data>
+  <data name="total_order_complete" xml:space="preserve">
+    <value>total pesanan selesai</value>
+  </data>
+  <data name="total_order_entry" xml:space="preserve">
+    <value>total pesanan masuk</value>
+  </data>
+  <data name="total_order_processed" xml:space="preserve">
+    <value>total pesanan diproses</value>
+  </data>
+  <data name="logout" xml:space="preserve">
+    <value>keluar</value>
+  </data>
+  <data name="accepted_sample" xml:space="preserve">
+    <value>sample diterima</value>
+  </data>
+  <data name="approve" xml:space="preserve">
+    <value>setujui</value>
+  </data>
+  <data name="commodity" xml:space="preserve">
+    <value>komoditas</value>
+  </data>
+  <data name="finish_order" xml:space="preserve">
+    <value>order selesai</value>
+  </data>
+  <data name="payment_type" xml:space="preserve">
+    <value>tipe pembayaran</value>
+  </data>
+  <data name="print_barcode" xml:space="preserve">
+    <value>cetak barcode</value>
+  </data>
+  <data name="process_lab" xml:space="preserve">
+    <value>proses lab</value>
+  </data>
+  <data name="reviewing" xml:space="preserve">
+    <value>kaji ulang</value>
+  </data>
+  <data name="sample_is_accepted" xml:space="preserve">
+    <value>sample diterima</value>
+  </data>
+  <data name="sample_list" xml:space="preserve">
+    <value>daftar sampel</value>
+  </data>
+  <data name="sample_new" xml:space="preserve">
+    <value>tambah sampel</value>
+  </data>
+  <data name="sample_no" xml:space="preserve">
+    <value>no sampel</value>
+  </data>
+  <data name="total_biaya" xml:space="preserve">
+    <value>Total Biaya : Rp.</value>
+  </data>
+  <data name="total_parameter_uji" xml:space="preserve">
+    <value>Jumlah Parameter uji : </value>
+  </data>
+  <data name="choose_a_comodity" xml:space="preserve">
+    <value>Silakan pilih komoditas.</value>
+  </data>
+  <data name="choose_type_analysis" xml:space="preserve">
+    <value>Silakan pilih tipe analisa.</value>
+  </data>
+  <data name="empty_data" xml:space="preserve">
+    <value>Data Kosong</value>
+  </data>
+  <data name="order_date" xml:space="preserve">
+    <value>Tanggal pesanan.</value>
+  </data>
+  <data name="select_sub_comodity" xml:space="preserve">
+    <value>Silakan pilih sub komoditas.</value>
+  </data>
+  <data name="appr_order" xml:space="preserve">
+    <value>persetujuan pesanan</value>
+  </data>
+  <data name="Board" xml:space="preserve">
+    <value>papan tugas</value>
+  </data>
+  <data name="print_request" xml:space="preserve">
+    <value>cetak permohonan</value>
+  </data>
+  <data name="serial_no" xml:space="preserve">
+    <value>no urut</value>
+  </data>
+  <data name="sample_type" xml:space="preserve">
+    <value>tipe sampel</value>
+  </data>
+  <data name="testing_status" xml:space="preserve">
+    <value>status</value>
+  </data>
+  <data name="test_parameter" xml:space="preserve">
+    <value>parameter uji</value>
+  </data>
+  <data name="total_price" xml:space="preserve">
+    <value>total harga</value>
+  </data>
+  <data name="type_analyst" xml:space="preserve">
+    <value>tipe analisa</value>
+  </data>
+  <data name="print_view" xml:space="preserve">
+    <value>pratinjau</value>
+  </data>
+  <data name="send_notif" xml:space="preserve">
+    <value>kirim notifikasi</value>
+  </data>
+  <data name="choose_province" xml:space="preserve">
+    <value>Silakan pilih propinsi.</value>
+  </data>
+  <data name="choose_type_soil" xml:space="preserve">
+    <value>Silakan pilih tipe tanah.</value>
+  </data>
+  <data name="desc_sample" xml:space="preserve">
+    <value>Keterangan sampel</value>
+  </data>
+  <data name="fill_detail_sample" xml:space="preserve">
+    <value>Silakan isi keterangan tentang sampel.</value>
+  </data>
+  <data name="fill_latitude_longitude" xml:space="preserve">
+    <value>Silakan isi latitude dan longitude.</value>
+  </data>
+  <data name="fill_sampling_date" xml:space="preserve">
+    <value>Silakan isi tanggal pengambilan sampel.</value>
+  </data>
+  <data name="no_sampel_balit_tanah" xml:space="preserve">
+    <value>No. Sampel Balit Tanah</value>
+  </data>
+  <data name="no_sample_customer" xml:space="preserve">
+    <value>No. sampel pelanggan</value>
+  </data>
+  <data name="type_name_district" xml:space="preserve">
+    <value>Silakan pilih kabupaten.</value>
+  </data>
+  <data name="type_name_subdistrict" xml:space="preserve">
+    <value>Silakan ketik nama kecamatan.</value>
+  </data>
+  <data name="type_name_vilage" xml:space="preserve">
+    <value>Silakan ketik nama desa.</value>
+  </data>
+  <data name="search" xml:space="preserve">
+    <value>Cari</value>
+  </data>
+  <data name="analisystype" xml:space="preserve">
+    <value>tipe analisis : </value>
+  </data>
+  <data name="commodity1" xml:space="preserve">
+    <value>komoditas : </value>
+  </data>
+  <data name="lhpresult" xml:space="preserve">
+    <value>hasil LHP</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>nama pelanggan : </value>
+  </data>
+  <data name="pricetot" xml:space="preserve">
+    <value>harga total : </value>
+  </data>
+  <data name="progress" xml:space="preserve">
+    <value>progres</value>
+  </data>
+  <data name="samplelist" xml:space="preserve">
+    <value>daftar sampel</value>
+  </data>
+  <data name="sampletot" xml:space="preserve">
+    <value>sampel total : </value>
+  </data>
+  <data name="view" xml:space="preserve">
+    <value>lihat</value>
+  </data>
+  <data name="supervisor" xml:space="preserve">
+    <value>Penyelia</value>
+  </data>
+  <data name="lab" xml:space="preserve">
+    <value>lab</value>
+  </data>
+  <data name="choose_pic" xml:space="preserve">
+    <value>pilih penyelia</value>
+  </data>
+  <data name="downl" xml:space="preserve">
+    <value>unduh</value>
+  </data>
+  <data name="namee" xml:space="preserve">
+    <value>nama</value>
+  </data>
+  <data name="remark" xml:space="preserve">
+    <value>keterangan</value>
+  </data>
+  <data name="sub_commodity" xml:space="preserve">
+    <value>sub komoditas</value>
+  </data>
+  <data name="print_total" xml:space="preserve">
+    <value>jumlah cetak</value>
+  </data>
+  <data name="sample_code" xml:space="preserve">
+    <value>kode sampel</value>
+  </data>
+  <data name="detail_order_no" xml:space="preserve">
+    <value>rincian no pesanan</value>
+  </data>
+  <data name="result" xml:space="preserve">
+    <value>hasil</value>
+  </data>
+  <data name="daftar_sampel" xml:space="preserve">
+    <value>daftar sampel</value>
+  </data>
+  <data name="Lit_Analisis" xml:space="preserve">
+    <value>tipe analisis:</value>
+  </data>
+  <data name="Lit_Customer" xml:space="preserve">
+    <value>nama pelanggan : </value>
+  </data>
+  <data name="Lit_Desa" xml:space="preserve">
+    <value>desa:</value>
+  </data>
+  <data name="Lit_GPS" xml:space="preserve">
+    <value>GPS:</value>
+  </data>
+  <data name="Lit_Kabupaten" xml:space="preserve">
+    <value>kabupaten : </value>
+  </data>
+  <data name="Lit_Kecamatan" xml:space="preserve">
+    <value>kecamatan : </value>
+  </data>
+  <data name="Lit_Komoditas" xml:space="preserve">
+    <value>komoditas : </value>
+  </data>
+  <data name="Lit_NoBalittanah" xml:space="preserve">
+    <value>nomor balittanah : </value>
+  </data>
+  <data name="Lit_NoOrder" xml:space="preserve">
+    <value>rincian no pesanan : </value>
+  </data>
+  <data name="Lit_NoSampel" xml:space="preserve">
+    <value>nomor sampel : </value>
+  </data>
+  <data name="Lit_Price" xml:space="preserve">
+    <value>total harga : </value>
+  </data>
+  <data name="Lit_Propinsi" xml:space="preserve">
+    <value>propinsi : </value>
+  </data>
+  <data name="Lit_Sampel" xml:space="preserve">
+    <value>total sampel : </value>
+  </data>
+  <data name="Lit_Tanah" xml:space="preserve">
+    <value>tipe tanah : </value>
+  </data>
+  <data name="parameter_test" xml:space="preserve">
+    <value>parameter uji</value>
+  </data>
+  <data name="continue" xml:space="preserve">
+    <value>lanjutkan</value>
+  </data>
+  <data name="picname" xml:space="preserve">
+    <value>nama penyelia</value>
+  </data>
+  <data name="reject" xml:space="preserve">
+    <value>batalkan</value>
+  </data>
+  <data name="result_lhp" xml:space="preserve">
+    <value>Hasil (LHP)</value>
+  </data>
+  <data name="process" xml:space="preserve">
+    <value>proses</value>
+  </data>
+  <data name="pic" xml:space="preserve">
+    <value>PIC</value>
+  </data>
+  <data name="status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="download_lhp" xml:space="preserve">
+    <value>Unduh Hasil (LHP)</value>
+  </data>
+  <data name="recalculate" xml:space="preserve">
+    <value>hitung ulang</value>
+  </data>
+  <data name="upload" xml:space="preserve">
+    <value>unggah</value>
+  </data>
+  <data name="upload_lhp" xml:space="preserve">
+    <value>Unggah Hasil (LHP)</value>
+  </data>
+  <data name="btn_analisa_ulang" xml:space="preserve">
+    <value>analisa ulang</value>
+  </data>
+  <data name="Btn_setuju" xml:space="preserve">
+    <value>setujui</value>
+  </data>
+  <data name="evaluation_of_results" xml:space="preserve">
+    <value>evaluasi hasil</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>keterangan</value>
+  </data>
+  <data name="agency" xml:space="preserve">
+    <value>instansi</value>
+  </data>
+  <data name="ConfirmNewOrder" xml:space="preserve">
+    <value>Konfirmasi Pesanan Baru</value>
+  </data>
+  <data name="customer_info" xml:space="preserve">
+    <value>Informasi Customer</value>
+  </data>
+  <data name="agree" xml:space="preserve">
+    <value>setuju</value>
+  </data>
+  <data name="date" xml:space="preserve">
+    <value>tanggal</value>
+  </data>
+  <data name="iagree" xml:space="preserve">
+    <value>Saya menyetujui untuk melanjutkan pesanan ini sesuai dengan standar prosedur yang berlaku di Balitanah</value>
+  </data>
+  <data name="order_info" xml:space="preserve">
+    <value>Info pesanan</value>
+  </data>
+  <data name="sample_info" xml:space="preserve">
+    <value>info sampel</value>
+  </data>
+  <data name="sub_commodity1" xml:space="preserve">
+    <value>sub komoditas :</value>
+  </data>
+  <data name="total_test_parameter" xml:space="preserve">
+    <value>total parameter uji : </value>
+  </data>
+  <data name="Lit_status" xml:space="preserve">
+    <value>Status : </value>
+  </data>
+  <data name="customer" xml:space="preserve">
+    <value>Pelanggan</value>
+  </data>
+  <data name="choose" xml:space="preserve">
+    <value>pilih</value>
+  </data>
+  <data name="List_of_Test_Parameters" xml:space="preserve">
+    <value>Daftar Parameter Uji</value>
+  </data>
+  <data name="rates_per_example" xml:space="preserve">
+    <value>tarif per contoh</value>
+  </data>
+  <data name="choice_comodity" xml:space="preserve">
+    <value>pilih komoditas</value>
+  </data>
+  <data name="harga_logam" xml:space="preserve">
+    <value>Harga Uji Logam Berat per-Sampel (Rp.)</value>
+  </data>
+  <data name="metal_test" xml:space="preserve">
+    <value>Uji Logam Berat</value>
+  </data>
+  <data name="title_tambahan" xml:space="preserve">
+    <value>Tambahan Biaya</value>
+  </data>
+  <data name="total_tambahan" xml:space="preserve">
+    <value>Total Biaya Tambahan (Jumlah Sampel x Harga Uji Logam Berat per-Sampel)</value>
+  </data>
+  <data name="extra_cost" xml:space="preserve">
+    <value>tambahan biaya</value>
+  </data>
+  <data name="genus_total" xml:space="preserve">
+    <value>jumlah genus</value>
+  </data>
+  <data name="price_per_genus" xml:space="preserve">
+    <value>harga per genus</value>
+  </data>
+  <data name="total_add_genus" xml:space="preserve">
+    <value>Total Biaya Tambahan (Jumlah Sampel x Genus x Harga per-Genus)</value>
+  </data>
+  <data name="batch" xml:space="preserve">
+    <value>batch</value>
+  </data>
+  <data name="batch_list" xml:space="preserve">
+    <value>daftar batch</value>
+  </data>
+  <data name="download_batch" xml:space="preserve">
+    <value>unduh batch file</value>
+  </data>
+  <data name="download_template" xml:space="preserve">
+    <value>unduh template</value>
+  </data>
+  <data name="batchauto" xml:space="preserve">
+    <value>Nomor Batch (Dibuat Otomatis)</value>
+  </data>
+  <data name="batchdetail" xml:space="preserve">
+    <value>Rincian Batch</value>
+  </data>
+  <data name="batchorder" xml:space="preserve">
+    <value>Batch Pesanan</value>
+  </data>
+  <data name="batch_ID" xml:space="preserve">
+    <value>ID Batch</value>
+  </data>
+  <data name="batch_no" xml:space="preserve">
+    <value>No Batch</value>
+  </data>
+  <data name="createbatch" xml:space="preserve">
+    <value>Buat Batch</value>
+  </data>
+  <data name="new_batch" xml:space="preserve">
+    <value>Batch Baru</value>
+  </data>
+  <data name="PIC_Analis" xml:space="preserve">
+    <value>PIC Analis</value>
+  </data>
+  <data name="selectPIC" xml:space="preserve">
+    <value>Pilih PIC</value>
+  </data>
+  <data name="zoom" xml:space="preserve">
+    <value>perbesar teks</value>
+  </data>
+  <data name="pay_transfer" xml:space="preserve">
+    <value>Bayar via Transfer</value>
+  </data>
+  <data name="account_name" xml:space="preserve">
+    <value>Nama Rekening Pengirim</value>
+  </data>
+  <data name="account_no" xml:space="preserve">
+    <value>No Rekening Pengirim</value>
+  </data>
+  <data name="bank_name" xml:space="preserve">
+    <value>nama bank</value>
+  </data>
+  <data name="payment_receipt" xml:space="preserve">
+    <value>bukti pembayaran</value>
+  </data>
+  <data name="title_payment_verification" xml:space="preserve">
+    <value>Verifikasi Pembayaran</value>
+  </data>
+  <data name="total_transfer" xml:space="preserve">
+    <value>Jumlah Transfer</value>
+  </data>
+  <data name="account_name_desc" xml:space="preserve">
+    <value>nama pemilik akun sesuai di buku tabungan</value>
+  </data>
+  <data name="account_no_desc" xml:space="preserve">
+    <value>no rekening pengirim </value>
+  </data>
+  <data name="attachment" xml:space="preserve">
+    <value>lampiran</value>
+  </data>
+  <data name="total_transfer_desc" xml:space="preserve">
+    <value>jumlah total yang ditransfer</value>
+  </data>
+</root>

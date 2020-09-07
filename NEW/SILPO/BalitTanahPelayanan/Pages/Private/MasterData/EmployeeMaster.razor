@@ -1,0 +1,393 @@
+﻿@page "/pages/private/masterdata/employeemaster"
+@layout BalitTanahPelayanan.Shared.Master.MainMaster
+@using System.Web;
+@using Microsoft.AspNetCore.WebUtilities
+@inject IToastService toastService
+@using BalitTanahPelayanan.Data
+@using BalitTanahPelayanan.Helpers
+@using BalitTanahPelayanan.Models
+@using BalitTanahPelayanan.Controllers
+@inject NavigationManager NavMgr
+@inject IJSRuntime jsRuntime
+
+@if (ObjEmployee == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    if (ShowTable)
+    {
+        <TableTemplate Items="ObjEmployee">
+            <TableHeader>
+                <th class="sorting">Kode</th>
+                <th class="sorting">Nama Pegawai</th>
+                <th class="sorting">Posisi</th>
+                <th class="sorting">Email</th>
+                <th class="sorting">Bawahan Dari</th>
+                <th class="sorting">Kode Akun</th>
+                <th>Aksi</th>
+            </TableHeader>
+            <RowTemplate Context="employee">
+                <td>@employee.EmployeeNo</td>
+                <td>@employee.EmployeeName</td>
+                <td>@employee.Position</td>
+                <td>@employee.EmployeeEmail</td>
+                <td>@employee.DerivativeToEmployee</td>
+                <td>@employee.AccountNo</td>
+                <td>
+                    <a @onclick:preventDefault @onclick='() => ActionTable("ubah", employee.EmployeeNo.ToString())' class="linkbtn">Ubah</a>
+                    <a @onclick:preventDefault @onclick='() => ActionTable("lihat", employee.EmployeeNo.ToString())' class="linkbtn">Lihat</a>
+                    <a @onclick:preventDefault @onclick='() => ActionTable("hapus", employee.EmployeeNo.ToString())' class="linkbtn">Hapus</a>
+                </td>
+            </RowTemplate>
+        </TableTemplate>
+        <div>
+            <input type="submit" @onclick:preventDefault @onclick='() => ActionButton("add")' name="BtnAdd" value="Tambah Data" id="MainContent_BtnAdd" class="btn btn-success" />
+        </div>
+    }
+    if (ShowInput)
+    {
+        <EditForm EditContext="@editContext" OnValidSubmit="@DoSave">
+            <DataAnnotationsValidator />
+            <div class="form-group">
+                <lable><h4>Informasi Pegawai:</h4></lable>
+            </div>
+            <div class="form-group">
+                <label>Kode Pegawai:</label>
+                <label id="TxtEmployeeNo" runat="server" Visible="true">@Employeeno</label>
+            </div>
+            <div class="form-group">
+                <label for="employeeName">Nama Pegawai:</label>
+                <InputText @bind-Value="modelEmployee.EmployeeName" disabled="@InputIsDisabled" class="form-control" />
+                <ValidationMessage For="@(() => modelEmployee.EmployeeName)"></ValidationMessage>
+            </div>
+            <div class="form-group">
+                <label for="position">Posisi:</label>
+                <InputText @bind-Value="modelEmployee.Position" disabled="@InputIsDisabled" class="form-control" />
+                <ValidationMessage For="@(() => modelEmployee.Position)"></ValidationMessage>
+            </div>
+            <div class="form-group">
+                <label for="employeeEmail">Email:</label>       
+                <InputText @bind-Value="modelEmployee.EmployeeEmail" disabled="@InputIsDisabled" class="form-control" />
+                <ValidationMessage For="@(() => modelEmployee.EmployeeEmail)"></ValidationMessage>
+            </div>
+            <div class="form-group">
+                <label for="dvemp">Penanggung Jawab Pegawai:</label>
+                <select @bind="modelEmployee.DerivativeToEmployee" class="form-control" name="dvemp" disabled="@InputIsDisabled">
+                    <option value="0">-- Pilih Penaggung Jawab Pegawai --</option>
+                    @if (ObjEmployee != null)
+                    {
+                        foreach (var item in ObjEmployee)
+                        {
+                            <option value="@item.DerivativeToEmployee">@item.DerivativeToEmployee</option>
+                        }
+                    }
+                </select>
+                <ValidationMessage For="@(() => modelEmployee.DerivativeToEmployee)"></ValidationMessage>
+            </div>
+            <div class="form-group">
+                <label for="accountno">Kode Akun:</label>
+                <select @bind="modelEmployee.AccountNo" class="form-control" name="accountno" disabled="@InputIsDisabled">
+                    <option value="0">-- Pilih Kode Akun --</option>
+                    @if (ObjAccount != null)
+                    {
+                        foreach (var item in ObjAccount)
+                        {
+                            <option value="@item.AccountNo">@item.AccountNo</option>
+                        }
+                    }
+                </select>
+                <ValidationMessage For="@(() => modelEmployee.AccountNo)"></ValidationMessage>
+            </div>
+            <input type="@btnSaveIsHidden" class="btn btn-success" disabled="@IsDisabled" name="BtnSave" value="@save" />
+            <input type="submit" class="btn btn-danger" name="BtnCancel" value="Kembali" @onclick:preventDefault @onclick='() => ActionButton("cancel")' />
+        </EditForm>
+    }
+    if (ShowDelete)
+    {
+        <div class="form-group">
+            <lable><h4>Apakah anda yakin ingin menghapus data ini?</h4></lable>
+        </div>
+        <a @onclick:preventDefault @onclick='() => DoDelete(modelEmployee.EmployeeNo.ToString())' class="btn btn-success">Ya</a>
+        <input type="submit" class="btn btn-danger" name="BtnCancel" value="Tidak" @onclick:preventDefault @onclick='() => ActionButton("cancel")' />
+    }
+}
+
+@code {
+    private EditContext editContext;
+
+    protected bool InputIsDisabled = false;
+    protected bool IsDisabled = true;
+    protected string btnSaveIsHidden = "submit";
+
+    string Employeeno = "Otomatis";
+    string save = "Simpan";
+
+    enum ModeForm { ViewData, UpdateData, DetailData, AddData }
+
+    bool ShowTable { get; set; } = true;
+    bool ShowInput { get; set; } = false;
+    bool ShowDelete { get; set; } = false;
+
+    EmployeeControls employeeControl = new EmployeeControls();
+    Employeetbl modelEmployee = new Employeetbl();
+    Accounttbl modelAccount = new Accounttbl();
+    AccountControls accountControl = new AccountControls();
+    List<Employeetbl> ObjEmployee = new List<Employeetbl>();
+    List<Accounttbl> ObjAccount = new List<Accounttbl>();
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        RefreshGrid();
+        editContext = new EditContext(modelEmployee);
+    }
+
+    private async void Reload()
+    {
+        editContext = new EditContext(ObjEmployee);
+        editContext.OnValidationStateChanged += OnValidationStateChanged;
+        RefreshGrid();
+    }
+
+    void SetLayout(ModeForm mode)
+    {
+        switch (mode)
+        {
+            case ModeForm.AddData:
+                ShowTable = false;
+                ShowDelete = false;
+                ShowInput = true;
+                GenerateDerivative();
+                GenerateAccoutno();
+                RefreshGrid();
+                StateHasChanged();
+                InputIsDisabled = false;
+                btnSaveIsHidden = "submit";
+                break;
+
+            case ModeForm.UpdateData:
+                break;
+
+            case ModeForm.ViewData:
+                ShowTable = true;
+                ShowDelete = false;
+                ShowInput = false;
+                ObjEmployee = new List<Employeetbl>();
+                RefreshGrid();
+                StateHasChanged();
+                break;
+        }
+    }
+
+    //load detail
+    void LoadDetail(string fid)
+    {
+        save = "ubah";
+        var ret = employeeControl.DetailData(fid);
+        var data = ret.Result;
+        Employeeno = data.EmployeeNo.ToString();
+
+        if (data != null)
+        {
+            modelEmployee = data;
+        }
+    }
+
+    //validation state change
+    private void OnValidationStateChanged(object sender, ValidationStateChangedEventArgs e)
+    {
+        IsDisabled = editContext.GetValidationMessages().Any();
+        StateHasChanged();
+    }
+
+    //clear textbox
+    //void clearfields()
+    //{
+    //    modelEmployee.EmployeeName = "";
+    //    modelEmployee.Position = "";
+    //    modelEmployee.EmployeeEmail = "";
+    //    modelEmployee.DerivativeToEmployee = null;
+    //    modelEmployee.AccountNo = null;
+    //}
+
+    //load account no
+    private void GenerateAccoutno()
+    {
+        var ret = accountControl.GetData();
+        var datas = ret.Result;
+
+        if (datas != null && datas.Count() > 0)
+        {
+            ObjAccount = datas.ToList();
+        }
+    }
+
+    private void GenerateDerivative()
+    {
+        //TxtDerivativeEmp.Items.Clear();
+        //TxtDerivativeEmp.Items.Insert(0, new ListItem("PIC", "-1"));
+
+        var ret = employeeControl.GetData();
+        var datas = ret.Result;
+
+        if (datas != null && datas.Count() > 0)
+        {
+            ObjEmployee = datas.ToList();
+        }
+
+        //TxtDerivativeEmp.SelectedIndex = 0;
+    }
+
+
+
+    //Do Save
+    private void DoSave()
+    {
+        string id = Employeeno;
+        var data = modelEmployee;
+
+        var ret = employeeControl.AddData(data);
+
+        if (save == "ubah")
+        {
+            ret = employeeControl.UpdateData(id, data);
+        }
+        if (ret.Result)
+        {
+            //clearfields();
+            save = "simpan";
+            Employeeno = "Otomatis";
+            SetLayout(ModeForm.ViewData);
+            toastService.ShowSuccess("data berhasil disimpan");
+            //Alert("data berhasil disimpan");
+        }
+        else
+        {
+            toastService.ShowError("Gagal menyimpan data");
+            //Alert("Gagal menyimpan data");
+        }
+    }
+
+    //Do Delete
+    private void DoDelete(string id)
+    {
+        var ret = employeeControl.DeleteData(id);
+
+        if (ret.Result)
+        {
+            SetLayout(ModeForm.ViewData);
+            save = "hapus";
+            Employeeno = "Otomatis";
+            toastService.ShowSuccess("data berhasil dihapus");
+        }
+        else
+        {
+            toastService.ShowError("Gagal menghapus data");
+        }
+    }
+
+    //Action On Table
+    void ActionTable(string command, string ids)
+    {
+        if (command == "ubah")
+        {
+            editContext = new EditContext(modelEmployee);
+            editContext.OnValidationStateChanged += OnValidationStateChanged;
+
+            ShowTable = false;
+            ShowInput = true;
+            InputIsDisabled = false;
+            btnSaveIsHidden = "submit";
+            GenerateDerivative();
+            GenerateAccoutno();
+            LoadDetail(ids);
+        }
+        if (command == "lihat")
+        {
+            ShowTable = false;
+            ShowInput = true;
+            InputIsDisabled = true;
+            btnSaveIsHidden = "hidden";
+            LoadDetail(ids);
+        }
+        if (command == "hapus")
+        {
+            ShowTable = false;
+            ShowInput = false;
+            ShowDelete = true;
+            LoadDetail(ids);
+        }
+    }
+
+    //Action for Layout
+    void ActionButton(string commandname)
+    {
+        try
+        {
+            var command = commandname;
+
+            switch (command)
+            {
+                case "add":
+                    save = "simpan";
+                    SetLayout(ModeForm.AddData);
+                    //InputIsDisabled = false;
+                    break;
+
+                case "update":
+                    SetLayout(ModeForm.UpdateData);
+                    break;
+
+                case "cancel":
+                    //save = "simpan";
+                    //Employeeno = "otomatis";
+                    SetLayout(ModeForm.ViewData);
+                    break;
+            }
+        }
+        catch (Exception ex)
+        {
+            toastService.ShowError("Terjadi kesalahan: " + ex.Message);
+        }
+    }
+
+    protected void RefreshGrid(string param = "")
+    {
+
+
+        if (param == null || param == "")
+        {
+            var ret = employeeControl.GetData();
+            var datas = ret.Result;
+
+            if (datas != null && datas.Count() > 0)
+            {
+                ObjEmployee = datas.ToList();
+                editContext = new EditContext(ObjEmployee);
+                editContext.OnValidationStateChanged += OnValidationStateChanged;
+                modelEmployee = new Employeetbl();
+                StateHasChanged();
+
+            }
+        }
+        else
+        {
+            var ret = employeeControl.GetDataByContaint(param);
+            var datas = ret.Result;
+
+            if (datas != null && datas.Count() > 0)
+            {
+                ObjEmployee = datas.ToList();
+                editContext = new EditContext(ObjEmployee);
+                modelEmployee = new Employeetbl();
+                editContext.OnValidationStateChanged += OnValidationStateChanged;
+                StateHasChanged();
+
+            }
+        }
+
+
+    }
+}

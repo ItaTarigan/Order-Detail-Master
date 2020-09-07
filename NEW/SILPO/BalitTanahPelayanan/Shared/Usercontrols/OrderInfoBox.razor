@@ -1,0 +1,189 @@
+﻿@using BalitTanahPelayanan.Controllers
+@using BalitTanahPelayanan.Helpers
+@using BalitTanahPelayanan.Models
+@inject NavigationManager NavMgr
+
+@inject IStringLocalizer L
+<style>
+    .box-info {
+        max-width: 1200px;
+        display: block;
+    }
+
+        .box-info > .box1 > .w3-container {
+            background: #F1F5F8 !important;
+            color: #000;
+        }
+
+        .box-info > .box2 > .w3-container {
+            background: #00CCB3 !important;
+            color: #fff !important;
+        }
+
+        .box-info > .box3 > .w3-container {
+            background: #3E8AFB !important;
+            color: #fff !important;
+        }
+
+        .box-info > .w3-quarter > .w3-container {
+            color: #000;
+            text-align: center;
+            font-family: 'montserratbold' !important;
+            padding-bottom: 15px !important;
+        }
+
+            .box-info > .w3-quarter > .w3-container h4 {
+                font-family: 'montserratbold';
+                text-transform: uppercase;
+                font-size: 16px;
+            }
+
+                .box-info > .w3-quarter > .w3-container h4 > span {
+                    font-family: 'montserratregular';
+                    text-transform: uppercase;
+                    font-size: 50px;
+                }
+
+            .box-info > .w3-quarter > .w3-container h3 > span {
+                font-family: 'montserratbold';
+                text-transform: uppercase;
+                font-size: 16px;
+            }
+</style>
+
+<div class="w3-margin-bottom box-info">
+    <div class="w3-quarter box1">
+        <div class="w3-container w3-padding-32">
+            <div class="w3-center">
+                <h3>
+                    @Labelr
+                </h3>
+            </div>
+            <div class="w3-clear"></div>
+            <h4>
+                @lblTotal
+            </h4>
+        </div>
+    </div>
+    <div class="w3-quarter box2">
+        <div class="w3-container w3-padding-32">
+            <div class="w3-center">
+                <h3>@Label3</h3>
+            </div>
+            <div class="w3-clear"></div>
+            <h4>
+                @lblOrderProses
+            </h4>
+        </div>
+    </div>
+    <div class="w3-quarter box3">
+        <div class="w3-container w3-text-white w3-padding-32">
+            <div class="w3-center">
+                <h3>@Label3a</h3>
+            </div>
+            <div class="w3-clear"></div>
+            <h4>
+                @lblOrderDone
+            </h4>
+        </div>
+    </div>
+</div>
+
+
+@code {
+    public string Labelr { get; set; }
+    public string lblTotal { get; set; }
+    public string lblOrderProses { get; set; }
+    public string Label3a { get; set; }
+    public string lblOrderDone { get; set; }
+    public string Label3 { get; set; }
+
+    public string Username { get; set; }
+
+    public string FilterType { get; set; }
+    void GetTranslation()
+    {
+        Labelr = L["total_order"];
+        Label3 = L["title_pesanan_diproses"];
+        Label3a = L["title_pesanan_selesai"];
+
+    }
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationStateTask { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var user = (await authenticationStateTask).User;
+        bool isLoggedIn = user.Identity.IsAuthenticated;
+        if (isLoggedIn)
+        {
+            Username = user.Identity.Name;
+            LoadData();
+        }
+
+        GetTranslation();
+
+    }
+
+
+
+    void LoadData()
+    {
+
+        ListGridMaster listGridMaster = new ListGridMaster();
+
+        if (FilterType == "ByUser")
+        {
+            var ret = listGridMaster.GetData();
+            var datas = ret.Result.Where(x => x.CreaBy == Username).Count();
+            lblTotal = datas.ToString();
+
+            var ret3 = listGridMaster.GetData();
+
+            var datas3 = ret3.Result.Where(x => x.CreaBy == Username && (x.Status == "Pilih Penyelia" || x.Status == "Proses Lab"
+            || x.Status == "Verifikasi Penyelia" || x.Status == "Evaluasi Hasil" || x.Status == "Hitung ulang" || x.Status == "Menunggu Approval")).Count();
+            lblOrderProses = datas3.ToString();
+
+            var ret4 = listGridMaster.GetData();
+            var datas4 = ret4.Result.Where(x => x.CreaBy == Username && (x.Status == "LHP Keluar" || x.Status == "LHP Sudah Diambil")).Count();
+
+            lblOrderDone = datas4.ToString();
+
+        }
+        else
+        {
+            var myLab = CommonWeb.GetUserLab(Username);
+            if (!string.IsNullOrEmpty(myLab))
+            {
+                var ret = listGridMaster.GetData();
+                var datas = ret.Result.Where(x => x.AnalysisType == myLab).Count();
+                lblTotal = datas.ToString();
+
+                var ret3 = listGridMaster.GetData();
+                var datas3 = ret3.Result.Where(x => (x.Status == "Pilih Penyelia" || x.Status == "Proses Lab" || x.Status == "Barcode Sampel"
+                || x.Status == "Verifikasi Penyelia" || x.Status == "Evaluasi Hasil" || x.Status == "Hitung ulang" || x.Status == "Menunggu Approval") && x.AnalysisType == myLab).Count();
+                lblOrderProses = datas3.ToString();
+
+                var ret4 = listGridMaster.GetData();
+                var datas4 = ret4.Result.Where(x => (x.Status == "LHP Keluar" || x.Status == "LHP Sudah Diambil") && x.AnalysisType == myLab).Count();
+                lblOrderDone = datas4.ToString();
+            }
+            else
+            {
+                var ret = listGridMaster.GetData();
+                var datas = ret.Result.Count();
+                lblTotal = datas.ToString();
+
+                var ret3 = listGridMaster.GetData();
+
+                var datas3 = ret3.Result.Where(x => x.Status == "Pilih Penyelia" || x.Status == "Proses Lab" || x.Status == "Barcode Sampel"
+                || x.Status == "Verifikasi Penyelia" || x.Status == "Evaluasi Hasil" || x.Status == "Hitung ulang" || x.Status == "Menunggu Approval").Count();
+                lblOrderProses = datas3.ToString();
+
+                var ret4 = listGridMaster.GetData();
+                var datas4 = ret4.Result.Where(x => x.Status == "LHP Keluar" || x.Status == "LHP Sudah Diambil").Count();
+                lblOrderDone = datas4.ToString();
+            }
+        }
+    }
+}

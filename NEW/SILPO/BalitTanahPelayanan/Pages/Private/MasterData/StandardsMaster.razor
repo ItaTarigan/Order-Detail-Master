@@ -1,0 +1,331 @@
+﻿@page "/pages/private/masterdata/standardsmaster"
+@layout BalitTanahPelayanan.Shared.Master.MainMaster
+@using System.Web;
+@using Microsoft.AspNetCore.WebUtilities
+@inject IToastService toastService
+@using BalitTanahPelayanan.Data
+@using BalitTanahPelayanan.Helpers
+@using BalitTanahPelayanan.Models
+@using BalitTanahPelayanan.Controllers
+@using BalitTanahPelayanan.Services
+@inject NavigationManager NavMgr
+@inject IJSRuntime jsRuntime
+
+@if (objStandard == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    if (ShowTable)
+    {
+        <TableTemplate Items="objStandard">
+            <TableHeader>
+                <th class="sorting">Kode</th>
+                <th class="sorting">Nomor Standard</th>
+                <th class="sorting">Kode Komoditas</th>
+                <th>Aksi</th>
+            </TableHeader>
+            <RowTemplate Context="Standard">
+                <td>@Standard.StdId.ToString()</td>
+                <td>@Standard.StdNo</td>
+                <td>@Standard.ComodityNo.ToString()</td>
+                <td>
+                    <a @onclick:preventDefault @onclick='() => ActionTable(Standard.StdId.ToString())' class="linkbtn">Ubah</a>
+                    <a @onclick:preventDefault @onclick='() => Detail(Standard.StdId.ToString())' class="linkbtn">Lihat</a>
+                    <a @onclick:preventDefault @onclick='() => Delete(Standard.StdId.ToString())' class="linkbtn">Hapus</a>
+                </td>
+            </RowTemplate>
+        </TableTemplate>
+        <div>
+            <input type="submit" @onclick:preventDefault @onclick='() => ActionButton("add")' name="BtnAdd" value="Tambah Data" id="MainContent_BtnAdd" class="btn btn-success" />
+        </div>
+    }
+    if (ShowInput)
+    {
+        <EditForm EditContext="@editContext" OnValidSubmit="@DoSave">
+            <DataAnnotationsValidator />
+            <div class="form-group">
+                <lable><h4>Informasi Standard:</h4></lable>
+            </div>
+            <div class="form-group">
+                <label>Kode:</label>
+                <label ID="TxtKode" runat="server" visible="true">@kode</label>
+            </div>
+            <div class="form-group">
+                <label for="StdNo">Nomor Standard:</label>
+                <InputText @bind-Value="modelStandard.StdNo" class="form-control" />
+                <ValidationMessage For="@(() => modelStandard.StdNo)"></ValidationMessage>
+            </div>
+            <div class="form-group">
+                <label for="ComodityNo">Kode Komoditas:</label>
+                <select @bind="modelStandard.ComodityNo" class="form-control">
+                    @if (objComodity != null)
+                    {
+                        foreach (var item in objComodity)
+                        {
+                            <option value="@item.ComodityNo">@item.ComodityNo</option>
+                        }
+                    }
+                </select>
+            </div>
+            <input type="submit" class="btn btn-success" disabled="@IsDisabled" name="BtnSave" value="@save" />
+            <input type="submit" class="btn btn-danger" name="BtnCancel" value="@cancel" @onclick:preventDefault @onclick='() => ActionButton("cancel")' />
+        </EditForm>
+    }
+    if (ShowDetail)
+    {
+        <div class="form-group">
+            <lable><h4>Informasi Standard:</h4></lable>
+        </div>
+        <div class="form-group">
+            <label>Kode:</label>
+            <label ID="Txtkode" runat="server" visible="true">@kode</label>
+        </div>
+        <div class="form-group">
+            <label>Nomor Standard:</label>
+            <label class="form-control">@modelStandard.StdNo</label>
+        </div>
+        <div class="form-group">
+            <label>Kode Komoditas:</label>
+            <label class="form-control">@modelStandard.ComodityNo</label>
+        </div>
+        <input type="submit" class="btn btn-danger" name="BtnCancel" value="@cancel" @onclick:preventDefault @onclick='() => ActionButton("cancel")' />
+    }
+    if (ShowDelete)
+    {
+        <div class="form-group">
+            <lable><h4>Apakah anda yakin ingin menghapus data ini?</h4></lable>
+        </div>
+        <a @onclick:preventDefault @onclick='() => DoDelete(modelStandard.StdId.ToString())' class="btn btn-success">Ya</a>
+        <input type="submit" class="btn btn-danger" name="BtnCancel" value="Tidak" @onclick:preventDefault @onclick='() => ActionButton("cancel")' />
+    }
+}
+@code {
+    private EditContext editContext;
+    protected bool IsDisabled = true;
+
+    string kode = "Otomatis";
+    string save = "Simpan";
+    string cancel = "Kembali";
+
+    enum ModeForm { ViewData, UpdateData, DetailData, AddData }
+
+    bool ShowTable { get; set; } = true;
+    bool ShowInput { get; set; } = false;
+    bool ShowDetail { get; set; } = false;
+    bool ShowDelete { get; set; } = false;
+
+    StandardsServices standardServices = new StandardsServices();
+    ComodityServices comodityServices = new ComodityServices();
+    Standardtbl modelStandard = new Standardtbl();
+    List<Standardtbl> objStandard = new List<Standardtbl>();
+    List<Comoditytbl> objComodity = new List<Comoditytbl>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        RefreshGrid();
+        var ret = comodityServices.GetData();
+        var datas = ret.Result;
+        objComodity = datas.ToList();
+        editContext = new EditContext(modelStandard);
+    }
+
+    //validation state change
+    private void OnValidationStateChanged(object sender, ValidationStateChangedEventArgs e)
+    {
+        IsDisabled = editContext.GetValidationMessages().Any();
+        StateHasChanged();
+    }
+
+    //Action For Table
+    void ActionTable(string ids)
+    {
+        ShowTable = false;
+        ShowInput = true;
+        ShowDetail = false;
+        ShowDelete = false;
+        LoadDetail(ids);
+        StateHasChanged();
+    }
+
+    //Detail
+    void Detail(string ids)
+    {
+        ShowTable = false;
+        ShowInput = false;
+        ShowDetail = true;
+        ShowDelete = false;
+        LoadDetail(ids);
+        StateHasChanged();
+    }
+
+    //Delete
+    void Delete(string ids)
+    {
+        ShowTable = false;
+        ShowInput = false;
+        ShowDelete = true;
+        LoadDetail(ids);
+        StateHasChanged();
+    }
+
+    //Load detail data
+    void LoadDetail(string fid)
+    {
+        save = "Ubah";
+        var ret = standardServices.DetailData(fid);
+        var data = ret.Result;
+        kode = data.StdId.ToString();
+
+        if (data != null)
+        {
+            modelStandard = data;
+        }
+    }
+
+    //Action Button
+    void ActionButton(string commandname)
+    {
+        try
+        {
+            var command = commandname;
+
+            switch (command)
+            {
+                //case "save":
+                //    SetLayout(ModeForm.ViewData);
+                //    break;
+
+                case "add":
+                    IsDisabled = true;
+                    save = "Simpan";
+                    SetLayout(ModeForm.AddData);
+                    break;
+
+                case "update":
+                    SetLayout(ModeForm.UpdateData);
+                    break;
+
+                case "cancel":
+                    save = "Simpan";
+                    kode = "Otomatis";
+                    modelStandard = new Standardtbl();
+                    editContext = new EditContext(modelStandard);
+                    SetLayout(ModeForm.ViewData);
+                    break;
+            }
+        }
+        catch (Exception ex)
+        {
+            toastService.ShowError("Terjadi kesalahan: " + ex.Message);
+        }
+    }
+
+    //Set Layout
+    void SetLayout(ModeForm mode)
+    {
+        switch (mode)
+        {
+            case ModeForm.AddData:
+                ShowTable = false;
+                ShowInput = true;
+                ShowDetail = false;
+                ShowDelete = false;
+                RefreshGrid();
+                StateHasChanged();
+                break;
+            case ModeForm.UpdateData:
+
+                break;
+            case ModeForm.ViewData:
+                ShowTable = true;
+                ShowInput = false;
+                ShowDetail = false;
+                ShowDelete = false;
+                objStandard = new List<Standardtbl>();
+                RefreshGrid();
+                StateHasChanged();
+                break;
+        }
+    }
+
+    // Reload datagrid
+    protected void RefreshGrid(string param = "")
+    {
+
+        if (param == null || param == "")
+        {
+
+            var ret = standardServices.GetData();
+            var datas = ret.Result;
+
+            if (datas != null && datas.Count() > 0)
+            {
+                objStandard = datas.ToList();
+                editContext = new EditContext(objStandard);
+                editContext.OnValidationStateChanged += OnValidationStateChanged;
+                modelStandard = new Standardtbl();
+                StateHasChanged();
+                //GvData.DataBind();
+            }
+        }
+        else
+        {
+            var ret = standardServices.GetDataByContaint(param);
+            var datas = ret.Result;
+
+            if (datas != null && datas.Count() > 0)
+            {
+                objStandard = datas.ToList();
+                editContext = new EditContext(objStandard);
+                modelStandard = new Standardtbl();
+                editContext.OnValidationStateChanged += OnValidationStateChanged;
+                StateHasChanged();
+            }
+        }
+    }
+
+    //Do Save
+    private void DoSave()
+    {
+        string id = kode;
+        var data = modelStandard;
+
+        var ret = standardServices.AddData(data);
+        if (save == "Ubah")
+        {
+            ret = standardServices.UpdateData(id, data);
+        }
+
+        if (ret.Result)
+        {
+            SetLayout(ModeForm.ViewData);
+            save = "Simpan";
+            kode = "Otomatis";
+            toastService.ShowSuccess("data berhasil disimpan");
+        }
+        else
+        {
+            toastService.ShowError("Gagal menyimpan data");
+        }
+    }
+
+    //Do Delete
+    private void DoDelete(string id)
+    {
+        var ret = standardServices.DeleteData(id);
+
+        if (ret.Result)
+        {
+            SetLayout(ModeForm.ViewData);
+            save = "Simpan";
+            kode = "Otomatis";
+            toastService.ShowSuccess("data berhasil dihapus");
+        }
+        else
+        {
+            toastService.ShowError("Gagal menghapus data");
+        }
+    }
+}

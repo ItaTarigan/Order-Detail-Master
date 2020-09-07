@@ -1,0 +1,10 @@
+@media screen and (max-width: 572px) {
+    .control-box {
+        max-width: none;
+        min-width: unset;
+        display: block !important;
+    }
+    .control-boxes > .control-box:last-child {
+        margin-right: 5%;
+    }
+}

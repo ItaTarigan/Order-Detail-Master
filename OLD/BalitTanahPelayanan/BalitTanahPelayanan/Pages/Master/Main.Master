@@ -1,0 +1,86 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Main.master.cs" Inherits="BalitTanahPelayanan.Pages.Master.Main" %>
+
+<%@ Register Src="~/Usercontrols/HeaderInfo.ascx" TagPrefix="custom" TagName="HeaderInfo" %>
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Internal</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+    <link type="text/css" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <link rel="icon" type="image/png" href="<%= ResolveUrl("~/assets/img/favicon.png") %>" />
+    <script type="text/javascript" src="<%= ResolveUrl("~/assets/js/scripts.js") %>"></script>
+    <link rel="stylesheet" href="<%= ResolveUrl("~/assets/css/fonts.css") %>">
+    <link rel="stylesheet" href="<%= ResolveUrl("~/assets/css/styles.css") %>">
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="w3-main container-fluid" style="margin-top:10px;">
+            <div>
+                <custom:HeaderInfo runat="server" ID="header1"></custom:HeaderInfo>
+            </div>
+            <div class="row">
+                <div class="col-lg">
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mr-auto">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="/Default.aspx">Home <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Master Data
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="/Pages/Private/MasterData/AccountsMaster.aspx">Accounts</a>
+                                         <a class="dropdown-item" href="/Pages/Private/MasterData/AnalysisTypesMaster.aspx">Analysis Types</a>
+                                         <a class="dropdown-item" href="/Pages/Private/MasterData/ComoditiesMaster.aspx">Comoditys</a>
+                                         <a class="dropdown-item" href="/Pages/Private/MasterData/CustomersMaster.aspx">Customers</a>
+                                         <a class="dropdown-item" href="/Pages/Private/MasterData/ElementServicesMaster.aspx">Element Services</a>
+                                         <a class="dropdown-item" href="/Pages/Private/MasterData/EmployeesMaster.aspx">Employees</a>
+                                         <a class="dropdown-item" href="/Pages/Private/MasterData/FileAttachmentsMaster.aspx">File Attachments</a>
+                                         <a class="dropdown-item" href="/Pages/Private/MasterData/OrderMasterMaster.aspx">Order Masters</a>
+                                         <a class="dropdown-item" href="/Pages/Private/MasterData/OrderDetailMaster.aspx">Order Details</a>
+                                         <a class="dropdown-item" href="/Pages/Private/MasterData/ParametersMaster.aspx">Parameters</a>
+                                         <a class="dropdown-item" href="/Pages/Private/MasterData/ResultsMaster.aspx">Results</a>
+                                         <a class="dropdown-item" href="/Pages/Private/MasterData/RolesMaster.aspx">Roles</a>
+                                         <a class="dropdown-item" href="/Pages/Private/MasterData/SamplesMaster.aspx">Samples</a>
+                                         <a class="dropdown-item" href="/Pages/Private/MasterData/StandardsMaster.aspx">Standards</a>
+                                         <a class="dropdown-item" href="/Pages/Private/MasterData/StandardDetailsMaster.aspx">Standard Details</a>
+                                         <a class="dropdown-item" href="/Pages/Private/MasterData/Workflows.aspx">Workflows</a>
+                                         <a class="dropdown-item" href="/Pages/Private/MasterData/LogsMaster.aspx">Logs</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Test..</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>          
+                
+            <div class="row">
+                <div class="col-lg">
+                    <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
+                </div>
+            </div>
+            <div class="footer bg-light py-2 small mt-5">
+                <div class="text-center">
+                    <strong>© 2019 BALITANAH</strong> | SISTEM INFORMASI LAYANAN PELANGGAN ONLINE. ALL RIGHTS RESERVED
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

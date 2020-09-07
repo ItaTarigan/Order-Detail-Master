@@ -1,0 +1,92 @@
+﻿@using BalitTanahPelayanan.Controllers
+@using BalitTanahPelayanan.Helpers
+@using BalitTanahPelayanan.Models
+@inject NavigationManager NavMgr
+
+@*@inject IStringLocalizer L*@
+<div class="mainHeader">
+    <header class="header-left">
+        <img src="/assets/img/Logo.PNG" alt="logo" runat="server" />
+    </header>
+    <header class="header-right" style="text-align: right">
+        <img src="/assets/img/icon-man.png" runat="server" class="userlogo" />
+        <span class="username">
+            <span>
+                @LitWelcome <strong>
+                    @LitUserName
+                </strong>
+            </span>
+        </span>
+        <br />
+        <span><a href="" @onclick:preventDefault @onclick='()=> BtnLang_Click("en-US")'><b>EN</b></a> | <a href="" @onclick:preventDefault @onclick='()=>BtnLang_Click("id-ID")'><b>ID</b></a></span>
+        <br />
+        <a href="" @onclick:preventDefault @onclick="LogOutBtn_Click"><img src="/assets/img/logout.png" runat="server" /> <span>@LogOutBtnText</span></a>
+    </header>
+</div>
+
+@code {
+    public string LitWelcome { get; set; }
+    public string LitUserName { get; set; }
+    public string LogOutBtnText { get; set; }
+
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationStateTask { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var user = (await authenticationStateTask).User;
+        bool isLoggedIn = user.Identity.IsAuthenticated;
+        if (isLoggedIn)
+        {
+            try
+            {
+                var uname = user.Identity.Name;
+                using (var db = new smlpobDB())
+                {
+                    var UserFullName = (from x in db.Customertbl
+                                        where x.CustomerEmail == uname
+                                        select x.CustomerName).FirstOrDefault();
+                    if (UserFullName != null)
+                    {
+                        LitUserName = UserFullName;
+                    }
+                    else
+                    {
+                        UserFullName = (from x in db.Employeetbl
+                                        where x.EmployeeEmail == uname
+                                        select x.EmployeeName).FirstOrDefault();
+                        LitUserName = UserFullName;
+                    }
+                }
+            }
+            catch
+            {
+                LitUserName = "anonymous";
+            }
+        }
+        GetTranslation();
+    }
+
+
+    void GetTranslation()
+    {
+        //LitWelcome = L["welcome"] + ",";
+        //LogOutBtnText = L["logout"];
+    }
+    void LogOutBtn_Click()
+    {
+        NavMgr.NavigateTo("/logout?returnUrl=/");
+
+    }
+
+    void BtnLang_Click(string CommandName)
+    {
+        var culture = CommandName;
+        var uri = new Uri(NavMgr.Uri)
+            .GetComponents(UriComponents.PathAndQuery, UriFormat.Unescaped);
+        var query = $"?culture={Uri.EscapeDataString(culture)}&" +
+            $"redirectUri={Uri.EscapeDataString(uri)}";
+
+        NavMgr.NavigateTo("/Culture/SetCulture" + query, forceLoad: true);
+    }
+}

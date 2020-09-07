@@ -1,0 +1,47 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Customer.master.cs" Inherits="BalitTanahPelayanan.Pages.Master.Customer" %>
+<%@ Register Src="~/Usercontrols/AuthChecker.ascx" TagPrefix="custom" TagName="AuthInfo" %>
+<%@ Register Src="~/Usercontrols/HeaderInfo.ascx" TagPrefix="custom" TagName="HeaderInfo" %>
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Penyelia</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+    <link type="text/css" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    
+    <link rel="icon" type="image/png" href="<%= ResolveUrl("~/assets/img/favicon.png") %>" />
+    <script type="text/javascript" src="<%= ResolveUrl("~/assets/js/scripts.js") %>"></script>
+    <link rel="stylesheet" href="<%= ResolveUrl("~/assets/css/fonts.css") %>">
+    <link rel="stylesheet" href="<%= ResolveUrl("~/assets/css/styles.css") %>">
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="w3-main container-fluid" style="margin-top:10px;">
+
+            <custom:HeaderInfo runat="server" ID="header1"></custom:HeaderInfo>
+            <custom:AuthInfo runat="server" Roles="pelanggan" ID="AuthInfo1"></custom:AuthInfo>
+            <div>
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+            </div>
+            
+            <div class="footer bg-light py-2 small mt-5">
+                <div class="text-center">
+                    <strong>© 2019 BALITANAH</strong> | SISTEM INFORMASI LAYANAN PELANGGAN ONLINE. ALL RIGHTS RESERVED
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
+

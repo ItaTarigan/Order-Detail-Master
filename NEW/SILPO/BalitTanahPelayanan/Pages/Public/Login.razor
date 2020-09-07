@@ -1,0 +1,128 @@
+﻿@page "/pages/public/login"
+@layout AuthLayout
+@using System.Web;
+@using Microsoft.AspNetCore.WebUtilities
+@inject IToastService toastService
+@using BalitTanahPelayanan.Data
+@using BalitTanahPelayanan.Helpers
+@using BalitTanahPelayanan.Models
+@inject NavigationManager NavMgr
+@inject IJSRuntime jsRuntime
+<div class="container">
+    <div class="container-inner bg-lab">
+        <div class="mainLogo"><img src="/assets/img/title.png" /></div>
+        <div id="loginForm" class="form-container" >
+            <div class="head-logos">
+                <img src="/assets/img/logo-sealnet.png" runat="server" />
+                <img src="/assets/img/logo-aspac.png" runat="server" />
+                <img src="/assets/img/logo-fftc.png" runat="server" />
+            </div>
+            <h1>Selamat Datang</h1>
+            <div class="main-note">
+                Kami siap melayani kebutuhan anda untuk melakukan penelitian sampel tanah
+            </div>
+            <div class="control-boxes">
+                <div class="control-box">
+                    <label class="input input-text">
+                        <input @bind="Username" type="email" class="icon-mail" placeholder="Alamat Email" name="username" required data-message="Masukkan alamat email anda" />
+                    </label>
+                    <label class="input input-password">
+                        <a class="input-btn noselect" title="Tampilkan kata sandi">
+                            <img src="/assets/img/eye.png" />
+                        </a>
+                        <input @bind="Password" type="password" class="icon-lock" placeholder="Kata Sandi" name="email" required data-message="Masukkan kata sandi anda" />
+                    </label>
+                    @if (showError)
+                    {
+                    <div id="DivError" class="error-box" onclick="_bt_msgDismiss(this);" title="Klik untuk menghapus pesan">
+                        @TxtError
+                    </div>
+                    }
+                </div>
+            </div>
+            <div class="control-block">
+                <label class="input input-checkbox pull-left">
+                    <input id="cbremember" type="checkbox" @bind="RememberMe" />
+                    <span class="check"></span>
+                    <span class="label">Ingat saya</span>
+                </label>
+                <a href="/pages/public/ForgotPasswordForm" class="link pull-right">Lupa Kata Sandi?</a>
+
+            </div>
+            <div class="control-block">
+                <button @onclick="LoginNow" class="button primary">Submit</button>&nbsp;&nbsp;
+
+                <a class="button" href="/pages/public/RegisterForm">Daftar</a>
+            </div>
+        </div>
+        <div class="footer-logos">
+            <div class="logo-right">
+                <img src="/assets/img/logo-kan.png" runat="server" />
+                <span class="box-text">LP-846 IDN<br />SNI ISO/IEC 17025:2017</span>
+                <span class="box-text">PUP-012-IDN<br />ISO/IEC 17043-2010</span>
+            </div>
+            <div class="logo-left">
+                <img src="/assets/img/logo-agro.png" runat="server" />
+                <span class="nobox-text">Laboratorium Tanah, Tanaman, Pupuk dan Air<br>Badan Penelitian dan Pengembangan Pertanian<br>Laboratorium Penguji BALAI PENELITIAN TANAH </span>
+            </div>
+        </div>
+    </div>
+</div>
+@code {
+    public string TxtError { get; set; }
+    public string MyProperty { get; set; }
+    string Username = "";
+    string Password { get; set; }
+    bool RememberMe;
+    bool showError = false;
+    async Task LoginNow()
+    {
+        string ErrorMsg = string.Empty;
+        if (string.IsNullOrEmpty(Username))
+        {
+            ErrorMsg = "Please fill your username";
+        }
+        if (string.IsNullOrEmpty(Password))
+        {
+            ErrorMsg = "Please fill your password";
+        }
+
+        if (ErrorMsg.Length > 0)
+        {
+            toastService.ShowError(ErrorMsg);
+            return;
+        }
+        string logUrl = $"/login?paramUsername={encode(Username)}&paramPassword={encode(Password)}&paramRememberMe={encode(RememberMe.ToString())}";
+        await jsRuntime.InvokeAsync<object>("OpenUrl", logUrl);
+        //NavMgr.NavigateTo(logUrl);
+    }
+    private string encode(string param)
+    {
+        return HttpUtility.UrlEncode(param);
+    }
+    protected override async System.Threading.Tasks.Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var uri = NavMgr.ToAbsoluteUri(NavMgr.Uri);
+            if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("result", out var resultString))
+            {
+                var result = bool.Parse(resultString);
+                if (!result)
+                {
+                    showError = true;
+                    if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("message", out var resultMessage))
+                    {
+                        var msg = resultMessage.ToString();
+                        toastService.ShowError(msg);
+                        TxtError = msg;
+                        StateHasChanged();
+                    }
+
+                }
+            }
+
+        }
+
+    }
+}

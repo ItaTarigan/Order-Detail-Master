@@ -1,0 +1,150 @@
+﻿@page "/pages/public/activation"
+@layout AuthLayout
+@using System.Web;
+@using Microsoft.AspNetCore.WebUtilities
+@inject IToastService toastService
+@using BalitTanahPelayanan.Data
+@using BalitTanahPelayanan.Controllers
+@using BalitTanahPelayanan.Helpers
+@using BalitTanahPelayanan.Models
+@inject NavigationManager NavMgr
+@inject IJSRuntime jsRuntime
+<div class="container">
+    <div class="container-inner bg-lab">
+        <div class="mainLogo"><img src="/assets/img/title.png" /></div>
+        <form id="form1" runat="server" class="form-container form-ready">
+            <div class="head-logos">
+                <img src="/assets/img/logo-sealnet.png" runat="server" />
+                <img src="/assets/img/logo-aspac.png" runat="server" />
+                <img src="/assets/img/logo-fftc.png" runat="server" />
+            </div>
+            <h1>Aktivasi User</h1>
+            <p class="lead">
+                @Literal1
+            </p>
+            <hr class="my-4">
+            <p>
+                @TxtStatus
+            </p>
+            <p class="lead">
+                <button ID="btnAktif" @onclick="btnAktif_Click" CssClass="btn btn-primary btn-lg" >Login</button>
+
+</p>
+        </form>
+        <div class="footer-logos">
+            <div class="logo-right">
+                <img src="/assets/img/logo-kan.png" runat="server" />
+                <span class="box-text">LP-846 IDN<br />SNI ISO/IEC 17025:2017</span>
+                <span class="box-text">PUP-012-IDN<br />ISO/IEC 17043-2010</span>
+            </div>
+            <div class="logo-left">
+                <img src="/assets/img/logo-agro.png" runat="server" />
+                <span class="nobox-text">Laboratorium Tanah, Tanaman, Pupuk dan Air<br>Badan Penelitian dan Pengembangan Pertanian<br>Laboratorium Penguji BALAI PENELITIAN TANAH </span>
+            </div>
+        </div>
+    </div>
+</div>
+@code {
+    public string Literal1 { get; set; }
+    public string TxtStatus { get; set; }
+
+    RegisterControls registerControls = new RegisterControls();
+    protected override async Task OnInitializedAsync()
+    {
+
+
+        try
+        {
+            string userId = "";
+            var uri = NavMgr.ToAbsoluteUri(NavMgr.Uri);
+            if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("userId", out var resultString))
+            {
+                userId = resultString.ToString();
+            }
+            if (string.IsNullOrEmpty(userId))
+            {
+                Literal1= "Tidak ada username, aktivasi tidak dapat dilakukan.";
+            }
+            else
+            {
+                if (userId.Contains("¡"))
+                {
+                    userId = userId.Replace("¡", "@");
+                }
+                /*
+                var user = Membership.GetUser(userId);
+                if (user != null)
+                {
+                    user.IsApproved = true;
+                    user.UnlockUser();
+                    Membership.UpdateUser(user);
+                    Literal1= "User anda telah di aktivasi, sekarang Anda bisa login";
+                }
+                else
+                {
+                    Literal1= "User tidak terdaftar di sistem, silahkan cek kembali akun anda";
+                }*/
+            }
+        }
+        catch (Exception ex)
+        {
+            TxtStatus= "gagal save --> " + ex.Message;
+        }
+
+    }
+
+    void btnAktif_Click()
+    {
+        DoContinue();
+
+    }
+
+    private void DoContinue()
+    {
+        try
+        {
+            string userId = "";
+            var uri = NavMgr.ToAbsoluteUri(NavMgr.Uri);
+            if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("userId", out var resultString))
+            {
+                userId = resultString.ToString();
+            }
+
+            if (userId.Contains("¡"))
+            {
+                userId = userId.Replace("¡", "@");
+            }
+
+            var result = registerControls.MasterData(userId);
+            var datas = result.Result;
+
+            var data = new Accounttbl
+            {
+
+                AccountNo = datas.AccountNo,
+                Username = datas.Username,
+                Password = datas.Password,
+                RoleName = datas.RoleName,
+                IsEmailVerified = "1"
+
+            };
+
+            var ret = registerControls.UpdateData(userId, data);
+
+            if (ret.Result)
+            {
+                NavMgr.NavigateTo("/pages/public/Login");
+            }
+            else
+            {
+                toastService.ShowError("Gagal mengubah data");
+            }
+
+        }
+        catch (Exception ex)
+        {
+            toastService.ShowError("Terjadi kesalahan: " + ex.Message);
+        }
+    }
+
+}

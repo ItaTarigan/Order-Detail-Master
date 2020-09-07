@@ -1,0 +1,79 @@
+﻿@inherits LayoutComponentBase
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Components.Authorization
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@using BalitTanahPelayanan.Controllers
+@using BalitTanahPelayanan.Shared.Usercontrols
+
+<div class="w3-main container-fluid" style="margin-top:10px;">
+    <div>
+        <HeaderInfo></HeaderInfo>
+    </div>
+    <div class="row">
+        <div class="col-lg">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Master Data
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item">Accounts</a>
+                                <a class="dropdown-item">Analysis Types</a>
+                                <a class="dropdown-item">Comoditys</a>
+                                <a class="dropdown-item">Customers</a>
+                                <a class="dropdown-item">Element Services</a>
+                                <a class="dropdown-item">Employees</a>
+                                <a class="dropdown-item">File Attachments</a>
+                                <a class="dropdown-item">Order Masters</a>
+                                <a class="dropdown-item">Order Details</a>
+                                <a class="dropdown-item">Parameters</a>
+                                <a class="dropdown-item">Results</a>
+                                <a class="dropdown-item">Roles</a>
+                                <a class="dropdown-item">Samples</a>
+                                <a class="dropdown-item">Standards</a>
+                                <a class="dropdown-item">Standard Details</a>
+                                <a class="dropdown-item">Workflows</a>
+                                <a class="dropdown-item">Logs</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Test..</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg">
+            @Body
+            @*<asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>*@
+        </div>
+    </div>
+    <div class="footer bg-light py-2 small mt-5">
+        <div class="text-center">
+            <strong>© 2019 BALITANAH</strong> | SISTEM INFORMASI LAYANAN PELANGGAN ONLINE. ALL RIGHTS RESERVED
+        </div>
+    </div>
+</div>
+@code {
+    //CustomerControls customerControls = new CustomerControls();
+
+    //protected override async Task OnInitializedAsync()
+    //{
+    //    var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+    //    var user = authState.User.Identity.Name;
+
+    //    //bool isLoggedIn = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+    //    //if (!isLoggedIn)
+    //    //{
+    //    //    string url = HttpContext.Current.Request.Url.AbsoluteUri;
+    //    //    Response.Redirect("/pages/public/login.aspx?ReturnUrl=" + url, false);
+    //    //}
+    //}
+}

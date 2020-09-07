@@ -1,0 +1,316 @@
+﻿@page "/pages/private/masterdata/analysistypemaster"
+@layout BalitTanahPelayanan.Shared.Master.MainMaster
+@using System.Web;
+@using Microsoft.AspNetCore.WebUtilities
+@inject IToastService toastService
+@using BalitTanahPelayanan.Data
+@using BalitTanahPelayanan.Helpers
+@using BalitTanahPelayanan.Models
+@using BalitTanahPelayanan.Controllers
+@inject NavigationManager NavMgr
+@inject IJSRuntime jsRuntime
+
+@if (objListAnalysis == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    if (ShowTable)
+    {
+        <TableTemplate Items="objListAnalysis">
+            <TableHeader>
+                <th class="sorting">Analisis Tipe</th>
+                <th class="sorting">Deskripsi</th>
+                <th>Aksi</th>
+            </TableHeader>
+            <RowTemplate Context="analysis">
+                <td>@analysis.AnalysisTypeName</td>
+                <td>@analysis.Description</td>
+                <td>
+                    <a @onclick:preventDefault @onclick='() => ActionTable("ubah", analysis.AnalysisTypeName)' class="linkbtn">Ubah</a>
+                    <a @onclick:preventDefault @onclick='() => ActionTable("lihat", analysis.AnalysisTypeName)' class="linkbtn">Lihat</a>
+                    <a @onclick:preventDefault @onclick='() => ActionTable("hapus", analysis.AnalysisTypeName)' class="linkbtn">Hapus</a>
+                </td>
+            </RowTemplate>
+        </TableTemplate>
+        <div>
+            <input type="button" @onclick:preventDefault @onclick='() => ActionButton("add")' name="BtnAdd" value="Tambah Data" id="MainContent_BtnAdd" class="btn btn-success" />
+        </div>
+    }
+    if (ShowInput)
+    {
+        <EditForm EditContext="@editContext" OnValidSubmit="DoSave">
+            <DataAnnotationsValidator />
+            <div class="form-group">
+                <label for="analysisname">Analisis Tipe:</label>
+                <InputText @bind-Value="modelanalysis.AnalysisTypeName" disabled="@InputIsDisabled" class="form-control" />
+                <ValidationMessage For="@(() => modelanalysis.AnalysisTypeName)"></ValidationMessage>
+            </div>
+            <div class="form-group">
+                <label for="desc">Deskripsi:</label>
+                <InputTextArea @bind-Value="modelanalysis.Description" disabled="@InputIsDisabled" class="form-control" ></InputTextArea>
+                <ValidationMessage For="@(() => modelanalysis.Description)"></ValidationMessage>
+            </div>
+            <input type="@btnSaveIsHidden" class="btn btn-success" disabled="@IsDisabled" name="BtnSave" value="@btnSaveOrEdit" @onclick="DoSave" />
+            @*<input type="submit" class="btn btn-success" name="BtnUpdate" value="@update" hidden="hidden"/>*@
+            <input type="button" class="btn btn-danger" name="BtnCancel" value="Kembali" @onclick:preventDefault @onclick='() => ActionButton("cancel")' />
+        </EditForm>
+    }
+    if (ShowDelete)
+    {
+        <div class="form-group">
+            <lable><h4>Apakah anda yakin ingin menghapus data ini?</h4></lable>
+        </div>
+        <a @onclick:preventDefault @onclick='() => DoDelete(modelanalysis.AnalysisTypeName)' class="btn btn-success">Ya</a>
+        @*<input type="submit" class="btn btn-success" name="BtnUpdate" value="@update" hidden="hidden"/>*@
+        <input type="submit" class="btn btn-danger" name="BtnCancel" value="Tidak" @onclick:preventDefault @onclick='() => ActionButton("cancel")' />
+    }
+}
+@code {
+    private EditContext editContext;
+
+    protected string btnSaveOrEdit = "Simpan";
+
+    protected string btnSaveIsHidden = "submit";
+
+    protected bool InputIsDisabled = false;
+
+    protected bool IsDisabled = true;
+
+    enum ModeForm { ViewData, UpdateData, DetailData, AddData }
+
+    bool ShowTable { get; set; } = true;
+    bool ShowInput { get; set; } = false;
+    bool ShowDelete { get; set; } = false;
+
+    AnalysisTypeControls analysisControl = new AnalysisTypeControls();
+    Analysistypetbl modelanalysis = new Analysistypetbl();
+    List<Analysistypetbl> objListAnalysis = new List<Analysistypetbl>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        RefreshGrid();
+        editContext = new EditContext(modelanalysis);
+    }
+
+    //validation state change
+    private void OnValidationStateChanged(object sender, ValidationStateChangedEventArgs e)
+    {
+        IsDisabled = editContext.GetValidationMessages().Any();
+        StateHasChanged();
+    }
+
+    //Do Save
+    private void DoSave()
+    {
+        string id = modelanalysis.AnalysisTypeName;
+        var data = modelanalysis;
+
+        if (btnSaveOrEdit == "Simpan")
+        {
+            var ret = analysisControl.AddData(data);
+
+            if (ret.Result)
+            {
+                StateHasChanged();
+                RefreshGrid();
+                SetLayout(ModeForm.ViewData);
+                toastService.ShowSuccess("Data berhasil disimpan");
+            }
+            else
+            {
+                toastService.ShowError("Gagal menyimpan data");
+            }
+        }
+        else
+        {
+            var ret = analysisControl.UpdateData(id.ToString(), data);
+
+            if (ret.Result)
+            {
+                StateHasChanged();
+                RefreshGrid();
+                SetLayout(ModeForm.ViewData);
+                toastService.ShowSuccess("Data berhasil diubah");
+            }
+            else
+            {
+                SetLayout(ModeForm.AddData);
+                toastService.ShowError("Gagal mengubah data");
+            }
+        }
+    }
+
+    //Do Delete
+    private void DoDelete(string id)
+    {
+        var ret = analysisControl.DeleteData(id);
+
+        if (ret.Result)
+        {
+            StateHasChanged();
+            RefreshGrid();
+            ShowDelete = false;
+            SetLayout(ModeForm.ViewData);
+            toastService.ShowSuccess("data berhasil dihapus");
+        }
+        else
+        {
+            toastService.ShowError("Gagal menghapus data");
+        }
+    }
+
+    //Action On Table
+    void ActionTable(string command, string ids)
+    {
+        if (command == "ubah")
+        {
+            editContext = new EditContext(modelanalysis);
+            editContext.OnValidationStateChanged += OnValidationStateChanged;
+            modelanalysis = new Analysistypetbl();
+
+            ShowTable = false;
+            ShowInput = true;
+            InputIsDisabled = false;
+            btnSaveOrEdit = "Ubah";
+            btnSaveIsHidden = "submit";
+            //modelanalysis.NoBalittanah = "Otomatis";
+            LoadDetail(ids);
+            StateHasChanged();
+        }
+        if (command == "lihat")
+        {
+            ShowTable = false;
+            ShowInput = true;
+            InputIsDisabled = true;
+            btnSaveIsHidden = "hidden";
+            LoadDetail(ids);
+        }
+        if (command == "hapus")
+        {
+            ShowTable = false;
+            ShowInput = false;
+            ShowDelete = true;
+            LoadDetail(ids);
+        }
+    }
+
+    //clear textbox
+    void clearfields()
+    {
+        modelanalysis.AnalysisTypeName = "";
+        modelanalysis.Description = "";
+
+        editContext = new EditContext(modelanalysis);
+        editContext.OnValidationStateChanged += OnValidationStateChanged;
+        modelanalysis = new Analysistypetbl();
+    }
+
+    //Action for Layout
+    void ActionButton(string commandname)
+    {
+        try
+        {
+            var command = commandname;
+
+            switch (command)
+            {
+                //case "save":
+                //    SetLayout();
+                //    break;
+
+                case "add":
+                    SetLayout(ModeForm.AddData);
+                    break;
+
+                case "cancel":
+                    SetLayout(ModeForm.ViewData);
+                    IsDisabled = true;
+                    break;
+            }
+        }
+        catch (Exception ex)
+        {
+            toastService.ShowError("Terjadi kesalahan: " + ex.Message);
+        }
+    }
+
+    //Set Layout
+    void SetLayout(ModeForm mode)
+    {
+        switch (mode)
+        {
+            case ModeForm.AddData:
+                ShowTable = false;
+                ShowDelete = false;
+                ShowInput = true;
+                InputIsDisabled = false;
+                clearfields();
+                btnSaveIsHidden = "submit";
+                btnSaveOrEdit = "Simpan";
+                StateHasChanged();
+                break;
+
+            case ModeForm.ViewData:
+                ShowTable = true;
+                ShowInput = false;
+                StateHasChanged();
+                break;
+        }
+    }
+
+    //load detail
+    void LoadDetail(string fid)
+    {
+        var ret = analysisControl.DetailData(fid);
+        var data = ret.Result;
+
+        if (data != null)
+        {
+            modelanalysis = data;
+        }
+    }
+
+    // Reload datagrid
+    protected void RefreshGrid(string param = "")
+    {
+        //GvData.DataBind();
+
+        if (param == null || param == "")
+        {
+
+            var ret = analysisControl.GetData();
+            var datas = ret.Result;
+
+            if (datas != null && datas.Count() > 0)
+            {
+                objListAnalysis = datas.ToList();
+                StateHasChanged();
+            }
+        }
+        else
+        {
+            var ret = analysisControl.GetDataByContaint(param);
+            var datas = ret.Result;
+
+            if (datas != null && datas.Count() > 0)
+            {
+                objListAnalysis = datas.ToList();
+                StateHasChanged();
+            }
+        }
+
+        //if (GvData.Rows.Count > 0)
+        //{
+        //    //Allow Paging
+        //    GvData.AllowCustomPaging = true;
+        //    //This replaces <td> with <th>
+        //    GvData.UseAccessibleHeader = true;
+        //    //This will add the <thead> and <tbody> elements
+        //    GvData.HeaderRow.TableSection = TableRowSection.TableHeader;
+        //    //This adds the <tfoot> element. Remove if you don't have a footer row
+        //    GvData.FooterRow.TableSection = TableRowSection.TableFooter;
+        //}
+    }
+}

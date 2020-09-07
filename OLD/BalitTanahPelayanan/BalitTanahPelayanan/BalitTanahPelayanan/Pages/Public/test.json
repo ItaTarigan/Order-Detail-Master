@@ -1,0 +1,40 @@
+{
+
+  "Header": "Header",
+  "Paragraf": "Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.",
+  "img": "../../Assets/img/kantor11.jpg",
+
+  "Header2": "Header2",
+  "Paragraf2": "2Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.",
+
+  "Header3": "Header3",
+  "Paragraf3": "2Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.",
+
+  "Content": "Lorem ipsum sure.",
+  "Content2": "It'll blow your mind.",
+  "Desco": "Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.",
+  "image": "../../Assets/img/kantor11.jpg",
+
+  "HeaderList": "Lorem Ipsum",
+  "paragraf1List": "Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.",
+  "paragraf2List": "Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.",
+  "paragraf3List": "Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.",
+
+  "ContentUnder": "Lorem ipsum sure.",
+  "Content2Under": "It'll blow your mind.",
+  "DescUnder": "Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.",
+  "imageUnder": "../../Assets/img/kantor11.jpg",
+
+  "HeaderSlider1": "BalitTanah",
+  "ParagrafSlider1": "Praesent commodo cursus magna, vel scelerisque nisl consectetur.",
+  "ImageSlider": "../../Assets/img/Kantor11.jpg",
+
+  "HeaderSlider2": "BalitTanah2",
+  "ParagrafSlider2": "Praesent commodo cursus magna, vel scelerisque nisl consectetur.",
+  "ImageSlider2": "../../Assets/img/Kantor11.jpg",
+
+  "HeaderSlider3": "BalitTanah3",
+  "ParagrafSlider3": "Praesent commodo cursus magna, vel scelerisque nisl consectetur.",
+  "ImageSlider3": "../../Assets/img/Kantor11.jpg"
+
+}

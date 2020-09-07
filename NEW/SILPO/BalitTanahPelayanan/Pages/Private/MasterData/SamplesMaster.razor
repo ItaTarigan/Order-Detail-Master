@@ -1,0 +1,483 @@
+﻿@page "/pages/private/masterdata/samplesmaster"
+@layout BalitTanahPelayanan.Shared.Master.MainMaster
+@using System.Web;
+@using Microsoft.AspNetCore.WebUtilities
+@inject IToastService toastService
+@using BalitTanahPelayanan.Data
+@using BalitTanahPelayanan.Helpers
+@using BalitTanahPelayanan.Models
+@using BalitTanahPelayanan.Controllers
+@inject NavigationManager NavMgr
+@inject IJSRuntime jsRuntime
+
+@if (objSample == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    if (ShowTable)
+    {
+        <TableTemplate Items="objSample">
+            <TableHeader>
+                <th class="sorting">Nomor BalitTanah</th>
+                <th class="sorting">Kode Pesanan</th>
+                <th class="sorting">Nomor Urut</th>
+                <th class="sorting">Kode Contoh</th>
+                <th class="sorting">Deskripsi</th>
+                <th class="sorting">Tanggal Pengambilan</th>
+                <th class="sorting">Desa</th>
+                <th class="sorting">Kecamatan</th>
+                <th class="sorting">Kota/Kabupaten</th>
+                <th class="sorting">Provinsi</th>
+                <th class="sorting">Koordinat GPS</th>
+                <th class="sorting">Jenis Tanah</th>
+                <th class="sorting">Sudah Diterima</th>
+                <th>Aksi</th>
+            </TableHeader>
+            <RowTemplate Context="sample">
+                <td>@sample.NoBalittanah</td>
+                <td>@sample.OrderNo</td>
+                <td>@sample.CountNumber</td>
+                <td>@sample.SampleCode</td>
+                <td>@sample.SampleDescription</td>
+                <td>@sample.SamplingDate</td>
+                <td>@sample.Village</td>
+                <td>@sample.SubDistrict</td>
+                <td>@sample.District</td>
+                <td>@sample.Province</td>
+                <td>@sample.Longitude</td>
+                <td>@sample.LandUse</td>
+                <td>@sample.IsReceived</td>
+                <td>
+                    <a @onclick:preventDefault @onclick='() => ActionTable("ubah", sample.NoBalittanah)' class="linkbtn">Ubah</a>
+                    <a @onclick:preventDefault @onclick='() => ActionTable("lihat", sample.NoBalittanah)' class="linkbtn">Lihat</a>
+                    <a @onclick:preventDefault @onclick='() => ActionTable("hapus", sample.NoBalittanah)' class="linkbtn">Hapus</a>
+                </td>
+            </RowTemplate>
+        </TableTemplate>
+        <div>
+            <input type="button" @onclick:preventDefault @onclick='() => ActionButton("add")' name="BtnAdd" value="Tambah Data" id="MainContent_BtnAdd" class="btn btn-success" />
+        </div>
+    }
+    if (ShowInput)
+    {
+        <EditForm EditContext="@editContext" OnValidSubmit="DoSave">
+            <DataAnnotationsValidator />
+            <div class="form-group">
+                <lable><h4>Informasi Contoh:</h4></lable>
+            </div>
+            <div class="form-group">
+                <label>Nomor Balittanah:</label>
+                <label ID="TxtNoBalittanah" runat="server" visible="true">@noBalittanah</label>
+                @*<InputText @bind-Value="modelsample.NoBalittanah" disabled="@InputIsDisabled" class="form-control" name="NoBalittanah">@noBalittanah</InputText>
+                    <ValidationMessage For="@(() => modelsample.NoBalittanah)"></ValidationMessage>*@
+            </div>
+            <div class="form-group">
+                <label for="orderno">Kode Pesanan:</label>
+                <InputSelect @bind-Value="modelsample.OrderNo" disabled="@InputIsDisabled" class="form-control" name="orderno">
+                    <option value="0">-- Pilih Kode Pesanan --</option>
+                    @if (objOrder != null)
+                            {
+                                foreach (var item in objOrder)
+                                {
+                            <option value="@item.OrderNo">@item.OrderNo</option>
+                                }
+                            }
+                </InputSelect>
+                <ValidationMessage For="@(() => modelsample.OrderNo)"></ValidationMessage>
+                @*<asp:DropDownList runat="server" ID="TxtOrderNo" CssClass="form-control" name="orderno" AppendDataBoundItems="true"></asp:DropDownList>*@
+            </div>
+            <div class="form-group">
+                <label for="countnumber">Nomor Urut:</label>
+                <InputNumber @bind-Value="modelsample.CountNumber" disabled="@InputIsDisabled" class="form-control" />
+                <ValidationMessage For="@(() => modelsample.CountNumber)"></ValidationMessage>
+            </div>
+            <div class="form-group">
+                <label for="samplecode">Kode Contoh:</label>
+                <InputText @bind-Value="modelsample.SampleCode" disabled="@InputIsDisabled" class="form-control" name="samplecode"></InputText>
+                <ValidationMessage For="@(() => modelsample.SampleCode)"></ValidationMessage>
+            </div>
+            <div class="form-group">
+                <label for="sampledescription">Deskripsi:</label>
+                <InputText @bind-Value="modelsample.SampleDescription" disabled="@InputIsDisabled" class="form-control" name="sampledescription"></InputText>
+                <ValidationMessage For="@(() => modelsample.SampleDescription)"></ValidationMessage>
+            </div>
+            <div class="form-group">
+                <label for="samplingdate">Tanggal Pengambilan:</label>
+                <InputDate @bind-Value="modelsample.SamplingDate" disabled="@InputIsDisabled" class="form-control" name="samplingdate" />
+                <ValidationMessage For="@(() => modelsample.SamplingDate)"></ValidationMessage>
+            </div>
+            <div class="form-group">
+                <lable><h4>Informasi Daerah:</h4></lable>
+            </div>
+            <div class="form-group">
+                <label for="village">Desa:</label>
+                <InputText @bind-Value="modelsample.Village" disabled="@InputIsDisabled" class="form-control" name="village"></InputText>
+            </div>
+            <div class="form-group">
+                <label for="subdistrict">Kecamatan:</label>
+                <InputText @bind-Value="modelsample.SubDistrict" disabled="@InputIsDisabled" class="form-control" name="subdistrict"></InputText>
+            </div>
+            <div class="form-group">
+                <label for="district">Kabupaten / Kota:</label>
+                <InputText @bind-Value="modelsample.District" disabled="@InputIsDisabled" class="form-control" name="district"></InputText>
+            </div>
+            <div class="form-group">
+                <label for="province">Provinsi:</label>
+                <InputText @bind-Value="modelsample.Province" disabled="@InputIsDisabled" class="form-control" name="province"></InputText>
+            </div>
+            <div class="form-group">
+                <label for="gpscoordinate">Koordinat GPS:</label>
+                <InputText @bind-Value="modelsample.Longitude" disabled="@InputIsDisabled" class="form-control" name="longitude"></InputText>
+            </div>
+            <div class="form-group">
+                <label for="landuse">Jenis Tanah:</label>
+                <InputSelect @bind-Value="modelsample.LandUse" disabled="@InputIsDisabled" class="form-control" name="landuse">
+                    <option value="Tanpa Keterangan">Tanpa Keterangan</option>
+                    <option value="Lahan Sawah">Lahan Sawah</option>
+                    <option value="Lahan Kering">Lahan Kering</option>
+                    <option value="Lahan Hutan">Lahan Hutan</option>
+                    <option value="Lahan Sulfat Asam">Lahan Sulfat Asam</option>
+                    <option value="Lahan Lebag">Lahan Lebag</option>
+                    <option value="Lahan Gambut">Lahan Gambut</option>
+                </InputSelect>
+            </div>
+            <div class="form-group">
+                <label for="isreceived">Sampe Diterima:</label>
+                <InputSelect @bind-Value="modelsample.IsReceived" disabled="@InputIsDisabled" class="form-control" name="isreceived">
+                    <option value="0">Belum Diterima</option>
+                    <option value="1">Sudah Diterima</option>
+                </InputSelect>
+            </div>
+            <input type="@btnSaveIsHidden" class="btn btn-success" disabled="@IsDisabled" name="BtnSave" value="@btnSaveOrEdit" @onclick="DoSave" />
+            @*<input type="submit" class="btn btn-success" name="BtnUpdate" value="@update" hidden="hidden"/>*@
+            <input type="button" class="btn btn-danger" name="BtnCancel" value="Kembali" @onclick:preventDefault @onclick='() => ActionButton("cancel")' />
+        </EditForm>
+    }
+    if (ShowDelete)
+    {
+        <div class="form-group">
+            <lable><h4>Apakah anda yakin ingin menghapus data ini?</h4></lable>
+        </div>
+        <a @onclick:preventDefault @onclick='() => DoDelete(modelsample.NoBalittanah)' class="btn btn-success">Ya</a>
+        @*<input type="submit" class="btn btn-success" name="BtnUpdate" value="@update" hidden="hidden"/>*@
+        <input type="submit" class="btn btn-danger" name="BtnCancel" value="Tidak" @onclick:preventDefault @onclick='() => ActionButton("cancel")' />
+    }
+}
+@code {
+    private EditContext editContext;
+
+    protected string btnSaveOrEdit = "Simpan";
+
+    protected string btnSaveIsHidden = "submit";
+
+    protected bool InputIsDisabled = false;
+
+    protected bool IsDisabled = true;
+
+    string noBalittanah = "Otomatis";
+
+    enum ModeForm { ViewData, UpdateData, DetailData, AddData }
+
+    bool ShowTable { get; set; } = true;
+    bool ShowInput { get; set; } = false;
+    bool ShowDelete { get; set; } = false;
+
+    SampleControls sampleControl = new SampleControls();
+    OrderMasterControls orderControl = new OrderMasterControls();
+    Ordersampletbl modelsample = new Ordersampletbl();
+    List<Ordersampletbl> objSample = new List<Ordersampletbl>();
+    List<Ordermastertbl> objOrder = new List<Ordermastertbl>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        RefreshGrid();
+        editContext = new EditContext(modelsample);
+    }
+
+    //validation state change
+    private void OnValidationStateChanged(object sender, ValidationStateChangedEventArgs e)
+    {
+        IsDisabled = editContext.GetValidationMessages().Any();
+        StateHasChanged();
+    }
+
+    //Do Save
+    private void DoSave()
+    {
+        string id = noBalittanah;
+        var data = modelsample;
+
+        if (btnSaveOrEdit == "Simpan")
+        {
+            var ret = sampleControl.AddData(data);
+
+            if (ret.Result)
+            {
+                StateHasChanged();
+                RefreshGrid();
+                SetLayout(ModeForm.ViewData);
+                toastService.ShowSuccess("Data berhasil disimpan");
+            }
+            else
+            {
+                toastService.ShowError("Gagal menyimpan data");
+            }
+        }
+        else
+        {
+            var ret = sampleControl.UpdateData(id.ToString(), data);
+
+            if (ret.Result)
+            {
+                StateHasChanged();
+                RefreshGrid();
+                SetLayout(ModeForm.ViewData);
+                toastService.ShowSuccess("Data berhasil diubah");
+            }
+            else
+            {
+                SetLayout(ModeForm.AddData);
+                toastService.ShowError("Gagal mengubah data");
+            }
+        }
+    }
+
+    //Do Delete
+    private void DoDelete(string id)
+    {
+        var ret = sampleControl.DeleteData(id);
+
+        if (ret.Result)
+        {
+            StateHasChanged();
+            RefreshGrid();
+            ShowDelete = false;
+            SetLayout(ModeForm.ViewData);
+            toastService.ShowSuccess("data berhasil dihapus");
+        }
+        else
+        {
+            toastService.ShowError("Gagal menghapus data");
+        }
+    }
+
+    //Action On Table
+    void ActionTable(string command, string ids)
+    {
+        if (command == "ubah")
+        {
+            editContext = new EditContext(modelsample);
+            editContext.OnValidationStateChanged += OnValidationStateChanged;
+            modelsample = new Ordersampletbl();
+
+            ShowTable = false;
+            ShowInput = true;
+            InputIsDisabled = false;
+            LoadOrderNo();
+            btnSaveOrEdit = "Ubah";
+            btnSaveIsHidden = "submit";
+            modelsample.NoBalittanah = "Otomatis";
+            LoadDetail(ids);
+            StateHasChanged();
+        }
+        if (command == "lihat")
+        {
+            ShowTable = false;
+            ShowInput = true;
+            InputIsDisabled = true;
+            btnSaveIsHidden = "hidden";
+            LoadDetail(ids);
+        }
+        if (command == "hapus")
+        {
+            ShowTable = false;
+            ShowInput = false;
+            ShowDelete = true;
+            LoadDetail(ids);
+        }
+    }
+
+    //clear textbox
+    void clearfields()
+    {
+        modelsample.NoBalittanah = "";
+        modelsample.CountNumber = null;
+        modelsample.OrderNo = "";
+        modelsample.SampleCode = "";
+        modelsample.SampleDescription = "";
+        modelsample.SamplingDate = null;
+        modelsample.Village = "";
+        modelsample.SubDistrict = "";
+        modelsample.District = "";
+        modelsample.Province = "";
+        modelsample.Longitude = "";
+        modelsample.LandUse = "Tanpa Keterangan";
+        modelsample.IsReceived = "0";
+
+        editContext = new EditContext(modelsample);
+        editContext.OnValidationStateChanged += OnValidationStateChanged;
+        modelsample = new Ordersampletbl();
+    }
+
+    //Action for Layout
+    void ActionButton(string commandname)
+    {
+        try
+        {
+            var command = commandname;
+
+            switch (command)
+            {
+                //case "save":
+                //    SetLayout();
+                //    break;
+
+                case "add":
+                    SetLayout(ModeForm.AddData);
+                    break;
+
+                case "cancel":
+                    SetLayout(ModeForm.ViewData);
+                    IsDisabled = true;
+                    break;
+            }
+        }
+        catch (Exception ex)
+        {
+            toastService.ShowError("Terjadi kesalahan: " + ex.Message);
+        }
+    }
+
+    //Set Layout
+    void SetLayout(ModeForm mode)
+    {
+        switch (mode)
+        {
+            case ModeForm.AddData:
+                ShowTable = false;
+                ShowInput = true;
+                InputIsDisabled = false;
+                clearfields();
+                LoadOrderNo();
+                btnSaveIsHidden = "submit";
+                modelsample.NoBalittanah = "Otomatis";
+                StateHasChanged();
+                break;
+
+            case ModeForm.ViewData:
+                ShowTable = true;
+                ShowInput = false;
+                StateHasChanged();
+                break;
+        }
+    }
+
+    //load orderno
+    private void LoadOrderNo()
+    {
+        var ret = orderControl.GetData();
+        var datas = ret.Result;
+
+        if (datas != null && datas.Count() > 0)
+        {
+            objOrder = datas.ToList();
+        }
+    }
+
+    //load detail
+    void LoadDetail(string fid)
+    {
+        var ret = sampleControl.DetailData(fid);
+        var data = ret.Result;
+
+        if (data != null)
+        {
+            LoadOrderNo();
+            modelsample = data;
+        }
+    }
+
+    // Reload datagrid
+    protected void RefreshGrid(string param = "")
+    {
+        //GvData.DataBind();
+
+        if (param == null || param == "")
+        {
+
+            var ret = sampleControl.GetData();
+            var datas = ret.Result;
+
+            foreach (var data in datas)
+                if (data.LandUse == "0")
+                {
+                    data.LandUse = "Tanpa Keterangan";
+                }
+                else if (data.LandUse == "1")
+                {
+                    data.LandUse = "Lahan Sawah";
+                }
+                else if (data.LandUse == "2")
+                {
+                    data.LandUse = "Lahan Kering";
+                }
+                else if (data.LandUse == "3")
+                {
+                    data.LandUse = "Lahan Hutan";
+                }
+                else if (data.LandUse == "4")
+                {
+                    data.LandUse = "Lahan Sulfat Asam";
+                }
+                else if (data.LandUse == "5")
+                {
+                    data.LandUse = "Lahan Lebag";
+                }
+                else if (data.LandUse == "6")
+                {
+                    data.LandUse = "Lahan Gambut";
+                }
+
+            foreach (var data in datas)
+                if (data.IsReceived == "0")
+                {
+                    data.IsReceived = "Belum Diterima";
+                }
+                else
+                {
+                    data.IsReceived = "Sudah Diterima";
+                }
+
+            if (datas != null && datas.Count() > 0)
+            {
+                objSample = datas.ToList();
+                StateHasChanged();
+            }
+        }
+        else
+        {
+            var ret = sampleControl.GetDataByContaint(param);
+            var datas = ret.Result;
+
+            if (datas != null && datas.Count() > 0)
+            {
+                objSample = datas.ToList();
+                StateHasChanged();
+            }
+        }
+
+        //if (GvData.Rows.Count > 0)
+        //{
+        //    //Allow Paging
+        //    GvData.AllowCustomPaging = true;
+        //    //This replaces <td> with <th>
+        //    GvData.UseAccessibleHeader = true;
+        //    //This will add the <thead> and <tbody> elements
+        //    GvData.HeaderRow.TableSection = TableRowSection.TableHeader;
+        //    //This adds the <tfoot> element. Remove if you don't have a footer row
+        //    GvData.FooterRow.TableSection = TableRowSection.TableFooter;
+        //}
+    }
+}

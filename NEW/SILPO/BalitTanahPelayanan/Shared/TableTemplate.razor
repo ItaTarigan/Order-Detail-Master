@@ -1,0 +1,39 @@
+﻿@typeparam TItem
+@inject IJSRuntime jsRuntime
+
+<div class="row mt-2" id="DivRow3">
+    <div class="col-lg">
+        <table id="GvData" name="GvData" class="table table-bordered table-hover dataTable no-footer">
+            <thead>
+                <tr role="row" class="even">
+                    @TableHeader
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Items)
+                {
+                    <tr role="row">
+                        @RowTemplate(item)
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment TableHeader { get; set; }
+    [Parameter]
+    public RenderFragment<TItem> RowTemplate { get; set; }
+    [Parameter]
+    public IReadOnlyList<TItem> Items { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await jsRuntime.InvokeVoidAsync("TestDataTablesAdd", "#GvData");
+        }
+    }
+}

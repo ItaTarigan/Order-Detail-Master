@@ -1,0 +1,1592 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{22E4C395-2D90-4CDF-8C82-47D3521FBFD1}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BalitTanahPelayanan</RootNamespace>
+    <AssemblyName>BalitTanahPelayanan</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.3.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.3.1\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="EASendMail, Version=7.5.0.2, Culture=neutral, PublicKeyToken=88adb80ecd66540b, processorArchitecture=MSIL">
+      <HintPath>..\packages\EASendMail.7.5.0.2\lib\net45\EASendMail.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="GemBox.Spreadsheet, Version=37.3.30.1189, Culture=neutral, PublicKeyToken=b1b72c69714d4847, processorArchitecture=MSIL">
+      <HintPath>..\packages\GemBox.Spreadsheet.37.3.30.1189\lib\net30\GemBox.Spreadsheet.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Protobuf, Version=3.6.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Protobuf.3.6.1\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.1, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.1\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.4.1\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.4.1\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Azure.KeyVault.Core.1.0.0\lib\net40\Microsoft.Azure.KeyVault.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.Storage.Blob, Version=11.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Azure.Storage.Blob.11.0.0\lib\net452\Microsoft.Azure.Storage.Blob.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.Storage.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Azure.Storage.Common.11.0.0\lib\net452\Microsoft.Azure.Storage.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=1.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Logging.1.1.2\lib\net451\Microsoft.IdentityModel.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=5.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Tokens.5.1.2\lib\net451\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.2.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1358.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.3.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1358.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebDesign, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1358.0\lib\net40\Microsoft.ReportViewer.WebDesign.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1358.0\lib\net40\Microsoft.ReportViewer.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.12.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.9.12\lib\net45\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.12.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.Entity.6.9.12\lib\net45\MySql.Data.Entity.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Web, Version=6.9.12.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Web.6.9.12\lib\net45\MySql.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.1.50.5147\lib\net20\PdfSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Charting, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.1.50.5147\lib\net20\PdfSharp.Charting.dll</HintPath>
+    </Reference>
+    <Reference Include="Renci.SshNet, Version=2016.1.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
+      <HintPath>..\packages\SSH.NET.2016.1.0\lib\net40\Renci.SshNet.dll</HintPath>
+    </Reference>
+    <Reference Include="SendGrid, Version=9.12.0.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sendgrid.9.12.0\lib\net452\SendGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpPDFLabel">
+      <HintPath>..\..\depedencies\SharpPDFLabel.dll</HintPath>
+    </Reference>
+    <Reference Include="shortid, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\shortid.2.0.0\lib\net45\shortid.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=5.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.5.1.2\lib\net451\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http, Version=4.1.1.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.3.3\lib\net46\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net461\System.Security.Cryptography.Algorithms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.6\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Twilio, Version=5.37.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Twilio.5.37.1\lib\net451\Twilio.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.Data, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.3.2.6\lib\net45\WebMatrix.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.WebData, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.3.2.6\lib\net45\WebMatrix.WebData.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing, Version=0.16.4.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.4\lib\net45\zxing.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.presentation, Version=0.16.4.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.4\lib\net45\zxing.presentation.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\css\bootstrap-theme.css" />
+    <Content Include="assets\css\bootstrap-theme.min.css" />
+    <Content Include="assets\css\bootstrap.css" />
+    <Content Include="assets\css\bootstrap.min.css" />
+    <Content Include="assets\css\fonts.css" />
+    <Content Include="assets\css\lp.css" />
+    <Content Include="assets\css\master.css" />
+    <Content Include="assets\css\responsive.css" />
+    <Content Include="assets\css\styles.css" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="assets\fonts\raleway-bold.svg" />
+    <Content Include="assets\fonts\raleway-extrabold.svg" />
+    <Content Include="assets\fonts\raleway-extralight.svg" />
+    <Content Include="assets\fonts\raleway-heavy.svg" />
+    <Content Include="assets\fonts\raleway-light.svg" />
+    <Content Include="assets\fonts\raleway-medium.svg" />
+    <Content Include="assets\fonts\raleway-regular.svg" />
+    <Content Include="assets\fonts\raleway-semibold.svg" />
+    <Content Include="assets\fonts\raleway-thin.svg" />
+    <Content Include="assets\img\ajax-loader.gif" />
+    <Content Include="assets\img\Balittanah.jpg" />
+    <Content Include="assets\img\balittanah2.jpg" />
+    <Content Include="assets\img\check_light.png" />
+    <Content Include="assets\img\clear-symbol-24.png" />
+    <Content Include="assets\img\dots.png" />
+    <Content Include="assets\img\Ellipse 108.png" />
+    <Content Include="assets\img\Ellipse 109.png" />
+    <Content Include="assets\img\Ellipse 114.png" />
+    <Content Include="assets\img\Ellipse 126.png" />
+    <Content Include="assets\img\eye.png" />
+    <Content Include="assets\img\eye1.png" />
+    <Content Include="assets\img\factory.png" />
+    <Content Include="assets\img\favicon.png" />
+    <Content Include="assets\img\Group 1043.png" />
+    <Content Include="assets\img\Group 1060.png" />
+    <Content Include="assets\img\Group 1069.png" />
+    <Content Include="assets\img\Group 1243.png" />
+    <Content Include="assets\img\HeaderLP.PNG" />
+    <Content Include="assets\img\icon-arrow-down-dark.png" />
+    <Content Include="assets\img\icon-arrow-left.png" />
+    <Content Include="assets\img\icon-arrow-light.png" />
+    <Content Include="assets\img\icon-barcode.png" />
+    <Content Include="assets\img\icon-bell.png" />
+    <Content Include="assets\img\icon-calendar.png" />
+    <Content Include="assets\img\icon-check-dark.png" />
+    <Content Include="assets\img\icon-check-light.png" />
+    <Content Include="assets\img\icon-close-dark.png" />
+    <Content Include="assets\img\icon-close.png" />
+    <Content Include="assets\img\icon-dots.png" />
+    <Content Include="assets\img\icon-flag-light.png" />
+    <Content Include="assets\img\icon-loading.png" />
+    <Content Include="assets\img\icon-loading2.png" />
+    <Content Include="assets\img\icon-logout.png" />
+    <Content Include="assets\img\icon-man.png" />
+    <Content Include="assets\img\icon-micro.png" />
+    <Content Include="assets\img\icon-percent.png" />
+    <Content Include="assets\img\icon-plus-light.png" />
+    <Content Include="assets\img\icon-tube.png" />
+    <Content Include="assets\img\kantor11.jpg" />
+    <Content Include="assets\img\lab.png" />
+    <Content Include="assets\img\lab2.png" />
+    <Content Include="assets\img\locked.png" />
+    <Content Include="assets\img\logo-agro.png" />
+    <Content Include="assets\img\logo-aspac.png" />
+    <Content Include="assets\img\logo-fftc.png" />
+    <Content Include="assets\img\logo-kan.png" />
+    <Content Include="assets\img\logo-sealnet.png" />
+    <Content Include="assets\img\Logo.PNG" />
+    <Content Include="assets\img\logout.png" />
+    <Content Include="assets\img\logo_report.png" />
+    <Content Include="assets\img\mail.png" />
+    <Content Include="assets\img\notauthorized.png" />
+    <Content Include="assets\img\paste.png" />
+    <Content Include="assets\img\Path 2841.png" />
+    <Content Include="assets\img\phone-call.png" />
+    <Content Include="assets\img\placeholder.png" />
+    <Content Include="assets\img\printer.png" />
+    <Content Include="assets\img\refresh-32.png" />
+    <Content Include="assets\img\search-24.png" />
+    <Content Include="assets\img\sent.png" />
+    <Content Include="assets\img\SOP.png" />
+    <Content Include="assets\img\title.png" />
+    <Content Include="assets\img\tube.png" />
+    <Content Include="assets\img\unplug.png" />
+    <Content Include="assets\img\users.png" />
+    <Content Include="assets\js\bootstrap.js" />
+    <Content Include="assets\js\bootstrap.min.js" />
+    <Content Include="assets\js\jquery-3.4.1.min.js" />
+    <Content Include="assets\js\jquery.min.js" />
+    <Content Include="assets\js\npm.js" />
+    <Content Include="assets\js\scripts.js" />
+    <Content Include="Default.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="Models\SilpoDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SilpoDB.edmx</DependentUpon>
+      <LastGenOutput>SilpoDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\SilpoDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SilpoDB.edmx</DependentUpon>
+      <LastGenOutput>SilpoDB.cs</LastGenOutput>
+    </Content>
+    <Content Include="Pages\BoardTugas\BoardTugas.aspx" />
+    <Content Include="Pages\Private\AnalisType.aspx" />
+    <Content Include="Pages\Private\Analis\AnalisBeranda.aspx" />
+    <Content Include="Pages\Private\Analis\AnalisBerandaNonBatch.aspx" />
+    <Content Include="Pages\Private\Analis\DaftarOrder.aspx" />
+    <Content Include="Pages\Private\Analis\DaftarSample.aspx" />
+    <Content Include="Pages\Private\Analis\InputParameter.aspx" />
+    <Content Include="Pages\Private\Analis\OrderDetail.aspx" />
+    <Content Include="Pages\Private\CS\CetakBarcodeSampel.aspx" />
+    <Content Include="Pages\Private\CS\CsDetail.aspx" />
+    <Content Include="Pages\Private\CS\CsHome.aspx" />
+    <Content Include="Pages\Private\CS\CsProses.aspx" />
+    <Content Include="Pages\Private\CS\CsSelesai.aspx" />
+    <Content Include="Pages\Private\CS\CustomerServiceBeranda.aspx" />
+    <Content Include="Pages\Private\CS\CustomerServiceDetail.aspx" />
+    <Content Include="Pages\Private\CustomerDashboard.aspx" />
+    <Content Include="Pages\Private\CustomerOrderProcess.aspx" />
+    <Content Include="Pages\Private\Customer\CustomerBayar.aspx" />
+    <Content Include="Pages\Private\Customer\CustomerBeranda.aspx" />
+    <Content Include="Pages\Private\Customer\CustomerBerandaTouch.aspx" />
+    <Content Include="Pages\Private\Customer\CustomerBuatPesanan.aspx" />
+    <Content Include="Pages\Private\Customer\CustomerBuatPesananTouch.aspx" />
+    <Content Include="Pages\Private\Customer\CustomerCetakPermohonan.aspx" />
+    <Content Include="Pages\Private\Customer\CustomerKonfirmasi.aspx" />
+    <Content Include="Pages\Private\Customer\CustomerPesanan.aspx" />
+    <Content Include="Pages\Private\Customer\CustomerPesananBaru.aspx" />
+    <Content Include="Pages\Private\CustomerRincian.aspx" />
+    <Content Include="Pages\Private\Customer\CustomerRincian.aspx" />
+    <Content Include="Pages\Private\Customer\FormKajiUlang.aspx" />
+    <Content Include="Pages\Private\DaftarSuratPermohonan.aspx" />
+    <Content Include="Pages\Private\DaftarTugasLaboran.aspx" />
+    <Content Include="Pages\Private\Evaluator\EvaluasiHasil.aspx" />
+    <Content Include="Pages\Private\Evaluator\EvaluasiHasilDetail.aspx" />
+    <Content Include="Pages\Private\Index.aspx" />
+    <Content Include="Pages\Private\Kasir\CetakInvoice.aspx" />
+    <Content Include="Pages\Private\Kasir\CetakQR.aspx" />
+    <Content Include="Pages\Private\Kasir\CetakTandaTerima.aspx" />
+    <Content Include="Pages\Private\Kasir\KasirMasuk.aspx" />
+    <Content Include="Pages\Private\Kasir\KasirProses.aspx" />
+    <Content Include="Pages\Private\Kasir\KasirProsesRincian.aspx" />
+    <Content Include="Pages\Private\Kasir\KasirRincian.aspx" />
+    <Content Include="Pages\Private\Kasir\KasirSelesai.aspx" />
+    <Content Include="Pages\Private\Kasir\KasirSelesaiRincian.aspx" />
+    <Content Include="Pages\Private\Kasir\KasirVerifikasiPembayaran.aspx" />
+    <Content Include="Pages\Private\Manager\Dash_ManagerTeknis.aspx" />
+    <Content Include="Pages\Private\Manager\ManagerDetailOrder.aspx" />
+    <Content Include="Pages\Private\Manager\PilihPIC.aspx" />
+    <Content Include="Pages\Private\Manager\Unused\ProsesDetail.aspx" />
+    <Content Include="Pages\Private\Manager\Unused\SelesaiDetail.aspx" />
+    <Content Include="Pages\Private\Manager\StatistikPesanan.aspx" />
+    <Content Include="Pages\Private\MasterData\AccountsMaster.aspx" />
+    <Content Include="Pages\Private\MasterData\AnalysisTypesMaster.aspx" />
+    <Content Include="Pages\Private\BoardTugas.aspx" />
+    <Content Include="Pages\Private\MasterData\ComoditiesMaster.aspx" />
+    <Content Include="Pages\Private\MasterData\CustomersMaster.aspx" />
+    <Content Include="Pages\Private\Customer\CustomerDetail.aspx" />
+    <Content Include="Pages\Private\MasterData\ElementServicesMaster.aspx" />
+    <Content Include="Pages\Private\MasterData\EmployeesMaster.aspx" />
+    <Content Include="Pages\Private\Manager\OrderProsesManager.aspx" />
+    <Content Include="Pages\Private\Penyelia\BuatBatch.aspx" />
+    <Content Include="Pages\Private\Penyelia\DaftarPesanan.aspx" />
+    <Content Include="Pages\Private\Penyelia\Rincian.aspx" />
+    <Content Include="Pages\Private\Penyelia\RincianNonBatch.aspx" />
+    <Content Include="Pages\Private\Pimpinan\PimpinanBeranda.aspx" />
+    <Content Include="Pages\Private\SampleBoard.aspx" />
+    <Content Include="Pages\Private\Shared\GenerateQR.aspx" />
+    <Content Include="Pages\Private\Shared\ValidasiQR.aspx" />
+    <Content Include="Pages\Private\Test\TestSendNotif.aspx" />
+    <Content Include="Pages\Public\Activation.aspx" />
+    <Content Include="Pages\Private\MasterData\OrderDetailMaster.aspx" />
+    <Content Include="Pages\Private\MasterData\LogsMaster.aspx" />
+    <Content Include="Pages\Private\OrderListManager.aspx" />
+    <Content Include="Pages\Private\MasterData\OrderMasterMaster.aspx" />
+    <Content Include="Pages\Private\MasterData\ParametersMaster.aspx" />
+    <Content Include="Pages\Private\MasterData\ResultsMaster.aspx" />
+    <Content Include="Pages\Private\MasterData\RolesMaster.aspx" />
+    <Content Include="Pages\Private\MasterData\SamplesMaster.aspx" />
+    <Content Include="Pages\Private\MasterData\StandardDetailsMaster.aspx" />
+    <Content Include="Pages\Private\MasterData\StandardsMaster.aspx" />
+    <Content Include="Pages\Private\MasterData\Workflows.aspx" />
+    <Content Include="Pages\Private\Manager\OrderSelesaiManagerTeknis.aspx" />
+    <Content Include="Pages\Public\Error\404.aspx" />
+    <Content Include="Pages\Public\Error\Error.aspx" />
+    <Content Include="Pages\Public\ForgotPasswordDone.aspx" />
+    <Content Include="Pages\Public\ForgotPasswordForm.aspx" />
+    <Content Include="Pages\Public\Login.aspx" />
+    <Content Include="Pages\Public\NotAuthorized.aspx" />
+    <Content Include="Pages\Public\RegisterDone.aspx" />
+    <Content Include="Pages\Public\RegisterForm.aspx" />
+    <Content Include="assets\indonesia-region.min.json" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="assets\css\bootstrap-theme.css.map" />
+    <Content Include="assets\css\bootstrap-theme.min.css.map" />
+    <Content Include="assets\css\bootstrap.css.map" />
+    <Content Include="assets\css\bootstrap.min.css.map" />
+    <Content Include="Document\Template\TemplateLP_Paket.xlsx" />
+    <Content Include="Document\Template\Template_Batch.xlsx" />
+    <Content Include="Pages\Master\Admin.Master" />
+    <Content Include="Handlers\ImageLoader.ashx" />
+    <Content Include="Pages\Master\Pimpinan.Master" />
+    <None Include="Scripts\jquery-1.6.4-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.6.4.js" />
+    <Content Include="Scripts\jquery-1.6.4.min.js" />
+    <Content Include="Scripts\jquery.signalR-2.4.1.js" />
+    <Content Include="Scripts\jquery.signalR-2.4.1.min.js" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="Usercontrols\AuthChecker.ascx" />
+    <Content Include="Usercontrols\CSOrderInfoBox.ascx" />
+    <Content Include="Usercontrols\HeaderInfo.ascx" />
+    <Content Include="Usercontrols\ManagerInfoOrderBox.ascx" />
+    <Content Include="Usercontrols\OrderInfoBox.ascx" />
+    <Content Include="Usercontrols\OrderNavigation.ascx" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_GlobalResources\app.language.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>app.language.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\app.language.id-ID.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>app.language.id-ID.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\app.language.id-ID1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>app.language.id-ID.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\BoardTugasController.cs" />
+    <Compile Include="Controllers\CustomerOrderProcessControls.cs" />
+    <Compile Include="Controllers\OrderAnalysisControls.cs" />
+    <Compile Include="Controllers\OrderSampleControls.cs" />
+    <Compile Include="Controllers\PesananCustomerControls.cs" />
+    <Compile Include="Controllers\ReviewingControls.cs" />
+    <Compile Include="Controllers\AccountControls.cs" />
+    <Compile Include="Controllers\CustomerRincianControl.cs" />
+    <Compile Include="Controllers\ListGridMaster.cs" />
+    <Compile Include="Controllers\ManagerTeknisControls.cs" />
+    <Compile Include="Controllers\OrderDetailControls.cs" />
+    <Compile Include="Controllers\ParameterControls.cs" />
+    <Compile Include="Controllers\RegisterControls.cs" />
+    <Compile Include="Controllers\SampleControls.cs" />
+    <Compile Include="Controllers\OrderMasterControls.cs" />
+    <Compile Include="Controllers\ResultControls.cs" />
+    <Compile Include="Controllers\WorkflowControls.cs" />
+    <Compile Include="Controllers\LogControls.cs" />
+    <Compile Include="Controllers\StandardDetailControls.cs" />
+    <Compile Include="Controllers\StandardControls.cs" />
+    <Compile Include="Controllers\ElementServicesControls.cs" />
+    <Compile Include="Controllers\CustomerControls.cs" />
+    <Compile Include="Controllers\OrderListControls.cs" />
+    <Compile Include="Controllers\RoleControls.cs" />
+    <Compile Include="Controllers\EmployeeControls .cs" />
+    <Compile Include="Controllers\ComodityControls.cs" />
+    <Compile Include="Controllers\AnalysisTypeControls.cs" />
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Handlers\ImageLoader.ashx.cs">
+      <DependentUpon>ImageLoader.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\CloudStorage.cs" />
+    <Compile Include="Helpers\CommonWeb.cs" />
+    <Compile Include="Helpers\Crypto.cs" />
+    <Compile Include="Helpers\DatetimeHelper.cs" />
+    <Compile Include="Helpers\EmailService.cs" />
+    <Compile Include="Helpers\ExceptionUtility.cs" />
+    <Compile Include="Helpers\Formater.cs" />
+    <Compile Include="Helpers\GMail.cs" />
+    <Compile Include="Helpers\Interfaces.cs" />
+    <Compile Include="Helpers\LanguageHelper.cs" />
+    <Compile Include="Helpers\LocationHelper.cs" />
+    <Compile Include="Helpers\LogHelpers.cs" />
+    <Compile Include="Helpers\MailManager.cs" />
+    <Compile Include="Helpers\NumberCounter.cs" />
+    <Compile Include="Helpers\QRcode.cs" />
+    <Compile Include="Helpers\SmsService.cs" />
+    <Compile Include="Helpers\SMTPMail.cs" />
+    <Compile Include="Helpers\Status.cs" />
+    <Compile Include="Models\accounttbl.cs">
+      <DependentUpon>SilpoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\analysistypetbl.cs">
+      <DependentUpon>SilpoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\autonumbertbl.cs">
+      <DependentUpon>SilpoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BarcodeLabel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BarcodeLabel.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Models\batchtbl.cs">
+      <DependentUpon>SilpoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\comoditytbl.cs">
+      <DependentUpon>SilpoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\customertbl.cs">
+      <DependentUpon>SilpoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\elementservicehistorytbl.cs">
+      <DependentUpon>SilpoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\elementservicestbl.cs">
+      <DependentUpon>SilpoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\employeetbl.cs">
+      <DependentUpon>SilpoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\genustbl.cs">
+      <DependentUpon>SilpoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\laboratoriumtbl.cs">
+      <DependentUpon>SilpoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\logtbl.cs">
+      <DependentUpon>SilpoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\mysql_membership.cs">
+      <DependentUpon>SilpoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\my_aspnet_applications.cs">
+      <DependentUpon>SilpoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\my_aspnet_membership.cs">
+      <DependentUpon>SilpoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\my_aspnet_paths.cs">
+      <DependentUpon>SilpoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\my_aspnet_personalizationallusers.cs">
+      <DependentUpon>SilpoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\my_aspnet_personalizationperuser.cs">
+      <DependentUpon>SilpoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\my_aspnet_profiles.cs">
+      <DependentUpon>SilpoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\my_aspnet_roles.cs">
+      <DependentUpon>SilpoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\my_aspnet_sessioncleanup.cs">
+      <DependentUpon>SilpoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\my_aspnet_sessions.cs">
+      <DependentUpon>SilpoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\my_aspnet_sitemap.cs">
+      <DependentUpon>SilpoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\my_aspnet_users.cs">
+      <DependentUpon>SilpoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\my_aspnet_usersinroles.cs">
+      <DependentUpon>SilpoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\orderanalysisdetailtbl.cs">
+      <DependentUpon>SilpoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ordermastertbl.cs">
+      <DependentUpon>SilpoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ordernavigationtbl.cs">
+      <DependentUpon>SilpoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\orderpricedetailtbl.cs">
+      <DependentUpon>SilpoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ordersampletbl.cs">
+      <DependentUpon>SilpoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\packagedetailtbl.cs">
+      <DependentUpon>SilpoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\packagetbl.cs">
+      <DependentUpon>SilpoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\parameterstbl.cs">
+      <DependentUpon>SilpoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\paymenttbl.cs">
+      <DependentUpon>SilpoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ReportDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Models\resulttbl.cs">
+      <DependentUpon>SilpoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\reviewingtbl.cs">
+      <DependentUpon>SilpoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\roletbl.cs">
+      <DependentUpon>SilpoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sampletypetbl.cs">
+      <DependentUpon>SilpoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SilpoDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SilpoDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SilpoDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SilpoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SilpoDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SilpoDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\standarddetailtbl.cs">
+      <DependentUpon>SilpoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\standardtbl.cs">
+      <DependentUpon>SilpoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TestJson.cs" />
+    <Compile Include="Models\workflowlogtbl.cs">
+      <DependentUpon>SilpoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\BoardTugas\BoardTugas.aspx.cs">
+      <DependentUpon>BoardTugas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\BoardTugas\BoardTugas.aspx.designer.cs">
+      <DependentUpon>BoardTugas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Master\Admin.Master.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Master\Admin.Master.designer.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Master\Analis.Master.cs">
+      <DependentUpon>Analis.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Master\Analis.Master.designer.cs">
+      <DependentUpon>Analis.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Master\CommonNoHeader.Master.cs">
+      <DependentUpon>CommonNoHeader.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Master\CommonNoHeader.Master.designer.cs">
+      <DependentUpon>CommonNoHeader.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Master\Customer.Master.cs">
+      <DependentUpon>Customer.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Master\Customer.Master.designer.cs">
+      <DependentUpon>Customer.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Master\Evaluator.Master.cs">
+      <DependentUpon>Evaluator.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Master\Evaluator.Master.designer.cs">
+      <DependentUpon>Evaluator.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Master\Kasir.Master.cs">
+      <DependentUpon>Kasir.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Master\Kasir.Master.designer.cs">
+      <DependentUpon>Kasir.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Master\Pimpinan.Master.cs">
+      <DependentUpon>Pimpinan.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Master\Pimpinan.Master.designer.cs">
+      <DependentUpon>Pimpinan.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Analis\AnalisBeranda.aspx.cs">
+      <DependentUpon>AnalisBeranda.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Analis\AnalisBeranda.aspx.designer.cs">
+      <DependentUpon>AnalisBeranda.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Analis\AnalisBerandaNonBatch.aspx.cs">
+      <DependentUpon>AnalisBerandaNonBatch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Analis\AnalisBerandaNonBatch.aspx.designer.cs">
+      <DependentUpon>AnalisBerandaNonBatch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Analis\DaftarOrder.aspx.cs">
+      <DependentUpon>DaftarOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Analis\DaftarOrder.aspx.designer.cs">
+      <DependentUpon>DaftarOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Analis\DaftarSample.aspx.cs">
+      <DependentUpon>DaftarSample.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Analis\DaftarSample.aspx.designer.cs">
+      <DependentUpon>DaftarSample.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Analis\InputParameter.aspx.cs">
+      <DependentUpon>InputParameter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Analis\InputParameter.aspx.designer.cs">
+      <DependentUpon>InputParameter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Analis\OrderDetail.aspx.cs">
+      <DependentUpon>OrderDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Analis\OrderDetail.aspx.designer.cs">
+      <DependentUpon>OrderDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\CS\CetakBarcodeSampel.aspx.cs">
+      <DependentUpon>CetakBarcodeSampel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\CS\CetakBarcodeSampel.aspx.designer.cs">
+      <DependentUpon>CetakBarcodeSampel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\CS\CustomerServiceBeranda.aspx.cs">
+      <DependentUpon>CustomerServiceBeranda.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\CS\CustomerServiceBeranda.aspx.designer.cs">
+      <DependentUpon>CustomerServiceBeranda.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\CS\CustomerServiceDetail.aspx.cs">
+      <DependentUpon>CustomerServiceDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\CS\CustomerServiceDetail.aspx.designer.cs">
+      <DependentUpon>CustomerServiceDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Customer\CustomerBayar.aspx.cs">
+      <DependentUpon>CustomerBayar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Customer\CustomerBayar.aspx.designer.cs">
+      <DependentUpon>CustomerBayar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Customer\CustomerBeranda.aspx.cs">
+      <DependentUpon>CustomerBeranda.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Customer\CustomerBeranda.aspx.designer.cs">
+      <DependentUpon>CustomerBeranda.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Customer\CustomerBerandaTouch.aspx.cs">
+      <DependentUpon>CustomerBerandaTouch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Customer\CustomerBerandaTouch.aspx.designer.cs">
+      <DependentUpon>CustomerBerandaTouch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Customer\CustomerBuatPesanan.aspx.cs">
+      <DependentUpon>CustomerBuatPesanan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Customer\CustomerBuatPesanan.aspx.designer.cs">
+      <DependentUpon>CustomerBuatPesanan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Customer\CustomerBuatPesananTouch.aspx.cs">
+      <DependentUpon>CustomerBuatPesananTouch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Customer\CustomerBuatPesananTouch.aspx.designer.cs">
+      <DependentUpon>CustomerBuatPesananTouch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Customer\CustomerCetakPermohonan.aspx.cs">
+      <DependentUpon>CustomerCetakPermohonan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Customer\CustomerCetakPermohonan.aspx.designer.cs">
+      <DependentUpon>CustomerCetakPermohonan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Customer\CustomerKonfirmasi.aspx.cs">
+      <DependentUpon>CustomerKonfirmasi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Customer\CustomerKonfirmasi.aspx.designer.cs">
+      <DependentUpon>CustomerKonfirmasi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Customer\CustomerRincian.aspx.cs">
+      <DependentUpon>CustomerRincian.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Customer\CustomerRincian.aspx.designer.cs">
+      <DependentUpon>CustomerRincian.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Evaluator\EvaluasiHasil.aspx.cs">
+      <DependentUpon>EvaluasiHasil.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Evaluator\EvaluasiHasil.aspx.designer.cs">
+      <DependentUpon>EvaluasiHasil.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Evaluator\EvaluasiHasilDetail.aspx.cs">
+      <DependentUpon>EvaluasiHasilDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Evaluator\EvaluasiHasilDetail.aspx.designer.cs">
+      <DependentUpon>EvaluasiHasilDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Kasir\CetakInvoice.aspx.cs">
+      <DependentUpon>CetakInvoice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Kasir\CetakInvoice.aspx.designer.cs">
+      <DependentUpon>CetakInvoice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Kasir\CetakQR.aspx.cs">
+      <DependentUpon>CetakQR.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Kasir\CetakQR.aspx.designer.cs">
+      <DependentUpon>CetakQR.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Kasir\CetakTandaTerima.aspx.cs">
+      <DependentUpon>CetakTandaTerima.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Kasir\CetakTandaTerima.aspx.designer.cs">
+      <DependentUpon>CetakTandaTerima.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Kasir\KasirProses.aspx.cs">
+      <DependentUpon>KasirProses.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Kasir\KasirProses.aspx.designer.cs">
+      <DependentUpon>KasirProses.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Kasir\KasirProsesRincian.aspx.cs">
+      <DependentUpon>KasirProsesRincian.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Kasir\KasirProsesRincian.aspx.designer.cs">
+      <DependentUpon>KasirProsesRincian.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Kasir\KasirRincian.aspx.cs">
+      <DependentUpon>KasirRincian.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Kasir\KasirRincian.aspx.designer.cs">
+      <DependentUpon>KasirRincian.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Kasir\KasirSelesai.aspx.cs">
+      <DependentUpon>KasirSelesai.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Kasir\KasirSelesai.aspx.designer.cs">
+      <DependentUpon>KasirSelesai.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Kasir\KasirSelesaiRincian.aspx.cs">
+      <DependentUpon>KasirSelesaiRincian.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Kasir\KasirSelesaiRincian.aspx.designer.cs">
+      <DependentUpon>KasirSelesaiRincian.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Kasir\KasirVerifikasiPembayaran.aspx.cs">
+      <DependentUpon>KasirVerifikasiPembayaran.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Kasir\KasirVerifikasiPembayaran.aspx.designer.cs">
+      <DependentUpon>KasirVerifikasiPembayaran.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Manager\ManagerDetailOrder.aspx.cs">
+      <DependentUpon>ManagerDetailOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Manager\ManagerDetailOrder.aspx.designer.cs">
+      <DependentUpon>ManagerDetailOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Manager\StatistikPesanan.aspx.cs">
+      <DependentUpon>StatistikPesanan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Manager\StatistikPesanan.aspx.designer.cs">
+      <DependentUpon>StatistikPesanan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Penyelia\BuatBatch.aspx.cs">
+      <DependentUpon>BuatBatch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Penyelia\BuatBatch.aspx.designer.cs">
+      <DependentUpon>BuatBatch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Penyelia\RincianNonBatch.aspx.cs">
+      <DependentUpon>RincianNonBatch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Penyelia\RincianNonBatch.aspx.designer.cs">
+      <DependentUpon>RincianNonBatch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Pimpinan\PimpinanBeranda.aspx.cs">
+      <DependentUpon>PimpinanBeranda.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Pimpinan\PimpinanBeranda.aspx.designer.cs">
+      <DependentUpon>PimpinanBeranda.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\SampleBoard.aspx.cs">
+      <DependentUpon>SampleBoard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\SampleBoard.aspx.designer.cs">
+      <DependentUpon>SampleBoard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Shared\GenerateQR.aspx.cs">
+      <DependentUpon>GenerateQR.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Shared\GenerateQR.aspx.designer.cs">
+      <DependentUpon>GenerateQR.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Shared\ValidasiQR.aspx.cs">
+      <DependentUpon>ValidasiQR.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Shared\ValidasiQR.aspx.designer.cs">
+      <DependentUpon>ValidasiQR.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Test\TestSendNotif.aspx.cs">
+      <DependentUpon>TestSendNotif.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Test\TestSendNotif.aspx.designer.cs">
+      <DependentUpon>TestSendNotif.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Public\Error\404.aspx.cs">
+      <DependentUpon>404.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Public\Error\404.aspx.designer.cs">
+      <DependentUpon>404.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Public\Error\Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Public\Error\Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Public\NotAuthorized.aspx.cs">
+      <DependentUpon>NotAuthorized.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Public\NotAuthorized.aspx.designer.cs">
+      <DependentUpon>NotAuthorized.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SignalR\BarcodeHub.cs" />
+    <Compile Include="SignalR\BoardTugasHub.cs" />
+    <Compile Include="SignalR\NotificationHub.cs" />
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="Usercontrols\AuthChecker.ascx.cs">
+      <DependentUpon>AuthChecker.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Usercontrols\AuthChecker.ascx.designer.cs">
+      <DependentUpon>AuthChecker.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Usercontrols\CSOrderInfoBox.ascx.cs">
+      <DependentUpon>CSOrderInfoBox.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Usercontrols\CSOrderInfoBox.ascx.designer.cs">
+      <DependentUpon>CSOrderInfoBox.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Usercontrols\HeaderInfo.ascx.cs">
+      <DependentUpon>HeaderInfo.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Usercontrols\HeaderInfo.ascx.designer.cs">
+      <DependentUpon>HeaderInfo.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Usercontrols\ManagerInfoOrderBox.ascx.cs">
+      <DependentUpon>ManagerInfoOrderBox.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Usercontrols\ManagerInfoOrderBox.ascx.designer.cs">
+      <DependentUpon>ManagerInfoOrderBox.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Usercontrols\OrderInfoBox.ascx.cs">
+      <DependentUpon>OrderInfoBox.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Usercontrols\OrderInfoBox.ascx.designer.cs">
+      <DependentUpon>OrderInfoBox.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Usercontrols\OrderNavigation.ascx.cs">
+      <DependentUpon>OrderNavigation.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Usercontrols\OrderNavigation.ascx.designer.cs">
+      <DependentUpon>OrderNavigation.ascx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Pages\Master\Board.Master.cs">
+      <DependentUpon>Board.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Master\Board.Master.designer.cs">
+      <DependentUpon>Board.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Master\CS.Master.cs">
+      <DependentUpon>CS.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Master\CS.Master.designer.cs">
+      <DependentUpon>CS.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Master\Main.Master.cs">
+      <DependentUpon>Main.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Master\Main.Master.designer.cs">
+      <DependentUpon>Main.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Master\ManagerTeknis.Master.cs">
+      <DependentUpon>ManagerTeknis.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Master\ManagerTeknis.Master.designer.cs">
+      <DependentUpon>ManagerTeknis.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Master\Penyelia.Master.cs">
+      <DependentUpon>Penyelia.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Master\Penyelia.Master.designer.cs">
+      <DependentUpon>Penyelia.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Master\Public.Master.cs">
+      <DependentUpon>Public.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Master\Public.Master.designer.cs">
+      <DependentUpon>Public.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Master\SinglePage.Master.cs">
+      <DependentUpon>SinglePage.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Master\SinglePage.Master.designer.cs">
+      <DependentUpon>SinglePage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\AnalisType.aspx.cs">
+      <DependentUpon>AnalisType.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\AnalisType.aspx.designer.cs">
+      <DependentUpon>AnalisType.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\CS\CsDetail.aspx.cs">
+      <DependentUpon>CsDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\CS\CsDetail.aspx.designer.cs">
+      <DependentUpon>CsDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\CS\CsHome.aspx.cs">
+      <DependentUpon>CsHome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\CS\CsHome.aspx.designer.cs">
+      <DependentUpon>CsHome.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\CS\CsProses.aspx.cs">
+      <DependentUpon>CsProses.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\CS\CsProses.aspx.designer.cs">
+      <DependentUpon>CsProses.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\CS\CsSelesai.aspx.cs">
+      <DependentUpon>CsSelesai.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\CS\CsSelesai.aspx.designer.cs">
+      <DependentUpon>CsSelesai.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\CustomerOrderProcess.aspx.cs">
+      <DependentUpon>CustomerOrderProcess.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\CustomerOrderProcess.aspx.designer.cs">
+      <DependentUpon>CustomerOrderProcess.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Customer\CustomerPesanan.aspx.cs">
+      <DependentUpon>CustomerPesanan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Customer\CustomerPesanan.aspx.designer.cs">
+      <DependentUpon>CustomerPesanan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Customer\CustomerPesananBaru.aspx.cs">
+      <DependentUpon>CustomerPesananBaru.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Customer\CustomerPesananBaru.aspx.designer.cs">
+      <DependentUpon>CustomerPesananBaru.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\CustomerRincian.aspx.cs">
+      <DependentUpon>CustomerRincian.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\CustomerRincian.aspx.designer.cs">
+      <DependentUpon>CustomerRincian.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Customer\FormKajiUlang.aspx.cs">
+      <DependentUpon>FormKajiUlang.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Customer\FormKajiUlang.aspx.designer.cs">
+      <DependentUpon>FormKajiUlang.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\DaftarSuratPermohonan.aspx.cs">
+      <DependentUpon>DaftarSuratPermohonan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\DaftarSuratPermohonan.aspx.designer.cs">
+      <DependentUpon>DaftarSuratPermohonan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\DaftarTugasLaboran.aspx.cs">
+      <DependentUpon>DaftarTugasLaboran.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\DaftarTugasLaboran.aspx.designer.cs">
+      <DependentUpon>DaftarTugasLaboran.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Kasir\KasirMasuk.aspx.cs">
+      <DependentUpon>KasirMasuk.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Kasir\KasirMasuk.aspx.designer.cs">
+      <DependentUpon>KasirMasuk.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Manager\Dash_ManagerTeknis.aspx.cs">
+      <DependentUpon>Dash_ManagerTeknis.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Manager\Dash_ManagerTeknis.aspx.designer.cs">
+      <DependentUpon>Dash_ManagerTeknis.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Manager\PilihPIC.aspx.cs">
+      <DependentUpon>PilihPIC.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Manager\PilihPIC.aspx.designer.cs">
+      <DependentUpon>PilihPIC.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Manager\Unused\ProsesDetail.aspx.cs">
+      <DependentUpon>ProsesDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Manager\Unused\ProsesDetail.aspx.designer.cs">
+      <DependentUpon>ProsesDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Manager\Unused\SelesaiDetail.aspx.cs">
+      <DependentUpon>SelesaiDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Manager\Unused\SelesaiDetail.aspx.designer.cs">
+      <DependentUpon>SelesaiDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\MasterData\AccountsMaster.aspx.cs">
+      <DependentUpon>AccountsMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\MasterData\AccountsMaster.aspx.designer.cs">
+      <DependentUpon>AccountsMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\MasterData\AnalysisTypesMaster.aspx.cs">
+      <DependentUpon>AnalysisTypesMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\MasterData\AnalysisTypesMaster.aspx.designer.cs">
+      <DependentUpon>AnalysisTypesMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\BoardTugas.aspx.cs">
+      <DependentUpon>BoardTugas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\BoardTugas.aspx.designer.cs">
+      <DependentUpon>BoardTugas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\MasterData\ComoditiesMaster.aspx.cs">
+      <DependentUpon>ComoditiesMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\MasterData\ComoditiesMaster.aspx.designer.cs">
+      <DependentUpon>ComoditiesMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\MasterData\CustomersMaster.aspx.cs">
+      <DependentUpon>CustomersMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\MasterData\CustomersMaster.aspx.designer.cs">
+      <DependentUpon>CustomersMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Customer\CustomerDetail.aspx.cs">
+      <DependentUpon>CustomerDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Customer\CustomerDetail.aspx.designer.cs">
+      <DependentUpon>CustomerDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\MasterData\ElementServicesMaster.aspx.cs">
+      <DependentUpon>ElementServicesMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\MasterData\ElementServicesMaster.aspx.designer.cs">
+      <DependentUpon>ElementServicesMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\MasterData\EmployeesMaster.aspx.cs">
+      <DependentUpon>EmployeesMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\MasterData\EmployeesMaster.aspx.designer.cs">
+      <DependentUpon>EmployeesMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Manager\OrderProsesManager.aspx.cs">
+      <DependentUpon>OrderProsesManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Manager\OrderProsesManager.aspx.designer.cs">
+      <DependentUpon>OrderProsesManager.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Penyelia\DaftarPesanan.aspx.cs">
+      <DependentUpon>DaftarPesanan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Penyelia\DaftarPesanan.aspx.designer.cs">
+      <DependentUpon>DaftarPesanan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Penyelia\Rincian.aspx.cs">
+      <DependentUpon>Rincian.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Penyelia\Rincian.aspx.designer.cs">
+      <DependentUpon>Rincian.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Public\Activation.aspx.cs">
+      <DependentUpon>Activation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Public\Activation.aspx.designer.cs">
+      <DependentUpon>Activation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\MasterData\OrderDetailMaster.aspx.cs">
+      <DependentUpon>OrderDetailMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\MasterData\OrderDetailMaster.aspx.designer.cs">
+      <DependentUpon>OrderDetailMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\MasterData\LogsMaster.aspx.cs">
+      <DependentUpon>LogsMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\MasterData\LogsMaster.aspx.designer.cs">
+      <DependentUpon>LogsMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\OrderListManager.aspx.cs">
+      <DependentUpon>OrderListManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\OrderListManager.aspx.designer.cs">
+      <DependentUpon>OrderListManager.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\MasterData\OrderMasterMaster.aspx.cs">
+      <DependentUpon>OrderMasterMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\MasterData\OrderMasterMaster.aspx.designer.cs">
+      <DependentUpon>OrderMasterMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\MasterData\ParametersMaster.aspx.cs">
+      <DependentUpon>ParametersMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\MasterData\ParametersMaster.aspx.designer.cs">
+      <DependentUpon>ParametersMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\MasterData\ResultsMaster.aspx.cs">
+      <DependentUpon>ResultsMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\MasterData\ResultsMaster.aspx.designer.cs">
+      <DependentUpon>ResultsMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\MasterData\RolesMaster.aspx.cs">
+      <DependentUpon>RolesMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\MasterData\RolesMaster.aspx.designer.cs">
+      <DependentUpon>RolesMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\MasterData\SamplesMaster.aspx.cs">
+      <DependentUpon>SamplesMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\MasterData\SamplesMaster.aspx.designer.cs">
+      <DependentUpon>SamplesMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\MasterData\StandardDetailsMaster.aspx.cs">
+      <DependentUpon>StandardDetailsMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\MasterData\StandardDetailsMaster.aspx.designer.cs">
+      <DependentUpon>StandardDetailsMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\MasterData\StandardsMaster.aspx.cs">
+      <DependentUpon>StandardsMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\MasterData\StandardsMaster.aspx.designer.cs">
+      <DependentUpon>StandardsMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\MasterData\Workflows.aspx.cs">
+      <DependentUpon>Workflows.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\MasterData\Workflows.aspx.designer.cs">
+      <DependentUpon>Workflows.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\Manager\OrderSelesaiManagerTeknis.aspx.cs">
+      <DependentUpon>OrderSelesaiManagerTeknis.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\Manager\OrderSelesaiManagerTeknis.aspx.designer.cs">
+      <DependentUpon>OrderSelesaiManagerTeknis.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Public\ForgotPasswordDone.aspx.cs">
+      <DependentUpon>ForgotPasswordDone.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Public\ForgotPasswordDone.aspx.designer.cs">
+      <DependentUpon>ForgotPasswordDone.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Public\ForgotPasswordForm.aspx.cs">
+      <DependentUpon>ForgotPasswordForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Public\ForgotPasswordForm.aspx.designer.cs">
+      <DependentUpon>ForgotPasswordForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Public\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Public\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Public\RegisterDone.aspx.cs">
+      <DependentUpon>RegisterDone.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Public\RegisterDone.aspx.designer.cs">
+      <DependentUpon>RegisterDone.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Public\RegisterForm.aspx.cs">
+      <DependentUpon>RegisterForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Public\RegisterForm.aspx.designer.cs">
+      <DependentUpon>RegisterForm.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="assets\fonts\montserrat-black-webfont.woff" />
+    <Content Include="assets\fonts\montserrat-black-webfont.woff2" />
+    <Content Include="assets\fonts\montserrat-bold-webfont.woff" />
+    <Content Include="assets\fonts\montserrat-bold-webfont.woff2" />
+    <Content Include="assets\fonts\montserrat-light-webfont.woff" />
+    <Content Include="assets\fonts\montserrat-light-webfont.woff2" />
+    <Content Include="assets\fonts\montserrat-regular-webfont.woff" />
+    <Content Include="assets\fonts\montserrat-regular-webfont.woff2" />
+    <Content Include="assets\fonts\raleway-bold.eot" />
+    <Content Include="assets\fonts\raleway-bold.ttf" />
+    <Content Include="assets\fonts\raleway-bold.woff" />
+    <Content Include="assets\fonts\raleway-extrabold.eot" />
+    <Content Include="assets\fonts\raleway-extrabold.ttf" />
+    <Content Include="assets\fonts\raleway-extrabold.woff" />
+    <Content Include="assets\fonts\raleway-extralight.eot" />
+    <Content Include="assets\fonts\raleway-extralight.ttf" />
+    <Content Include="assets\fonts\raleway-extralight.woff" />
+    <Content Include="assets\fonts\raleway-heavy.eot" />
+    <Content Include="assets\fonts\raleway-heavy.ttf" />
+    <Content Include="assets\fonts\raleway-heavy.woff" />
+    <Content Include="assets\fonts\raleway-light.eot" />
+    <Content Include="assets\fonts\raleway-light.ttf" />
+    <Content Include="assets\fonts\raleway-light.woff" />
+    <Content Include="assets\fonts\raleway-medium.eot" />
+    <Content Include="assets\fonts\raleway-medium.ttf" />
+    <Content Include="assets\fonts\raleway-medium.woff" />
+    <Content Include="assets\fonts\raleway-regular.eot" />
+    <Content Include="assets\fonts\raleway-regular.ttf" />
+    <Content Include="assets\fonts\raleway-regular.woff" />
+    <Content Include="assets\fonts\raleway-semibold.eot" />
+    <Content Include="assets\fonts\raleway-semibold.ttf" />
+    <Content Include="assets\fonts\raleway-semibold.woff" />
+    <Content Include="assets\fonts\raleway-thin.eot" />
+    <Content Include="assets\fonts\raleway-thin.ttf" />
+    <Content Include="assets\fonts\raleway-thin.woff" />
+    <EntityDeploy Include="Models\SilpoDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SilpoDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\SilpoDB.edmx.diagram">
+      <DependentUpon>SilpoDB.edmx</DependentUpon>
+    </Content>
+    <Content Include="assets\Lokasi.json" />
+    <Content Include="Models\BarcodeLabel.xsc">
+      <DependentUpon>BarcodeLabel.xsd</DependentUpon>
+    </Content>
+    <Content Include="Document\Template\TemplateLHP.xlsx" />
+    <Content Include="Document\Template\TemplateLP.xlsx" />
+    <Content Include="assets\wilayah.csv" />
+    <None Include="Models\BarcodeLabel.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BarcodeLabel.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Models\BarcodeLabel.xss">
+      <DependentUpon>BarcodeLabel.xsd</DependentUpon>
+    </Content>
+    <Content Include="Models\ReportDS.xsc">
+      <DependentUpon>ReportDS.xsd</DependentUpon>
+    </Content>
+    <None Include="Models\ReportDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ReportDS.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Models\ReportDS.xss">
+      <DependentUpon>ReportDS.xsd</DependentUpon>
+    </Content>
+    <None Include="packages.config" />
+    <Content Include="Pages\Master\Main.Master" />
+    <Content Include="Pages\Master\Public.Master" />
+    <Content Include="Pages\Private\Web.config" />
+    <Content Include="Pages\Public\Web.config" />
+    <Content Include="Pages\Master\Board.Master" />
+    <Content Include="Pages\Master\SinglePage.Master" />
+    <Content Include="Pages\Master\ManagerTeknis.Master" />
+    <Content Include="Pages\Master\CS.Master" />
+    <Content Include="Pages\Master\Penyelia.Master" />
+    <Content Include="Pages\Master\Customer.Master" />
+    <Content Include="Pages\Master\Kasir.Master" />
+    <Content Include="Pages\Master\Analis.Master" />
+    <Content Include="Pages\Master\CommonNoHeader.Master" />
+    <Content Include="Pages\Master\Evaluator.Master" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\SILPO - Web Deploy.pubxml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\app.language.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>app.language.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\app.language.id-ID.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>app.language.id-ID1.designer.cs</LastGenOutput>
+    </Content>
+    <EmbeddedResource Include="Reports\BarcodeSample.rdlc" />
+    <EmbeddedResource Include="Reports\QRcode.rdlc" />
+    <EmbeddedResource Include="Reports\Invoice.rdlc" />
+    <EmbeddedResource Include="Reports\TandaTerimaKasirPaket.rdlc" />
+    <EmbeddedResource Include="Reports\TandaTerimaKasir.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Document\Generate\" />
+    <Folder Include="Document\Payment\" />
+    <Folder Include="Pages\Private\Unused\" />
+    <Folder Include="Pages\Public\Unused\" />
+    <Folder Include="temp\" />
+    <Folder Include="Uploads\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>63224</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:63224/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
